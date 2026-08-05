@@ -1213,12 +1213,21 @@ var CENNIK = {
     ile = (ile === undefined) ? 1 : ile;
     return [a[0] + b[0] * ile, a[1] + b[1] * ile];
   }
-  function odmienKamery(n) {
+  function odmien(n, formy) {
     var d = n % 10, s = n % 100;
-    if (n === 1) { return '1 kamera'; }
-    if (d >= 2 && d <= 4 && !(s >= 12 && s <= 14)) { return n + ' kamery'; }
-    return n + ' kamer';
+    if (n === 1) { return n + ' ' + formy[0]; }
+    if (d >= 2 && d <= 4 && !(s >= 12 && s <= 14)) { return n + ' ' + formy[1]; }
+    return n + ' ' + formy[2];
   }
+  var OPIS_ELEK = {
+    nowa:    'nowa instalacja (kucie bruzd)',
+    budowa:  'dom w budowie (przed tynkiem)',
+    osprzet: 'wymiana osprzętu w gotowych puszkach'
+  };
+  var OPIS_MON = {
+    nowa:      'nowa instalacja',
+    rozbudowa: 'rozbudowa istniejącego systemu'
+  };
   function num(id, fallback) {
     var v = parseInt($(id).value, 10);
     return (isNaN(v) || v < 0) ? fallback : v;
@@ -1233,23 +1242,31 @@ var CENNIK = {
       var punkty = num('elek-punkty', 0);
       var r = [0, 0];
       r = dodaj(r, CENNIK.elektryka.punkt[zakres], punkty);
+      var szczE = [
+        odmien(punkty, ['punkt', 'punkty', 'punktów']),
+        OPIS_ELEK[zakres]
+      ];
       var opis = punkty + ' pkt';
       if ($('elek-rozdz').value === '1') {
         r = dodaj(r, CENNIK.elektryka.rozdzielnica);
         opis += ' + rozdzielnica';
+        szczE.push('z rozdzielnicą');
+      } else {
+        szczE.push('bez rozdzielnicy');
       }
       if (r[1] > 0) {
         suma = dodaj(suma, r);
-        pozycje.push({ nazwa: 'Elektryka', opis: opis, zakres: r });
+        pozycje.push({ nazwa: 'Elektryka', opis: opis, szczegoly: szczE, zakres: r });
       }
     }
 
     if ($('c-klima').checked) {
       var ile = Math.max(1, num('klima-ile', 1));
       var moc = $('klima-moc').value;
+      var kzakres = $('klima-zakres').value;
       var k = [0, 0];
       k = dodaj(k, CENNIK.klimatyzacja.montaz[moc], ile);
-      if ($('klima-zakres').value === 'komplet') {
+      if (kzakres === 'komplet') {
         k = dodaj(k, CENNIK.klimatyzacja.urzadzenie[moc], ile);
       }
       if (ile > 1) { k = dodaj(k, CENNIK.klimatyzacja.multiDoplata); }
@@ -1257,9 +1274,16 @@ var CENNIK = {
       var nadmiar = Math.max(0, trasa - CENNIK.klimatyzacja.trasaWCenie);
       if (nadmiar > 0) { k = dodaj(k, CENNIK.klimatyzacja.trasaMetr, nadmiar); }
       suma = dodaj(suma, k);
+      var szczK = [
+        odmien(ile, ['pomieszczenie', 'pomieszczenia', 'pomieszczeń']) + (ile > 1 ? ' (multi-split)' : ''),
+        'moc ' + moc.replace('.', ',') + ' kW',
+        (kzakres === 'komplet' ? 'urządzenie + montaż' : 'sam montaż (sprzęt klienta)'),
+        'trasa ' + trasa + ' m'
+      ];
       pozycje.push({
         nazwa: 'Klimatyzacja',
         opis: ile + '× ' + moc.replace('.', ',') + ' kW' + (ile > 1 ? ' (multi-split)' : ''),
+        szczegoly: szczK,
         zakres: k
       });
     }
@@ -1267,16 +1291,25 @@ var CENNIK = {
     if ($('c-mon').checked) {
       var kamery = Math.max(1, num('mon-kamery', 1));
       var rodzaj = $('mon-rodzaj').value;
+      var mzakres = $('mon-zakres').value;
       var m = [0, 0];
       m = dodaj(m, CENNIK.monitoring.montazKamery[rodzaj], kamery);
-      if ($('mon-zakres').value === 'komplet') {
+      if (mzakres === 'komplet') {
         m = dodaj(m, CENNIK.monitoring.kamera, kamery);
         if (rodzaj === 'nowa') { m = dodaj(m, CENNIK.monitoring.rejestrator); }
       }
       suma = dodaj(suma, m);
+      var szczM = [
+        odmien(kamery, ['kamera', 'kamery', 'kamer']),
+        OPIS_MON[rodzaj],
+        (mzakres === 'komplet'
+          ? (rodzaj === 'nowa' ? 'sprzęt + rejestrator + montaż' : 'sprzęt + montaż')
+          : 'sam montaż (sprzęt klienta)')
+      ];
       pozycje.push({
         nazwa: 'Monitoring',
-        opis: odmienKamery(kamery),
+        opis: odmien(kamery, ['kamera', 'kamery', 'kamer']),
+        szczegoly: szczM,
         zakres: m
       });
     }
@@ -1314,13 +1347,14 @@ var CENNIK = {
     }
 
     var linie = w.pozycje.map(function (poz) {
-      return '- ' + poz.nazwa + ' (' + poz.opis + '): ' + widelki(poz.zakres);
+      return '- ' + poz.nazwa + ': ' + widelki(poz.zakres) +
+             '\n  ' + poz.szczegoly.join(', ');
     });
     var razem = (w.pozycje.length > 1)
       ? '\n\nRazem: ' + widelki(w.suma)
       : '';
     var tresc = w.pozycje.length
-      ? ('Dzień dobry, policzyłem wycenę na stronie ampower.pl:\n\n' + linie.join('\n') + razem +
+      ? ('Dzień dobry, policzyłem wycenę na stronie ampower.pl:\n\n' + linie.join('\n\n') + razem +
          '\n\nMiejscowość: \n\nProszę o kontakt i dokładną wycenę.')
       : 'Dzień dobry, proszę o kontakt w sprawie wyceny.\n\nMiejscowość: ';
 
