@@ -1213,6 +1213,12 @@ var CENNIK = {
     ile = (ile === undefined) ? 1 : ile;
     return [a[0] + b[0] * ile, a[1] + b[1] * ile];
   }
+  function odmienKamery(n) {
+    var d = n % 10, s = n % 100;
+    if (n === 1) { return '1 kamera'; }
+    if (d >= 2 && d <= 4 && !(s >= 12 && s <= 14)) { return n + ' kamery'; }
+    return n + ' kamer';
+  }
   function num(id, fallback) {
     var v = parseInt($(id).value, 10);
     return (isNaN(v) || v < 0) ? fallback : v;
@@ -1270,7 +1276,7 @@ var CENNIK = {
       suma = dodaj(suma, m);
       pozycje.push({
         nazwa: 'Monitoring',
-        opis: kamery + ' kamer' + (kamery === 1 ? 'a' : (kamery < 5 ? 'y' : '')),
+        opis: odmienKamery(kamery),
         zakres: m
       });
     }
@@ -1310,11 +1316,13 @@ var CENNIK = {
     var linie = w.pozycje.map(function (poz) {
       return '- ' + poz.nazwa + ' (' + poz.opis + '): ' + widelki(poz.zakres);
     });
+    var razem = (w.pozycje.length > 1)
+      ? '\n\nRazem: ' + widelki(w.suma)
+      : '';
     var tresc = w.pozycje.length
-      ? ('Dzien dobry, licze wycene na stronie ampower.pl:\n\n' + linie.join('\n') +
-         '\n\nRazem szacunkowo: ' + widelki(w.suma) +
-         '\n\nProsze o kontakt i dokladna wycene.')
-      : 'Dzien dobry, prosze o kontakt w sprawie wyceny.';
+      ? ('Dzień dobry, policzyłem wycenę na stronie ampower.pl:\n\n' + linie.join('\n') + razem +
+         '\n\nProszę o kontakt i dokładną wycenę.')
+      : 'Dzień dobry, proszę o kontakt w sprawie wyceny.';
 
     $('calc-sms').href = 'sms:+48785668797?&body=' + encodeURIComponent(tresc);
     $('calc-mail').href = 'mailto:jakubbabiej@gmail.com?subject=' +
