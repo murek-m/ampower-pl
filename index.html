@@ -569,6 +569,135 @@ footer {
 }
 .foot .brand-name { font-size: 1rem; color: var(--panel-ink); }
 
+/* ---------- kalkulator wyceny ---------- */
+.calc { background: var(--panel); color: var(--panel-ink); }
+.calc .eyebrow { color: var(--volt); }
+.calc .section-head p { color: var(--panel-muted); }
+.calc-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+.calc-list { display: flex; flex-direction: column; gap: 1rem; }
+.calc-card {
+  background: var(--panel-2);
+  border: 1px solid var(--panel-line);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.15s;
+}
+.calc-card:has(input.calc-toggle:checked),
+.calc-card.on { border-color: var(--volt); }
+.calc-head {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.15rem 1.35rem;
+  margin: 0;
+}
+.calc-toggle {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--volt);
+  flex: none;
+  cursor: pointer;
+}
+.calc-head-txt {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  cursor: pointer;
+  flex: 1;
+}
+.calc-head-title { font-size: 1.05rem; font-weight: 600; }
+.calc-head-sub {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--panel-muted);
+}
+.calc-body { display: none; }
+.calc-card:has(input.calc-toggle:checked) .calc-body,
+.calc-card.on .calc-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 1rem;
+  padding: 1.3rem 1.35rem 1.4rem;
+  border-top: 1px dashed var(--panel-line);
+}
+.calc-field { display: flex; flex-direction: column; gap: 0.4rem; }
+.calc-field label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--panel-muted);
+}
+.calc-field select,
+.calc-field input {
+  width: 100%;
+  padding: 0.65rem 0.7rem;
+  background: var(--panel);
+  color: var(--panel-ink);
+  border: 1px solid var(--panel-line);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
+}
+.calc-field select:focus-visible,
+.calc-field input:focus-visible { outline: 3px solid var(--volt); outline-offset: 2px; }
+.calc-hint { font-size: 0.75rem; color: var(--panel-muted); }
+
+.calc-result {
+  position: sticky;
+  top: 92px;
+  background: var(--panel-2);
+  border: 1px solid var(--panel-line);
+  border-radius: 12px;
+  padding: 1.6rem 1.5rem 1.5rem;
+}
+.calc-result-label {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--volt);
+}
+.calc-total {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.6rem, 3.4vw, 2.1rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0.6rem 0 0.2rem;
+  font-variant-numeric: tabular-nums;
+  text-wrap: balance;
+}
+.calc-total-sub { font-size: 0.82rem; color: var(--panel-muted); }
+.calc-rows { margin: 1.3rem 0 0; padding: 1.1rem 0 0; border-top: 1px dashed var(--panel-line); display: flex; flex-direction: column; gap: 0.8rem; }
+.calc-row { display: flex; justify-content: space-between; gap: 0.8rem; font-size: 0.88rem; align-items: baseline; }
+.calc-row dt { color: var(--panel-muted); }
+.calc-row dd { margin: 0; font-weight: 600; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.calc-empty { font-size: 0.88rem; color: var(--panel-muted); }
+.calc-note {
+  margin-top: 1.2rem;
+  padding-top: 1.1rem;
+  border-top: 1px dashed var(--panel-line);
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--panel-muted);
+}
+.calc-ctas { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 1.2rem; }
+.calc-ctas .btn { width: 100%; }
+
+@media (max-width: 880px) {
+  .calc-grid { grid-template-columns: 1fr; gap: 1.8rem; }
+  .calc-result { position: static; }
+}
+
 /* pulse animation */
 .pulse {
   stroke-dasharray: 70 1200;
@@ -608,6 +737,7 @@ footer {
       <a href="#uslugi">Usługi</a>
       <a href="#klimatyzacja">Klimatyzacja</a>
       <a href="#realizacje">Realizacje</a>
+      <a href="#kalkulator">Wycena</a>
       <a href="#o-firmie">O firmie</a>
       <a href="#kontakt">Kontakt</a>
     </div>
@@ -648,7 +778,7 @@ footer {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
             Zadzwoń: 785 668 797
           </a>
-          <a class="btn btn-ghost" href="#kontakt">Darmowa wycena</a>
+          <a class="btn btn-ghost" href="#kalkulator">Policz wycenę</a>
         </div>
         <p class="hero-note mono">Autoryzowany instalator klimatyzacji <b>LG</b> i <b>Rotenso</b></p>
       </div>
@@ -755,7 +885,7 @@ footer {
             <p>Jestem <strong>autoryzowanym instalatorem LG i Rotenso</strong> — montuję zgodnie z wymaganiami producenta, z zachowaniem pełnej gwarancji urządzenia. Doradzę, który model i jaka moc mają sens w Twoim pomieszczeniu, zanim wydasz pieniądze.</p>
           </div>
           <div class="feature-ctas">
-            <a class="btn btn-volt" href="#kontakt">Zamów darmową wycenę</a>
+            <a class="btn btn-volt" href="#kalkulator">Policz koszt klimatyzacji</a>
             <a class="btn btn-ghost" href="tel:+48785668797">Zadzwoń</a>
           </div>
         </div>
@@ -803,7 +933,137 @@ footer {
     </div>
   </section>
 
-  <section class="section" id="o-firmie" style="padding-top: 0;">
+
+  <section class="section calc" id="kalkulator">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Kalkulator wyceny</p>
+        <h2 class="display">Ile to będzie kosztować?</h2>
+        <p>Zaznacz, czego potrzebujesz — od razu zobaczysz orientacyjny przedział cenowy. Stawki odpowiadają średnim cenom rynkowym na Dolnym Śląsku w 2026 r.</p>
+      </div>
+
+      <div class="calc-grid">
+        <div class="calc-list">
+
+          <div class="calc-card">
+            <div class="calc-head">
+              <input type="checkbox" class="calc-toggle" id="c-elek" data-calc aria-describedby="c-elek-sub">
+              <label class="calc-head-txt" for="c-elek">
+                <span class="calc-head-title">Instalacje elektryczne</span>
+                <span class="calc-head-sub" id="c-elek-sub">01 / punkty, rozdzielnica</span>
+              </label>
+            </div>
+            <div class="calc-body">
+              <div class="calc-field">
+                <label for="elek-zakres">Rodzaj prac</label>
+                <select id="elek-zakres" data-calc>
+                  <option value="nowa">Nowa instalacja (kucie bruzd)</option>
+                  <option value="budowa">Dom w budowie (przed tynkiem)</option>
+                  <option value="osprzet">Wymiana osprzętu w gotowych puszkach</option>
+                </select>
+              </div>
+              <div class="calc-field">
+                <label for="elek-punkty">Liczba punktów</label>
+                <input type="number" id="elek-punkty" value="12" min="1" max="300" step="1" data-calc>
+                <span class="calc-hint">Gniazdka, włączniki, punkty oświetleniowe</span>
+              </div>
+              <div class="calc-field">
+                <label for="elek-rozdz">Rozdzielnica</label>
+                <select id="elek-rozdz" data-calc>
+                  <option value="0">Nie potrzebuję</option>
+                  <option value="1">Nowa lub wymiana</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-card">
+            <div class="calc-head">
+              <input type="checkbox" class="calc-toggle" id="c-klima" data-calc aria-describedby="c-klima-sub">
+              <label class="calc-head-txt" for="c-klima">
+                <span class="calc-head-title">Montaż klimatyzacji</span>
+                <span class="calc-head-sub" id="c-klima-sub">02 / split i multi-split</span>
+              </label>
+            </div>
+            <div class="calc-body">
+              <div class="calc-field">
+                <label for="klima-ile">Liczba pomieszczeń</label>
+                <input type="number" id="klima-ile" value="1" min="1" max="6" step="1" data-calc>
+                <span class="calc-hint">2 i więcej = multi-split</span>
+              </div>
+              <div class="calc-field">
+                <label for="klima-moc">Moc jednostki</label>
+                <select id="klima-moc" data-calc>
+                  <option value="2.6">2,6 kW — do 25 m²</option>
+                  <option value="3.5" selected>3,5 kW — do 35 m²</option>
+                  <option value="5.0">5,0 kW — do 50 m²</option>
+                  <option value="7.0">7,0 kW — do 70 m²</option>
+                </select>
+              </div>
+              <div class="calc-field">
+                <label for="klima-zakres">Zakres</label>
+                <select id="klima-zakres" data-calc>
+                  <option value="komplet">Urządzenie + montaż</option>
+                  <option value="montaz">Sam montaż (mam urządzenie)</option>
+                </select>
+              </div>
+              <div class="calc-field">
+                <label for="klima-trasa">Długość trasy (m)</label>
+                <input type="number" id="klima-trasa" value="5" min="1" max="40" step="1" data-calc>
+                <span class="calc-hint">Pierwsze 5 m w cenie montażu</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="calc-card">
+            <div class="calc-head">
+              <input type="checkbox" class="calc-toggle" id="c-mon" data-calc aria-describedby="c-mon-sub">
+              <label class="calc-head-txt" for="c-mon">
+                <span class="calc-head-title">Monitoring</span>
+                <span class="calc-head-sub" id="c-mon-sub">03 / kamery i rejestrator</span>
+              </label>
+            </div>
+            <div class="calc-body">
+              <div class="calc-field">
+                <label for="mon-kamery">Liczba kamer</label>
+                <input type="number" id="mon-kamery" value="4" min="1" max="32" step="1" data-calc>
+              </div>
+              <div class="calc-field">
+                <label for="mon-rodzaj">Rodzaj instalacji</label>
+                <select id="mon-rodzaj" data-calc>
+                  <option value="nowa">Nowa instalacja</option>
+                  <option value="rozbudowa">Rozbudowa istniejącej</option>
+                </select>
+              </div>
+              <div class="calc-field">
+                <label for="mon-zakres">Zakres</label>
+                <select id="mon-zakres" data-calc>
+                  <option value="komplet">Sprzęt + montaż</option>
+                  <option value="montaz">Sam montaż (mam sprzęt)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <p class="calc-hint" style="margin-top:0.2rem;">Systemy alarmowe wyceniam indywidualnie — zbyt wiele zależy od układu budynku. <a href="#kontakt" style="color:var(--volt);">Napisz, doradzę bezpłatnie.</a></p>
+        </div>
+
+        <aside class="calc-result" aria-live="polite">
+          <p class="calc-result-label">Szacunkowy koszt</p>
+          <p class="calc-total" id="calc-total">—</p>
+          <p class="calc-total-sub" id="calc-sub">Zaznacz usługi po lewej stronie.</p>
+          <dl class="calc-rows" id="calc-rows"></dl>
+          <div class="calc-ctas">
+            <a class="btn btn-volt" id="calc-sms" href="sms:+48785668797">Wyślij zapytanie SMS-em</a>
+            <a class="btn btn-ghost" id="calc-mail" href="mailto:kuba@ampower.pl">Wyślij e-mailem</a>
+          </div>
+          <p class="calc-note">To wycena orientacyjna, nie oferta handlowa. Ostateczna cena zależy od warunków na miejscu — podam ją po bezpłatnych oględzinach. Kwoty brutto.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="o-firmie">
     <div class="wrap">
       <div class="about-grid">
         <div class="about-photo">
@@ -894,5 +1154,186 @@ footer {
     <span>© 2026 AmPower Jakub Babiej · NIP 5020121689 · ampower.pl</span>
   </div>
 </footer>
+<script>
+/* ==========================================================================
+   KALKULATOR WYCENY — AmPower
+   --------------------------------------------------------------------------
+   JAKUB: tutaj zmieniasz ceny. Każda pozycja to widełki [od, do] w zł brutto.
+   Wartości startowe to średnie ceny rynkowe w Polsce / na Dolnym Śląsku
+   w 2026 r. — ustaw je na swoje stawki, żeby wycena była Twoja, nie rynkowa.
+   ========================================================================== */
+var CENNIK = {
+  elektryka: {
+    punkt: {
+      nowa:    [140, 200],   // punkt z kuciem bruzd, z materiałem
+      budowa:  [110, 160],   // dom w budowie, przed tynkiem
+      osprzet: [40, 85]      // biały montaż w gotowych puszkach
+    },
+    rozdzielnica: [900, 1800]
+  },
+  klimatyzacja: {
+    montaz: {                // robocizna za jedną jednostkę wewnętrzną
+      '2.6': [1500, 2200],
+      '3.5': [1600, 2500],
+      '5.0': [2000, 3000],
+      '7.0': [2500, 3500]
+    },
+    urzadzenie: {            // sam sprzęt
+      '2.6': [2000, 3500],
+      '3.5': [2500, 4200],
+      '5.0': [3500, 5500],
+      '7.0': [4500, 7000]
+    },
+    multiDoplata: [800, 1500],  // dopłata do jednostki zewnętrznej multi-split
+    trasaMetr:    [80, 150],    // każdy metr powyżej limitu
+    trasaWCenie:  5
+  },
+  monitoring: {
+    montazKamery: {
+      nowa:      [300, 500],
+      rozbudowa: [250, 320]
+    },
+    kamera:      [350, 700],   // sprzęt: kamera IP
+    rejestrator: [800, 1600]   // rejestrator + dysk
+  }
+};
+
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var root = $('kalkulator');
+  if (!root) return;
+
+  var fmt = new Intl.NumberFormat('pl-PL', { maximumFractionDigits: 0, useGrouping: 'always' });
+  function kw(n) { return fmt.format(Math.round(n / 50) * 50); }
+  function widelki(r) {
+    if (r[0] === r[1]) { return kw(r[0]) + ' zł'; }
+    return kw(r[0]) + ' – ' + kw(r[1]) + ' zł';
+  }
+  function dodaj(a, b, ile) {
+    ile = (ile === undefined) ? 1 : ile;
+    return [a[0] + b[0] * ile, a[1] + b[1] * ile];
+  }
+  function num(id, fallback) {
+    var v = parseInt($(id).value, 10);
+    return (isNaN(v) || v < 0) ? fallback : v;
+  }
+
+  function policz() {
+    var suma = [0, 0];
+    var pozycje = [];
+
+    if ($('c-elek').checked) {
+      var zakres = $('elek-zakres').value;
+      var punkty = num('elek-punkty', 0);
+      var r = [0, 0];
+      r = dodaj(r, CENNIK.elektryka.punkt[zakres], punkty);
+      var opis = punkty + ' pkt';
+      if ($('elek-rozdz').value === '1') {
+        r = dodaj(r, CENNIK.elektryka.rozdzielnica);
+        opis += ' + rozdzielnica';
+      }
+      if (r[1] > 0) {
+        suma = dodaj(suma, r);
+        pozycje.push({ nazwa: 'Elektryka', opis: opis, zakres: r });
+      }
+    }
+
+    if ($('c-klima').checked) {
+      var ile = Math.max(1, num('klima-ile', 1));
+      var moc = $('klima-moc').value;
+      var k = [0, 0];
+      k = dodaj(k, CENNIK.klimatyzacja.montaz[moc], ile);
+      if ($('klima-zakres').value === 'komplet') {
+        k = dodaj(k, CENNIK.klimatyzacja.urzadzenie[moc], ile);
+      }
+      if (ile > 1) { k = dodaj(k, CENNIK.klimatyzacja.multiDoplata); }
+      var trasa = num('klima-trasa', CENNIK.klimatyzacja.trasaWCenie);
+      var nadmiar = Math.max(0, trasa - CENNIK.klimatyzacja.trasaWCenie);
+      if (nadmiar > 0) { k = dodaj(k, CENNIK.klimatyzacja.trasaMetr, nadmiar); }
+      suma = dodaj(suma, k);
+      pozycje.push({
+        nazwa: 'Klimatyzacja',
+        opis: ile + '× ' + moc.replace('.', ',') + ' kW' + (ile > 1 ? ' (multi-split)' : ''),
+        zakres: k
+      });
+    }
+
+    if ($('c-mon').checked) {
+      var kamery = Math.max(1, num('mon-kamery', 1));
+      var rodzaj = $('mon-rodzaj').value;
+      var m = [0, 0];
+      m = dodaj(m, CENNIK.monitoring.montazKamery[rodzaj], kamery);
+      if ($('mon-zakres').value === 'komplet') {
+        m = dodaj(m, CENNIK.monitoring.kamera, kamery);
+        if (rodzaj === 'nowa') { m = dodaj(m, CENNIK.monitoring.rejestrator); }
+      }
+      suma = dodaj(suma, m);
+      pozycje.push({
+        nazwa: 'Monitoring',
+        opis: kamery + ' kamer' + (kamery === 1 ? 'a' : (kamery < 5 ? 'y' : '')),
+        zakres: m
+      });
+    }
+
+    return { suma: suma, pozycje: pozycje };
+  }
+
+  function odswiez() {
+    var w = policz();
+    var rows = $('calc-rows');
+    rows.replaceChildren();
+
+    if (!w.pozycje.length) {
+      $('calc-total').textContent = '—';
+      $('calc-sub').textContent = 'Zaznacz usługi po lewej stronie.';
+      var p = document.createElement('p');
+      p.className = 'calc-empty';
+      p.textContent = 'Nic jeszcze nie wybrano.';
+      rows.appendChild(p);
+    } else {
+      $('calc-total').textContent = widelki(w.suma);
+      $('calc-sub').textContent = w.pozycje.length === 1
+        ? 'Szacunek dla wybranej usługi.'
+        : 'Szacunek dla ' + w.pozycje.length + ' usług łącznie.';
+      w.pozycje.forEach(function (poz) {
+        var div = document.createElement('div');
+        div.className = 'calc-row';
+        var dt = document.createElement('dt');
+        dt.textContent = poz.nazwa + ' · ' + poz.opis;
+        var dd = document.createElement('dd');
+        dd.textContent = widelki(poz.zakres);
+        div.appendChild(dt); div.appendChild(dd);
+        rows.appendChild(div);
+      });
+    }
+
+    var linie = w.pozycje.map(function (poz) {
+      return '- ' + poz.nazwa + ' (' + poz.opis + '): ' + widelki(poz.zakres);
+    });
+    var tresc = w.pozycje.length
+      ? ('Dzien dobry, licze wycene na stronie ampower.pl:\n\n' + linie.join('\n') +
+         '\n\nRazem szacunkowo: ' + widelki(w.suma) +
+         '\n\nProsze o kontakt i dokladna wycene.')
+      : 'Dzien dobry, prosze o kontakt w sprawie wyceny.';
+
+    $('calc-sms').href = 'sms:+48785668797?&body=' + encodeURIComponent(tresc);
+    $('calc-mail').href = 'mailto:kuba@ampower.pl?subject=' +
+      encodeURIComponent('Zapytanie o wycene — ampower.pl') +
+      '&body=' + encodeURIComponent(tresc);
+  }
+
+  root.querySelectorAll('input.calc-toggle').forEach(function (cb) {
+    var sync = function () { cb.closest('.calc-card').classList.toggle('on', cb.checked); };
+    cb.addEventListener('change', sync);
+    sync();
+  });
+
+  root.querySelectorAll('[data-calc]').forEach(function (el) {
+    el.addEventListener('input', odswiez);
+    el.addEventListener('change', odswiez);
+  });
+  odswiez();
+})();
+</script>
 </body>
 </html>
