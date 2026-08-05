@@ -1010,7 +1010,7 @@ footer {
               <div class="calc-field">
                 <label for="klima-trasa">Długość trasy (m)</label>
                 <input type="number" id="klima-trasa" value="5" min="1" max="40" step="1" data-calc>
-                <span class="calc-hint">Pierwsze 5 m w cenie montażu</span>
+                <span class="calc-hint">Na jednostkę. Pierwsze 5 m w cenie montażu</span>
               </div>
             </div>
           </div>
@@ -1057,7 +1057,7 @@ footer {
             <a class="btn btn-volt" id="calc-sms" href="sms:+48785668797">Wyślij zapytanie SMS-em</a>
             <a class="btn btn-ghost" id="calc-mail" href="mailto:jakubbabiej@gmail.com">Wyślij e-mailem</a>
           </div>
-          <p class="calc-note">To wycena orientacyjna, nie oferta handlowa. Ostateczna cena zależy od warunków na miejscu — podam ją po bezpłatnych oględzinach. Kwoty brutto.</p>
+          <p class="calc-note">To wycena orientacyjna, nie oferta handlowa — ostateczną cenę podaję po bezpłatnych oględzinach. Podane kwoty są cenami końcowymi dla klienta i obejmują materiał instalacyjny oraz robociznę. Osprzęt (gniazda, łączniki) i oprawy oświetleniowe klient dobiera samodzielnie.</p>
         </aside>
       </div>
     </div>
@@ -1163,38 +1163,58 @@ footer {
    w 2026 r. — ustaw je na swoje stawki, żeby wycena była Twoja, nie rynkowa.
    ========================================================================== */
 var CENNIK = {
+  /* Ceny końcowe dla klienta (zł), jako widełki [od, do].
+     Kalibracja: średnie rynkowe 2026 minus ok. 5-10% — poziom Głogów/Polkowice,
+     wyraźnie poniżej Wrocławia i Warszawy, ale nie "tanio". */
   elektryka: {
     punkt: {
-      nowa:    [140, 200],   // punkt z kuciem bruzd, z materiałem
-      budowa:  [110, 160],   // dom w budowie, przed tynkiem
-      osprzet: [40, 85]      // biały montaż w gotowych puszkach
+      nowa:    [140, 200],   // istniejący budynek, kucie bruzd, z materiałem instalacyjnym
+      budowa:  [120, 180],   // dom w budowie, przed tynkiem
+      osprzet: [40, 75]      // biały montaż w gotowych puszkach (robocizna)
     },
-    rozdzielnica: [900, 1800]
+    rozdzielnica: [1200, 2800]   // rozdzielnica z zabezpieczeniami + montaż
   },
   klimatyzacja: {
-    montaz: {                // robocizna za jedną jednostkę wewnętrzną
-      '2.6': [1500, 2200],
-      '3.5': [1600, 2500],
-      '5.0': [2000, 3000],
-      '7.0': [2500, 3500]
+    montaz: {                // robocizna pierwszej jednostki, w cenie 5 m trasy
+      '2.6': [1350, 1750],
+      '3.5': [1450, 1850],
+      '5.0': [1650, 2050],
+      '7.0': [1850, 2350]
     },
-    urzadzenie: {            // sam sprzęt
-      '2.6': [2000, 3500],
-      '3.5': [2500, 4200],
-      '5.0': [3500, 5500],
-      '7.0': [4500, 7000]
+    montazKolejnaJednostka: [800, 1200],   // każda kolejna jednostka w multi-split
+    urzadzenie: {            // komplet split (jednostka wewn. + zewn.)
+      '2.6': [2400, 4000],
+      '3.5': [2600, 4300],
+      '5.0': [4000, 5700],
+      '7.0': [5300, 7000]
     },
-    multiDoplata: [800, 1500],  // dopłata do jednostki zewnętrznej multi-split
-    trasaMetr:    [80, 150],    // każdy metr powyżej limitu
-    trasaWCenie:  5
+    jednostkaWewn: {         // sama jednostka wewnętrzna (multi-split)
+      '2.6': [1000, 1400],
+      '3.5': [1050, 1500],
+      '5.0': [1450, 2200],
+      '7.0': [1800, 2600]
+    },
+    agregat: {               // jedna jednostka zewnętrzna multi-split wg liczby jednostek wewn.
+      '2': [3000, 6000],
+      '3': [3900, 8000],
+      '4': [4600, 9500],
+      '5': [5200, 10500],
+      '6': [5800, 11500]
+    },
+    trasaMetr:   [100, 150], // każdy metr trasy powyżej limitu, na jednostkę
+    trasaWCenie: 5
   },
   monitoring: {
-    montazKamery: {
-      nowa:      [300, 500],
-      rozbudowa: [250, 320]
+    montazPierwsza: {        // pierwsza kamera — dojazd, rejestrator, konfiguracja
+      nowa:      [400, 550],
+      rozbudowa: [280, 450]
     },
-    kamera:      [350, 700],   // sprzęt: kamera IP
-    rejestrator: [800, 1600]   // rejestrator + dysk
+    montazKolejna: {         // każda kolejna kamera przy tym samym zleceniu
+      nowa:      [250, 350],
+      rozbudowa: [200, 300]
+    },
+    kamera:      [300, 520],    // kamera IP 4-8 MPx, PoE, noc
+    rejestrator: [1000, 1700]   // rejestrator + dysk
   }
 };
 
@@ -1264,21 +1284,34 @@ var CENNIK = {
       var ile = Math.max(1, num('klima-ile', 1));
       var moc = $('klima-moc').value;
       var kzakres = $('klima-zakres').value;
+      var K = CENNIK.klimatyzacja;
       var k = [0, 0];
-      k = dodaj(k, CENNIK.klimatyzacja.montaz[moc], ile);
+
+      /* robocizna: pierwsza jednostka + dopłata za każdą kolejną
+         (instalatorzy nie mnożą ceny montażu przez liczbę pomieszczeń) */
+      k = dodaj(k, K.montaz[moc]);
+      if (ile > 1) { k = dodaj(k, K.montazKolejnaJednostka, ile - 1); }
+
+      /* sprzęt: split = komplet; multi-split = JEDEN agregat + jednostki wewnętrzne */
       if (kzakres === 'komplet') {
-        k = dodaj(k, CENNIK.klimatyzacja.urzadzenie[moc], ile);
+        if (ile === 1) {
+          k = dodaj(k, K.urzadzenie[moc]);
+        } else {
+          k = dodaj(k, K.agregat[String(ile)] || K.agregat['6']);
+          k = dodaj(k, K.jednostkaWewn[moc], ile);
+        }
       }
-      if (ile > 1) { k = dodaj(k, CENNIK.klimatyzacja.multiDoplata); }
-      var trasa = num('klima-trasa', CENNIK.klimatyzacja.trasaWCenie);
-      var nadmiar = Math.max(0, trasa - CENNIK.klimatyzacja.trasaWCenie);
-      if (nadmiar > 0) { k = dodaj(k, CENNIK.klimatyzacja.trasaMetr, nadmiar); }
+
+      var trasa = num('klima-trasa', K.trasaWCenie);
+      var nadmiar = Math.max(0, trasa - K.trasaWCenie);
+      if (nadmiar > 0) { k = dodaj(k, K.trasaMetr, nadmiar * ile); }
+
       suma = dodaj(suma, k);
       var szczK = [
         odmien(ile, ['pomieszczenie', 'pomieszczenia', 'pomieszczeń']) + (ile > 1 ? ' (multi-split)' : ''),
         'moc ' + moc.replace('.', ',') + ' kW',
         (kzakres === 'komplet' ? 'urządzenie + montaż' : 'sam montaż (sprzęt klienta)'),
-        'trasa ' + trasa + ' m'
+        'trasa ' + trasa + ' m' + (ile > 1 ? ' na jednostkę' : '')
       ];
       pozycje.push({
         nazwa: 'Klimatyzacja',
@@ -1292,12 +1325,18 @@ var CENNIK = {
       var kamery = Math.max(1, num('mon-kamery', 1));
       var rodzaj = $('mon-rodzaj').value;
       var mzakres = $('mon-zakres').value;
+      var M = CENNIK.monitoring;
       var m = [0, 0];
-      m = dodaj(m, CENNIK.monitoring.montazKamery[rodzaj], kamery);
+
+      /* robocizna: pierwsza kamera pełna stawka, kolejne taniej (jeden dojazd) */
+      m = dodaj(m, M.montazPierwsza[rodzaj]);
+      if (kamery > 1) { m = dodaj(m, M.montazKolejna[rodzaj], kamery - 1); }
+
       if (mzakres === 'komplet') {
-        m = dodaj(m, CENNIK.monitoring.kamera, kamery);
-        if (rodzaj === 'nowa') { m = dodaj(m, CENNIK.monitoring.rejestrator); }
+        m = dodaj(m, M.kamera, kamery);
+        if (rodzaj === 'nowa') { m = dodaj(m, M.rejestrator); }
       }
+
       suma = dodaj(suma, m);
       var szczM = [
         odmien(kamery, ['kamera', 'kamery', 'kamer']),
