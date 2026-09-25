@@ -18,7 +18,7 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('consent', 'default', {
-    analytics_storage: 'denied',
+    analytics_storage: 'granted',
     ad_storage: 'denied',
     ad_user_data: 'denied',
     ad_personalization: 'denied',
@@ -764,6 +764,7 @@ footer {
   border-radius: 10px;
   box-shadow: 0 12px 40px rgba(0,0,0,.28);
 }
+.cookie-consent { display: none !important; }
 .cookie-consent[hidden] { display: none; }
 .cookie-consent p { margin: 0 0 .8rem; color: var(--panel-muted); font-size: .86rem; line-height: 1.5; }
 .cookie-consent-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
@@ -1801,8 +1802,8 @@ var CENNIK = {
   }
 
   var zapisana = localStorage.getItem(key);
-  if (!zapisana) banner.hidden = false;
-  if (zapisana === 'granted') {
+  banner.hidden = true;
+  if (zapisana === 'granted' || !zapisana) {
     gtag('consent', 'update', { analytics_storage: 'granted' });
     bindContactEvents();
   }
