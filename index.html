@@ -12,6 +12,21 @@
 <meta property="og:title" content="AmPower — instalacje dla domów i firm">
 <meta property="og:description" content="Elektryka, klimatyzacja, alarmy, monitoring i automatyczne nawadnianie na Dolnym Śląsku. Darmowa wycena.">
 <meta name="theme-color" content="#181613">
+<!-- Google Analytics 4: pomiar uruchamia się dopiero po zgodzie użytkownika. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-3D328MRNWG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    wait_for_update: 500
+  });
+  gtag('js', new Date());
+  gtag('config', 'G-3D328MRNWG');
+</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -736,6 +751,23 @@ footer {
   pointer-events: none;
   cursor: not-allowed;
 }
+.cookie-consent {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+  width: min(420px, calc(100vw - 2rem));
+  padding: 1rem;
+  color: var(--panel-ink);
+  background: rgba(24, 22, 19, 0.97);
+  border: 1px solid var(--panel-line);
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0,0,0,.28);
+}
+.cookie-consent[hidden] { display: none; }
+.cookie-consent p { margin: 0 0 .8rem; color: var(--panel-muted); font-size: .86rem; line-height: 1.5; }
+.cookie-consent-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+.cookie-consent-actions .btn { flex: 1 1 140px; }
 
 @media (max-width: 880px) {
   .calc-grid { grid-template-columns: 1fr; gap: 1.8rem; }
@@ -892,6 +924,14 @@ footer {
       <span>Dojazd do klienta</span>
     </div>
   </div>
+
+  <aside class="cookie-consent" id="cookie-consent" aria-label="Zgoda na statystyki" hidden>
+    <p>Używamy anonimowych statystyk Google Analytics, żeby wiedzieć, ile osób odwiedza stronę i skąd trafiają. Możesz zaakceptować albo odrzucić pomiar.</p>
+    <div class="cookie-consent-actions">
+      <button class="btn btn-volt" type="button" id="cookie-accept">Akceptuję</button>
+      <button class="btn btn-ghost" type="button" id="cookie-reject">Odrzucam</button>
+    </div>
+  </aside>
 
   <section class="section" id="uslugi">
     <div class="wrap">
@@ -1732,6 +1772,43 @@ var CENNIK = {
     el.addEventListener('change', odswiez);
   });
   odswiez();
+})();
+</script>
+<script>
+/* Zgoda na analitykę i podstawowe zdarzenia kontaktowe. */
+(function () {
+  var key = 'ampower-analytics-consent';
+  var banner = document.getElementById('cookie-consent');
+  if (!banner || typeof gtag !== 'function') return;
+
+  function bindContactEvents() {
+    document.querySelectorAll('a[href^="tel:"], a[href^="sms:"], a[href^="mailto:"]').forEach(function (link) {
+      if (link.dataset.analyticsBound) return;
+      link.dataset.analyticsBound = '1';
+      link.addEventListener('click', function () {
+        gtag('event', 'contact_click', { method: link.href.split(':')[0] });
+      });
+    });
+  }
+
+  function ustawZgode(value) {
+    localStorage.setItem(key, value);
+    banner.hidden = true;
+    gtag('consent', 'update', {
+      analytics_storage: value === 'granted' ? 'granted' : 'denied'
+    });
+    if (value === 'granted') bindContactEvents();
+  }
+
+  var zapisana = localStorage.getItem(key);
+  if (!zapisana) banner.hidden = false;
+  if (zapisana === 'granted') {
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+    bindContactEvents();
+  }
+  document.getElementById('cookie-accept').addEventListener('click', function () { ustawZgode('granted'); });
+  document.getElementById('cookie-reject').addEventListener('click', function () { ustawZgode('denied'); });
+
 })();
 </script>
 </body>
