@@ -1,0 +1,24 @@
+{
+  "name": "ampower-website",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "test:e2e": "node scripts/qa_e2e.mjs",
+    "test:e2e:additional": "node scripts/qa_additional.mjs",
+    "lint": "node scripts/lint.js",
+    "build": "node scripts/build.js",
+    "dev": "npm run build && npm run preview",
+    "preview": "python3 -m http.server 4173 --bind 127.0.0.1 --directory dist",
+    "prices:export": "node scripts/export-prices.js",
+    "backend:local": "node backend/server.js",
+    "owner": "node backend/owner.js",
+    "test:e2e:sales": "node scripts/qa_sales.mjs",
+    "panel:local": "AMPOWER_LOCAL_TEST=1 node backend/panel-server.js",
+    "panel:backup": "node backend/panel-backup.js",
+    "test:e2e:panel": "node scripts/qa_panel.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "date": "2026-10-11T17:00:01.901Z",
+  "browser": "155.0.8059.40",
+  "browserFamily": "Chromium",
+  "realIphoneTested": false,
+  "safariTested": false,
+  "results": [
+    {
+      "name": "Logowanie i brak prywatnych danych przed sesją",
+      "status": "passed"
+    },
+    {
+      "name": "Dashboard, przypomnienia i idempotentne dane DEMO",
+      "status": "passed"
+    },
+    {
+      "name": "PDF roboczy to prawdziwy dokument",
+      "status": "passed"
+    },
+    {
+      "name": "Edycja ceny, ilości i rabatu automatycznie przelicza ofertę",
+      "status": "passed"
+    },
+    {
+      "name": "Zatwierdzenie konkretnej wersji i PDF bez danych wewnętrznych",
+      "status": "passed"
+    },
+    {
+      "name": "Edycja unieważnia zgodę; poprzednia wersja jest odtwarzalna",
+      "status": "passed"
+    },
+    {
+      "name": "Responsywność edytora w Chromium: 320, 390, 768 i 1440 px",
+      "status": "passed"
+    },
+    {
+      "name": "Nowa wycena z opisu: liczby i braki, trwały zapis",
+      "status": "passed"
+    },
+    {
+      "name": "Katalog i indywidualne pozycje: dodanie / usunięcie bez utraty klienta",
+      "status": "passed"
+    },
+    {
+      "name": "Braki cen i VAT blokują zatwierdzenie / PDF",
+      "status": "passed"
+    },
+    {
+      "name": "Konfigurator DEMO → istniejące API → zapis → dashboard",
+      "status": "passed"
+    },
+    {
+      "name": "Responsywność dashboardu i 200% tekstu w Chromium",
+      "status": "passed"
+    },
+    {
+      "name": "Panel w rzeczywistym LAN Maca, HTTP bez secure context (Chromium)",
+      "status": "passed"
+    },
+    {
+      "name": "Brak błędów JS i ruchu zewnętrznego",
+      "status": "passed"
+    },
+    {
+      "name": "Wylogowanie zamyka dostęp do danych serwera",
+      "status": "passed"
+    }
+  ],
+  "layouts": [
+    {
+      "viewport": 320,
+      "scroll": 320,
+      "view": "editor"
+    },
+    {
+      "viewport": 390,
+      "scroll": 390,
+      "view": "editor"
+    },
+    {
+      "viewport": 768,
+      "scroll": 768,
+      "view": "editor"
+    },
+    {
+      "viewport": 1440,
+      "scroll": 1440,
+      "view": "editor"
+    },
+    {
+      "viewport": 320,
+      "scroll": 320,
+      "view": "dashboard"
+    },
+    {
+      "viewport": 390,
+      "scroll": 390,
+      "view": "dashboard"
+    },
+    {
+      "viewport": 768,
+      "scroll": 768,
+      "view": "dashboard"
+    },
+    {
+      "viewport": 1440,
+      "scroll": 1440,
+      "view": "dashboard"
+    }
+  ],
+  "errors": [],
+  "blocked": [],
+  "externalEmailsSent": 0
+}

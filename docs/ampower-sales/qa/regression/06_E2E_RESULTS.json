@@ -1,0 +1,141 @@
+{
+  "date": "2026-10-11T08:41:05.851Z",
+  "browser": "Chromium 155.0.8059.40",
+  "viewportEmulationIsNotSafari": true,
+  "optionCount": 237,
+  "contrastResults": [
+    {
+      "theme": "light",
+      "textSamples": 241,
+      "minRatio": 5.908694067346625,
+      "failures": []
+    },
+    {
+      "theme": "dark",
+      "textSamples": 241,
+      "minRatio": 8.133556747781444,
+      "failures": []
+    }
+  ],
+  "durationMs": 26350,
+  "passed": 29,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Wymagane grupy, kontakt, focus i poprawa błędów",
+      "status": "passed"
+    },
+    {
+      "name": "Rolety: wszystkie opcje szczegółów",
+      "status": "passed"
+    },
+    {
+      "name": "Oświetlenie: wszystkie opcje szczegółów",
+      "status": "passed"
+    },
+    {
+      "name": "Klimatyzacja: wszystkie opcje szczegółów",
+      "status": "passed"
+    },
+    {
+      "name": "Pompa ciepła: wszystkie opcje szczegółów",
+      "status": "passed"
+    },
+    {
+      "name": "Kocioł / ogrzewanie: wszystkie opcje szczegółów",
+      "status": "passed"
+    },
+    {
+      "name": "Podłogówka: wszystkie opcje szczegółów",
+      "status": "passed"
+    },
+    {
+      "name": "Fotowoltaika: wszystkie opcje szczegółów",
+      "status": "passed"
+    },
+    {
+      "name": "Magazyn energii: wszystkie opcje szczegółów",
+      "status": "passed"
+    },
+    {
+      "name": "EV / ładowarka: wszystkie opcje szczegółów",
+      "status": "passed"
+    },
+    {
+      "name": "Brama: wszystkie opcje szczegółów",
+      "status": "passed"
+    },
+    {
+      "name": "Monitoring / alarm: wszystkie opcje szczegółów",
+      "status": "passed"
+    },
+    {
+      "name": "Inne: wszystkie opcje szczegółów",
+      "status": "passed"
+    },
+    {
+      "name": "Model centrali nie przechodzi do osobnych sterowników",
+      "status": "passed"
+    },
+    {
+      "name": "Liczby: błędy, otwarcie panelu z linku błędu i Nie wiem",
+      "status": "passed"
+    },
+    {
+      "name": "Monitoring/alarm: ukryte liczby i modele poza wiadomością",
+      "status": "passed"
+    },
+    {
+      "name": "PV/logger i magazyn: wspólny system oraz odznaczenie PV",
+      "status": "passed"
+    },
+    {
+      "name": "Lokalnie/zdalnie, centrala i oba kanały kontaktu",
+      "status": "passed"
+    },
+    {
+      "name": "Zdalny montaż i sterowanie energią nie są automatycznie kwalifikowane",
+      "status": "passed"
+    },
+    {
+      "name": "Wszystkie kombinacje trzech celów bez dopłat i automatycznego pakietu",
+      "status": "passed"
+    },
+    {
+      "name": "Wszystkie kategorie i cele, brak obcięcia długiej wiadomości",
+      "status": "passed"
+    },
+    {
+      "name": "XSS i parametry mailto: tekst pozostaje tekstem",
+      "status": "passed"
+    },
+    {
+      "name": "Odmowa schowka: pełny podgląd i ręczne kopiowanie",
+      "status": "passed"
+    },
+    {
+      "name": "Bez JS oraz awaria importu: oferta, FAQ i bezpośredni kontakt",
+      "status": "passed"
+    },
+    {
+      "name": "Po utracie sieci nadal można przygotować szkic",
+      "status": "passed"
+    },
+    {
+      "name": "Mobile i desktop: reflow, etykiety, fonty i menu Escape",
+      "status": "passed"
+    },
+    {
+      "name": "Nowa podstrona bez zewnętrznych żądań i bez błędów konsoli",
+      "status": "passed"
+    },
+    {
+      "name": "Kontrast wyrenderowanego tekstu obu motywów i focus w kontakcie",
+      "status": "passed"
+    },
+    {
+      "name": "Regresja głównej strony: cztery kalkulatory, kombinacja i kontakt",
+      "status": "passed"
+    }
+  ]
+}

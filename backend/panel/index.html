@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>AMPOWER — panel właściciela</title>
+<link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/fonts/fonts.css"><link rel="stylesheet" href="/panel.css">
+<script type="module" src="/panel.js"></script>
+</head>
+<body>
+<a class="skip" href="#content">Przejdź do treści</a>
+<section id="login-view" class="login-shell">
+  <div class="login-card"><div class="brand"><span class="bolt" aria-hidden="true">ϟ</span> AMPOWER</div><p class="eyebrow">PANEL WŁAŚCICIELA</p><h1>Twoje oferty.<br>Pełna kontrola.</h1><p>Przygotuj kosztorys, sprawdź wynik i zatwierdź ofertę.</p>
+  <form id="login-form"><label for="login-code">Kod logowania z terminala Maca</label><input id="login-code" type="password" autocomplete="current-password" required maxlength="128"><button class="primary" type="submit">Otwórz panel</button></form>
+  <p class="notice">Prototyp lokalny DEMO. Wprowadzaj wyłącznie fikcyjne dane. Poczta i AI są wyłączone.</p><p id="login-error" role="alert"></p></div>
+</section>
+<div id="workspace" hidden>
+  <aside class="sidebar"><a class="brand" href="/" aria-label="AMPOWER — dashboard"><span class="bolt" aria-hidden="true">ϟ</span> AMPOWER</a><p class="eyebrow">SMART HOME & ENERGY</p><nav aria-label="Panel"><button id="dashboard-nav" class="nav-button">Przegląd sprzedaży</button><button id="new-nav" class="nav-button">＋ Nowa wycena</button></nav><div class="sidebar-foot"><span class="tag">LOKALNIE · DEMO</span><p>Twoje koszty są widoczne wyłącznie po zalogowaniu.</p><button id="logout">Wyloguj</button></div></aside>
+  <div class="main"><header class="topbar"><span id="breadcrumb">Przegląd sprzedaży</span><span class="tag">Poczta wyłączona</span><button id="logout-mobile" type="button">Wyloguj</button></header><div id="status" role="status" aria-live="polite" hidden></div><main id="content" tabindex="-1"></main><footer>AMPOWER · Wersja lokalna 8B · Dane demonstracyjne · Sesja trwa 1 godzinę</footer></div>
+</div>
+<dialog id="approval-dialog"><form method="dialog"><p class="eyebrow">ZATWIERDZENIE WERSJI</p><h2>Przygotować ofertę do przekazania?</h2><p id="approval-summary"></p><p>Zatwierdzasz aktualne ceny, VAT i warunki. Kolejna edycja utworzy wersję roboczą. Dokument pozostanie oznaczony jako DEMO.</p><div class="actions"><button value="cancel">Wróć</button><button id="confirm-approve" class="primary" value="approve">Zatwierdź tę wersję</button></div></form></dialog>
+</body></html>

@@ -1,0 +1,96 @@
+{
+  "date": "2026-10-11T16:51:37.208Z",
+  "browser": "155.0.8059.40",
+  "results": [
+    {
+      "name": "Wyłączony odbiornik: brak fałszywego sukcesu i zachowanie danych",
+      "status": "passed"
+    },
+    {
+      "name": "Walidacja nowych pól, focus i brak utraty konfiguracji",
+      "status": "passed"
+    },
+    {
+      "name": "12 kategorii i 66 par: bez kwot przy braku zatwierdzenia",
+      "status": "passed"
+    },
+    {
+      "name": "Mobile, desktop, ciemny motyw i większy tekst",
+      "status": "passed"
+    },
+    {
+      "name": "Rzeczywisty lokalny zapis przez formularz i CORS, numer i brak duplikatu",
+      "status": "passed"
+    },
+    {
+      "name": "Utrata odpowiedzi po zapisie: ponowienie zachowuje ten sam numer",
+      "status": "passed"
+    },
+    {
+      "name": "503 i pozorny sukces: bez komunikatu przyjęcia, dane zachowane",
+      "status": "passed"
+    },
+    {
+      "name": "Widełki brutto odświeżają się po ilości i automatyzacjach; status niepewnej konfiguracji",
+      "status": "passed"
+    },
+    {
+      "name": "Konsola: brak błędów w przetestowanych przepływach",
+      "status": "passed"
+    }
+  ],
+  "layouts": [
+    {
+      "width": 320,
+      "client": 320,
+      "scroll": 320
+    },
+    {
+      "width": 360,
+      "client": 360,
+      "scroll": 360
+    },
+    {
+      "width": 390,
+      "client": 390,
+      "scroll": 390
+    },
+    {
+      "width": 768,
+      "client": 768,
+      "scroll": 768
+    },
+    {
+      "width": 880,
+      "client": 880,
+      "scroll": 880
+    },
+    {
+      "width": 881,
+      "client": 881,
+      "scroll": 881
+    },
+    {
+      "width": 1024,
+      "client": 1024,
+      "scroll": 1024
+    },
+    {
+      "width": 1100,
+      "client": 1100,
+      "scroll": 1100
+    },
+    {
+      "width": 1201,
+      "client": 1201,
+      "scroll": 1201
+    },
+    {
+      "width": 1440,
+      "client": 1440,
+      "scroll": 1440
+    }
+  ],
+  "errors": [],
+  "externalEmailsSent": 0
+}

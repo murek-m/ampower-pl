@@ -1,0 +1,13 @@
+dist/
+__pycache__/
+.DS_Store
+.qa-backups/
+
+# Dane operacyjne i sekrety nigdy do Git/Pages
+.env
+.env.*
+!.env.example
+backend/.runtime/
+private/
+output/
+tmp/

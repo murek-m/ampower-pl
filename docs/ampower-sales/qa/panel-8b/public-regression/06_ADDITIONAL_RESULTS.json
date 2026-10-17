@@ -1,0 +1,182 @@
+{
+  "date": "2026-10-11T16:52:36.411Z",
+  "browser": "155.0.8059.40",
+  "origin": "http://127.0.0.1:4173",
+  "pairs": 66,
+  "passed": 13,
+  "failed": 0,
+  "results": [
+    {
+      "name": "66 par kategorii w działającym formularzu: aktualny zakres, brak danych, brak kwot",
+      "status": "passed"
+    },
+    {
+      "name": "Rolety mieszane + wspólna bramka świateł + kocioł/strefy + PV/magazyn/EV + monitoring/alarm",
+      "status": "passed"
+    },
+    {
+      "name": "Rzeczywiste Clipboard API w izolowanym Chromium: dokładna pełna treść",
+      "status": "passed"
+    },
+    {
+      "name": "Zmiana podczas kopiowania: success, ochrona wersji i odblokowanie przycisku",
+      "status": "passed"
+    },
+    {
+      "name": "Zmiana podczas kopiowania: failure, ochrona wersji i odblokowanie przycisku",
+      "status": "passed"
+    },
+    {
+      "name": "Brak Clipboard API jak na niezabezpieczonym HTTP w LAN: pełny ręczny fallback",
+      "status": "passed"
+    },
+    {
+      "name": "E-mail: polskie znaki, nowe linie i parametry pozostają w body; kontakt telefoniczny bez e-maila",
+      "status": "passed"
+    },
+    {
+      "name": "Wszystkie szczegóły otwarte: szerokości, poziomy telefon i krótki ekran",
+      "status": "passed"
+    },
+    {
+      "name": "Powiększenie tekstu 200% przez CSS i obsługa klawiatury (bez deklarowania prawdziwego zoomu)",
+      "status": "passed"
+    },
+    {
+      "name": "Strona główna: przepełnienie kontaktu, cztery kalkulatory, URI kontaktu i nawigacja",
+      "status": "passed"
+    },
+    {
+      "name": "SEO i granica publicznego artefaktu: metadane, schematy i brak plików wewnętrznych",
+      "status": "passed"
+    },
+    {
+      "name": "Pomiary laboratoryjne: trzy zimne wejścia, mobilny Chromium, CPU ×4, sieć 1,6 Mb/s + 150 ms",
+      "status": "passed"
+    },
+    {
+      "name": "Brak wyjątków JavaScript, żądań zewnętrznych, cookies i trwałego zapisu danych",
+      "status": "passed"
+    }
+  ],
+  "layoutResults": [
+    {
+      "viewport": {
+        "width": 305,
+        "height": 568
+      },
+      "client": 305,
+      "scroll": 305,
+      "fields": 122
+    },
+    {
+      "viewport": {
+        "width": 320,
+        "height": 568
+      },
+      "client": 320,
+      "scroll": 320,
+      "fields": 122
+    },
+    {
+      "viewport": {
+        "width": 360,
+        "height": 640
+      },
+      "client": 360,
+      "scroll": 360,
+      "fields": 122
+    },
+    {
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "client": 390,
+      "scroll": 390,
+      "fields": 122
+    },
+    {
+      "viewport": {
+        "width": 844,
+        "height": 390
+      },
+      "client": 844,
+      "scroll": 844,
+      "fields": 122
+    },
+    {
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "client": 768,
+      "scroll": 768,
+      "fields": 122
+    },
+    {
+      "viewport": {
+        "width": 1024,
+        "height": 600
+      },
+      "client": 1024,
+      "scroll": 1024,
+      "fields": 122
+    },
+    {
+      "viewport": {
+        "width": 1201,
+        "height": 700
+      },
+      "client": 1201,
+      "scroll": 1201,
+      "fields": 122
+    },
+    {
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "client": 1920,
+      "scroll": 1920,
+      "fields": 122
+    }
+  ],
+  "performanceRuns": [
+    {
+      "run": 1,
+      "lcp": 688,
+      "cls": 0.3986992215104194,
+      "longTasks": [
+        60
+      ],
+      "domContentLoaded": 1506.5999999998603,
+      "resources": 15,
+      "transferBytes": 211875
+    },
+    {
+      "run": 2,
+      "lcp": 664,
+      "cls": 0.3986992215104194,
+      "longTasks": [
+        59
+      ],
+      "domContentLoaded": 1484.1999999999534,
+      "resources": 15,
+      "transferBytes": 211875
+    },
+    {
+      "run": 3,
+      "lcp": 704,
+      "cls": 0.3986992215104194,
+      "longTasks": [
+        64
+      ],
+      "domContentLoaded": 1506.0999999998603,
+      "resources": 15,
+      "transferBytes": 211875
+    }
+  ],
+  "rejectedRequests": [],
+  "errors": []
+}
