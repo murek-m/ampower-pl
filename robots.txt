@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /backend/
+Disallow: /docs/
+Disallow: /panel/
+Sitemap: https://ampower.pl/sitemap.xml
