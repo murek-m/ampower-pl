@@ -10,9 +10,9 @@
   const allowed=()=>Boolean(valid(choice)&&choice.analytics&&eligible());
   window['ga-disable-'+id]=!allowed();
   const node=(tag,text,props={})=>{const element=document.createElement(tag);if(text)element.textContent=text;Object.assign(element,props);return element;};
-  const panel=node('section',null,{className:'amp-consent',id:'cookie-banner',hidden:Boolean(choice)});
+  const panel=node('section',null,{className:'amp-consent',id:'cookie-banner',hidden:true});
   panel.setAttribute('role','region');panel.setAttribute('aria-labelledby','cookie-title');
-  const title=node('h2','Twój wybór cookies',{id:'cookie-title'});
+  const title=node('h2','Ustawienia prywatności',{id:'cookie-title'});
   const copy=node('p','Za Twoją zgodą używamy Google Analytics do statystyk odwiedzin. Strona i konfigurator działają także bez zgody. ');
   copy.append(node('a','Prywatność i cookies',{href:'/prywatnosc/'}));
   const actions=node('div',null,{className:'amp-consent-actions'});
@@ -66,9 +66,9 @@
   function show(){returnFocus=document.activeElement;panel.hidden=false;reject.focus();}
   reject.addEventListener('click',()=>choose(false));accept.addEventListener('click',()=>choose(true));
   for(const button of document.querySelectorAll('[data-cookie-settings]')){button.hidden=false;button.addEventListener('click',show);}
-  panel.addEventListener('keydown',event=>{if(event.key==='Escape'&&choice){panel.hidden=true;returnFocus?.focus();}});
-  window.addEventListener('storage',event=>{if(event.key===key||event.key===null){choice=read();panel.hidden=Boolean(choice);apply();}});
-  window.addEventListener('pageshow',()=>{if(!valid(choice)){choice=null;panel.hidden=false;disable();}});
+  panel.addEventListener('keydown',event=>{if(event.key==='Escape'){panel.hidden=true;returnFocus?.focus();}});
+  window.addEventListener('storage',event=>{if(event.key===key||event.key===null){choice=read();panel.hidden=true;apply();}});
+  window.addEventListener('pageshow',()=>{if(!valid(choice)){choice=null;panel.hidden=true;disable();}});
   // Register before Google: contact targets may contain private message text.
   window.addEventListener('click',event=>{
     const link=event.target.closest?.('a[href]');if(!link||!/^(?:mailto|tel|sms):/.test(link.getAttribute('href')))return;
