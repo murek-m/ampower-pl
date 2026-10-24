@@ -1,0 +1,20 @@
+{
+  "requestedUrl": "https://www.cryptominerbros.com/product/bitmain-antminer-s21-xp-bitcoin-miner/",
+  "retrievedAt": "2026-10-24T19:44:59.939191+00:00",
+  "products": [
+    {
+      "name": "Bitmain Antminer S21 XP Bitcoin Miner<span> - </span>In Stock",
+      "sku": "S21XP",
+      "offers": [
+        {
+          "price": "3299",
+          "priceCurrency": "USD",
+          "availability": "http://schema.org/InStock",
+          "itemCondition": "NewCondition",
+          "url": "https://www.cryptominerbros.com/product/bitmain-antminer-s21-xp-bitcoin-miner/?attribute_delivery-batch=In+Stock"
+        }
+      ]
+    }
+  ],
+  "note": "Factual fields extracted from seller JSON-LD; redirects and variant conflicts require verification."
+}

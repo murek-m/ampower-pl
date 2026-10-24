@@ -1,0 +1,12 @@
+{
+  "table": "A",
+  "currency": "korona czeska",
+  "code": "CZK",
+  "rates": [
+    {
+      "no": "207/A/NBP/2026",
+      "effectiveDate": "2026-10-23",
+      "mid": 0.1807
+    }
+  ]
+}

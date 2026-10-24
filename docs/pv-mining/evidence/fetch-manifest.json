@@ -1,0 +1,110 @@
+[
+  {
+    "id": "btc-pln",
+    "url": "https://api.coinbase.com/v2/prices/BTC-PLN/spot",
+    "retrievedAt": "2026-10-24T19:43:08.909299+00:00",
+    "status": 200,
+    "bytes": 78,
+    "sha256": "eda172f2c75edac8de71d690942ce563c12b66d6cb493bf2f1917040fc0fea2b"
+  },
+  {
+    "id": "usd-pln",
+    "url": "https://api.nbp.pl/api/exchangerates/rates/a/usd/?format=json",
+    "retrievedAt": "2026-10-24T19:43:08.909890+00:00",
+    "status": 200,
+    "bytes": 134,
+    "sha256": "956181fcb4b6c6533d90ecfee49869e82aac954c79a9dfcbbecbadc26f673cb4"
+  },
+  {
+    "id": "eur-pln",
+    "url": "https://api.nbp.pl/api/exchangerates/rates/a/eur/?format=json",
+    "retrievedAt": "2026-10-24T19:43:08.910084+00:00",
+    "status": 200,
+    "bytes": 120,
+    "sha256": "636a9b784326cd322298cfea3d2ac84d08996f5435c17fe41273980e98cf346f"
+  },
+  {
+    "id": "czk-pln",
+    "url": "https://api.nbp.pl/api/exchangerates/rates/a/czk/?format=json",
+    "retrievedAt": "2026-10-24T19:43:08.910248+00:00",
+    "status": 200,
+    "bytes": 129,
+    "sha256": "feb6d49a94ea220286a5d58636ab96e1b48ca971a32ce3e42c0125598073e28b"
+  },
+  {
+    "id": "network",
+    "url": "https://mempool.space/api/v1/mining/hashrate/3d",
+    "retrievedAt": "2026-10-24T19:43:09.000449+00:00",
+    "status": 200,
+    "bytes": 292,
+    "sha256": "04e0e12bedae8faecc8d9137be9cee2bfc0427d2b481b99428e68c3e7b1b3673"
+  },
+  {
+    "id": "block-height",
+    "url": "https://mempool.space/api/blocks/tip/height",
+    "retrievedAt": "2026-10-24T19:43:09.000580+00:00",
+    "status": 200,
+    "bytes": 6,
+    "sha256": "7fd0bf7b4443f565b1c18bb00b9948714bf055dea5be49ba97247f0abb8fb847"
+  },
+  {
+    "id": "rewards",
+    "url": "https://mempool.space/api/v1/mining/reward-stats/144",
+    "retrievedAt": "2026-10-24T19:43:09.007882+00:00",
+    "status": 200,
+    "bytes": 109,
+    "sha256": "20976a0a408087489b11df0ff2bcd27a5cd73116a8f2ff3005cdb00f500562d1"
+  },
+  {
+    "id": "pvgis",
+    "url": "https://re.jrc.ec.europa.eu/api/v5_3/seriescalc?lat=51.1079&lon=17.0385&startyear=2023&endyear=2023&pvcalculation=1&peakpower=1&loss=14&angle=35&aspect=0&outputformat=json",
+    "retrievedAt": "2026-10-24T19:43:09.125526+00:00",
+    "status": 200,
+    "bytes": 822469,
+    "sha256": "09d55fae6cce05244cf57b3d56fb7cbe192fc982698cd14460f601928363e371"
+  },
+  {
+    "id": "pse-sample",
+    "url": "https://api.raporty.pse.pl/api/rce-pln?$first=2",
+    "retrievedAt": "2026-10-24T19:43:09.130506+00:00",
+    "status": 200,
+    "bytes": 728,
+    "sha256": "c8d2604168d44e4f2a559e0f50bb414fb4058e609ecab756595b5a5fe5611c6a"
+  },
+  {
+    "id": "bitmain-catalog",
+    "url": "https://shop-product-service.bitmain.com/api/productshow/getMainProduct",
+    "retrievedAt": "2026-10-24T19:44:18.011501+00:00",
+    "status": 200,
+    "note": "Fetched in separate read-only request; timestamp is manifest registration time.",
+    "sha256": "4d8854d15256f9e44fd2bd82fd4601032f168e24c6494b4669cba9ce7d98403d"
+  },
+  {
+    "id": "pse-latest-sample",
+    "url": "https://api.raporty.pse.pl/api/rce-pln?$filter=business_date%20eq%20%272026-10-23%27&$first=2",
+    "retrievedAt": "2026-10-24T19:44:59.938376+00:00",
+    "status": 200,
+    "sha256": "4e8c4effe0335b1258c811b1436c44aaa82001898c10cb0460cc0e5f4d2a32a3"
+  },
+  {
+    "id": "seller-s21",
+    "url": "https://www.cryptominerbros.com/product/bitmain-antminer-s21-bitcoin-miner/",
+    "retrievedAt": "2026-10-24T19:44:59.938835+00:00",
+    "status": 200,
+    "sha256": "d43baabe8fed59bd98afab262b7fd50312d4ba7e0ee2503b9c30c2b0399ffc69"
+  },
+  {
+    "id": "seller-s21-pro",
+    "url": "https://www.cryptominerbros.com/product/bitmain-antminer-s21-pro-bitcoin-miner/",
+    "retrievedAt": "2026-10-24T19:44:59.939017+00:00",
+    "status": 200,
+    "sha256": "3b6a238d2ec3f9f5403d01fcdd2a06f7ca5d2e0a31ca1bedd03567ff5bfb2b48"
+  },
+  {
+    "id": "seller-s21-xp",
+    "url": "https://www.cryptominerbros.com/product/bitmain-antminer-s21-xp-bitcoin-miner/",
+    "retrievedAt": "2026-10-24T19:44:59.939191+00:00",
+    "status": 200,
+    "sha256": "857da12938c52f8eabf14af94a9d3a4623b9fa464aef78f18443ebfcd6bca116"
+  }
+]

@@ -1,0 +1,25 @@
+{
+  "value": [
+    {
+      "dtime": "2024-06-14 00:15:00",
+      "period": "00:00 - 00:15",
+      "rce_pln": 876.1,
+      "dtime_utc": "2024-06-13 22:15:00",
+      "period_utc": "22:00 - 22:15",
+      "business_date": "2024-06-14",
+      "publication_ts": "2024-06-13 17:05:05",
+      "publication_ts_utc": "2024-06-13 15:05:05.000000"
+    },
+    {
+      "dtime": "2024-06-14 00:30:00",
+      "period": "00:15 - 00:30",
+      "rce_pln": 876.1,
+      "dtime_utc": "2024-06-13 22:30:00",
+      "period_utc": "22:15 - 22:30",
+      "business_date": "2024-06-14",
+      "publication_ts": "2024-06-13 17:05:05",
+      "publication_ts_utc": "2024-06-13 15:05:05.000000"
+    }
+  ],
+  "nextLink": "https://api.raporty.pse.pl/api/rce-pln?$first=2&$after=W3siRW50aXR5TmFtZSI6InJjZS1wbG4iLCJGaWVsZE5hbWUiOiJkdGltZV91dGMiLCJGaWVsZFZhbHVlIjoiMjAyNC0wNi0xMyAyMjozMDowMCIsIkRpcmVjdGlvbiI6MH1d"
+}

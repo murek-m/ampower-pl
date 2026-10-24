@@ -1,0 +1,33 @@
+{
+  "requestedUrl": "https://www.cryptominerbros.com/product/bitmain-antminer-s21-bitcoin-miner/",
+  "retrievedAt": "2026-10-24T19:44:59.938835+00:00",
+  "products": [
+    {
+      "name": "Bitmain Antminer S21+ Bitcoin Miner<span> - </span>225Th/s - In Stock",
+      "sku": "S21+216Th",
+      "offers": [
+        {
+          "price": "1629",
+          "priceCurrency": "USD",
+          "availability": "http://schema.org/InStock",
+          "itemCondition": "NewCondition",
+          "url": "https://www.cryptominerbros.com/product/bitmain-antminer-s21-plus-bitcoin-miner/?attribute_delivery-batch=225Th%2Fs+-+In+Stock"
+        }
+      ]
+    },
+    {
+      "name": "Bitmain Antminer S21+ Bitcoin Miner<span> - </span>235Th/s - In Stock",
+      "sku": "S21+235Th",
+      "offers": [
+        {
+          "price": "1739",
+          "priceCurrency": "USD",
+          "availability": "http://schema.org/InStock",
+          "itemCondition": "NewCondition",
+          "url": "https://www.cryptominerbros.com/product/bitmain-antminer-s21-plus-bitcoin-miner/?attribute_delivery-batch=235Th%2Fs+-+In+Stock"
+        }
+      ]
+    }
+  ],
+  "note": "Factual fields extracted from seller JSON-LD; redirects and variant conflicts require verification."
+}

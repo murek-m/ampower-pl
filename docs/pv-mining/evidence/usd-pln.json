@@ -1,0 +1,12 @@
+{
+  "table": "A",
+  "currency": "dolar amerykański",
+  "code": "USD",
+  "rates": [
+    {
+      "no": "207/A/NBP/2026",
+      "effectiveDate": "2026-10-23",
+      "mid": 3.9247
+    }
+  ]
+}
