@@ -1,5 +1,7 @@
 # AMPOWER PV Mining — etap 1
 
+**Aktualny stan:** etap 2 przygotowany po zgodzie użytkownika. [Dwa prototypy, uruchomienie i ograniczenia](06_PROTOTYPY.md). Poniżej zachowano historyczny raport etapu 1.
+
 Data badania: **24.10.2026**. Wyłącznie audyt, research i obliczenia badawcze. Nie rozpoczęto prototypów ani publikacji.
 
 ## Najważniejsze ustalenia

@@ -16,7 +16,10 @@
     "test:e2e:sales": "node scripts/qa_sales.mjs",
     "panel:local": "AMPOWER_LOCAL_TEST=1 node backend/panel-server.js",
     "panel:backup": "node backend/panel-backup.js",
-    "test:e2e:panel": "node scripts/qa_panel.mjs"
+    "test:e2e:panel": "node scripts/qa_panel.mjs",
+    "pv:build": "node scripts/build-pv-mining.mjs",
+    "pv:preview": "python3 -m http.server 4186 --bind 127.0.0.1 --directory output/pv-mining-preview",
+    "pv:dev": "npm run pv:build && npm run pv:preview"
   },
   "engines": {
     "node": ">=20"

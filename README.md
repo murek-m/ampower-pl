@@ -130,3 +130,11 @@ wykrywane automatycznie. `npm run panel:backup` tworzy prywatną kopię poza rep
 wykonuje rzeczywiste testy Chromium i PDF, blokując ruch zewnętrzny. Wymaga
 Playwright/Chrome wskazanych przez zmienne QA opisane wyżej. Prototypu lokalnego
 nie publikuj bez prac produkcyjnych opisanych w architekturze.
+
+## PV Mining — lokalne prototypy etapu 2
+
+Na gałęzi `feat/pv-mining` przygotowano dwa warianty interfejsu ze wspólnym silnikiem.
+Uruchom `npm run pv:dev`, a następnie otwórz `http://127.0.0.1:4186/`.
+Osobny artefakt znajduje się w `output/pv-mining-preview/`; nie publikuje strony.
+[Opis, instrukcja i ograniczenia prototypów](docs/pv-mining/06_PROTOTYPY.md).
+Dane rynkowe są snapshotem, budżety są przykładowe, a pełne testowanie pozostaje etapem 3.
