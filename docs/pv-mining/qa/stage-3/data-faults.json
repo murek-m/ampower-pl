@@ -1,0 +1,15 @@
+[
+  {
+    "case": "HTTP503",
+    "visible": true
+  },
+  {
+    "case": "malformed JSON",
+    "visible": true
+  },
+  {
+    "case": "stale snapshot and offers",
+    "visible": true,
+    "offer": true
+  }
+]

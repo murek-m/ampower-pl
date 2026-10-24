@@ -6,7 +6,7 @@ export function normalize(raw, market) {
   const n = (key, fallback, low, high) => bounded(raw[key], fallback, low, high);
   const s = {
     pvKwp:n('pvKwp',10,0,100), annualLoad:n('annualLoad',5000,0,100000),
-    annualProduction: raw.annualProduction === '' ? null : n('annualProduction',0,0,200000) || null,
+    annualProduction: raw.annualProduction === '' || raw.annualProduction == null ? null : n('annualProduction',0,0,200000),
     knownSurplus: raw.knownSurplus === '' || raw.knownSurplus == null ? null : n('knownSurplus',0,0,200000),
     battery: ['existing','new'].includes(raw.battery) ? raw.battery : 'none',
     capacity:n('capacity',10,0,200), usableFraction:n('usableFraction',90,1,100)/100,
@@ -68,9 +68,10 @@ export function parseCsv(text) {
   const interval = rows[1].stamp-rows[0].stamp;
   if (![900000,1800000,3600000].includes(interval) || rows.some((r,i)=>i && r.stamp-rows[i-1].stamp!==interval))
     throw new Error('Czas musi rosnąć bez luk i duplikatów, co 15, 30 lub 60 minut.');
-  if (rows.length*interval < 364*86400000 || rows.length*interval > 367*86400000)
-    throw new Error('Do rocznej symulacji potrzebny jest pełny rok, bez luk. Krótkich fragmentów nie przeliczamy na rok.');
-  if (new Date(rows[0].stamp).getUTCMonth()!==0 || new Date(rows[0].stamp).getUTCDate()!==1 || new Date(rows.at(-1).stamp).getUTCMonth()!==11 || new Date(rows.at(-1).stamp).getUTCDate()!==31 || new Date(rows[0].stamp).getUTCFullYear()!==new Date(rows.at(-1).stamp).getUTCFullYear()) throw new Error('Wybierz pełny rok kalendarzowy UTC: od 1 stycznia do 31 grudnia.');
+  const year=new Date(rows[0].stamp).getUTCFullYear();
+  const begin=Date.UTC(year,0,1),end=Date.UTC(year+1,0,1);
+  if(rows.length!==(end-begin)/interval || rows[0].stamp<begin || rows[0].stamp>=begin+interval || rows.at(-1).stamp>=end)
+    throw new Error('Wymagany pełny rok kalendarzowy UTC, bez brakujących interwałów na początku lub końcu.');
   const dt = interval/3600000;
   return {source:'csv',hours:rows.length*dt,rows:rows.map(r=>({stamp:r.stamp,pv:kind[1]==='pv_kwh'?r.pv/dt:r.pv,load:kind[2]==='load_kwh'?r.load/dt:r.load,dt}))};
 }
@@ -135,7 +136,7 @@ function prepareYears(profile,s,market) {
 }
 
 // FIFO monthly prosumer ledger. Credits become available in the next month.
-function settle(months,s) {
+export function settle(months,s) {
   let credits=[],bill=0,refund=0,used=0;
   const annual=Array.from({length:s.horizon},()=>({bill:0,used:0,refund:0,credited:0,pending:0}));
   for(let m=0;m<months.length;m++) {
@@ -160,50 +161,64 @@ function settle(months,s) {
 
 function dispatch(years,s,model=null,opportunities=null) {
   const cap=s.capacity,lo=cap*s.reserve,hi=cap*s.usableFraction,eta=Math.sqrt(s.roundtrip);
-  let soc=lo,running=false,runTime=0,offTime=1e9;
+  let soc=lo,running=false,runTime=0,offTime=1e9,startupRemaining=0;
   const yearsOut=[],months=[];
   for(let y=0;y<years.length;y++) {
-    const yr={btc:0,hours:0,hashHours:0,energy:0,asicGrid:0,pv:0,direct:0,batteryHouse:0,batteryMining:0,losses:0,cycles:0,starts:0,grid:0,export:0,wear:0,monthly:Array.from({length:12},()=>({pv:0,house:0,asic:0,export:0,btc:0,grid:0,exportRaw:0}))};
+    const yr={startSoc:soc,houseLoad:0,chargeKwh:0,maxChargeKw:0,maxDischargeKw:0,minSoc:soc,maxSoc:soc,simultaneous:0,btc:0,hours:0,hashHours:0,energy:0,asicGrid:0,pv:0,direct:0,batteryHouse:0,batteryMining:0,losses:0,cycles:0,starts:0,grid:0,export:0,wear:0,monthly:Array.from({length:12},()=>({pv:0,house:0,asic:0,export:0,btc:0,grid:0,exportRaw:0}))};
     const price=s.btcPrice*(1+s.btcGrowth)**y;
     for(let i=0;i<years[y].length;i++) {
-      const r=years[y][i],dt=r.dt,active=Boolean(model && y<s.lifetime);
+      const r=years[y][i],dt=r.dt,active=Boolean(model && y<s.lifetime && s.availability>0);
       const direct=Math.min(r.pv,r.load),surplus0=Math.max(0,r.pv-r.load),deficit0=Math.max(0,r.load-r.pv);
       let surplus=surplus0,grid=deficit0,batteryDis=0,charge=0,mineDis=0,mineGrid=0,hashHours=0,energy=0,btc=0;
       const homeDis=Math.min(grid,s.dischargeKw,Math.max(0,soc-lo)*eta/dt);
       soc-=homeDis*dt/eta;grid-=homeDis;batteryDis+=homeDis;
       const target=active?(model.watts*s.quantity+s.extraWatts)/1000:0;
-      const startup=running?0:Math.min(dt,s.startMinutes/60);
-      const valuePerKwh=active?model.th*s.quantity*r.btcPerThHour*price*(1-startup/dt)/target:0;
+      // Amortize starting cost over startup plus one productive interval.
+      // Actual zero-hash startup time is carried across intervals below.
+      const productiveFraction=running?1:dt/(dt+s.startMinutes/60);
+      const valuePerKwh=active?model.th*s.quantity*r.btcPerThHour*price*productiveFraction/target:0;
       const exportValue=opportunities?opportunities[y*12+r.month]:r.exportPrice*s.depositFactor;
       // Forecast house reserve for the next 24 hours, clamped by physical capacity.
       let houseNeed=0;
-      if(active && s.batteryMining && cap>0) {
+      if(cap>0) {
         const steps=Math.ceil(24/dt);
-        for(let k=i+1;k<Math.min(years[y].length,i+steps);k++) houseNeed+=Math.max(0,years[y][k].load-years[y][k].pv)*dt;
+        for(let k=1;k<=steps;k++) {
+          const next=i+k<years[y].length?years[y][i+k]:(years[y+1]||years[y])[(i+k)%years[y].length];
+          houseNeed+=Math.max(0,next.load-next.pv)*next.dt;
+        }
       }
       const reserveTarget=s.policy==='home'?Math.min(hi,lo+houseNeed/eta):lo;
-      const chargeFirst=s.policy==='home' || s.importPrice*eta*eta-s.wear>Math.max(valuePerKwh,exportValue);
-      const chargeBattery=()=>{const p=Math.min(surplus,s.chargeKw,Math.max(0,hi-soc)/eta/dt);soc+=p*dt*eta;surplus-=p;charge+=p;};
+      const homeStorageValue=houseNeed>0?s.importPrice*eta*eta-s.wear:0;
+      const storageWorthwhile=s.policy==='home' || homeStorageValue>Math.max(0,exportValue);
+      const chargeFirst=s.policy==='home' || (storageWorthwhile && homeStorageValue>valuePerKwh);
+      const chargeBattery=()=>{if(batteryDis>1e-9)return;const p=Math.min(surplus,s.chargeKw,Math.max(0,hi-soc)/eta/dt);soc+=p*dt*eta;surplus-=p;charge+=p;};
       if(chargeFirst) chargeBattery();
-      const batteryAvailable=s.batteryMining?Math.min(Math.max(0,s.dischargeKw-homeDis),Math.max(0,soc-reserveTarget)*eta/dt):0;
+      const batteryAvailable=s.batteryMining && charge<1e-9?Math.min(Math.max(0,s.dischargeKw-homeDis),Math.max(0,soc-reserveTarget)*eta/dt):0;
       const margin=running?0:s.startMargin;
       const available=surplus+batteryAvailable+s.gridLimit;
       const canRun=active && target>0 && available>=target+margin && (running || offTime>=s.minOffMinutes/60);
       const energyCost=(Math.min(surplus,target)*exportValue+Math.min(Math.max(0,target-surplus),batteryAvailable)*(s.policy==='home'?s.importPrice+s.wear:s.wear+Math.max(0,exportValue)/(eta*eta))+Math.max(0,target-surplus-batteryAvailable)*s.importPrice)/Math.max(target,.001);
       const profitable=valuePerKwh>energyCost;
-      const keep=running && runTime<s.minRunMinutes/60;
+      const keep=running && (startupRemaining>0 || runTime<s.minRunMinutes/60);
       if(canRun && (profitable || keep)) {
         mineDis=Math.min(Math.max(0,target-surplus),batteryAvailable);
         mineGrid=Math.max(0,target-surplus-mineDis);
         soc-=mineDis*dt/eta;batteryDis+=mineDis;
         surplus=Math.max(0,surplus-target);grid+=mineGrid;
+        if(!running) {startupRemaining=s.startMinutes/60;runTime=0;}
+        const startup=Math.min(dt,startupRemaining);
+        startupRemaining=Math.max(0,startupRemaining-dt);
         energy=target*dt;hashHours=dt-startup;
         btc=model.th*s.quantity*r.btcPerThHour*hashHours;
         if(!running) yr.starts++;
         running=true;runTime+=dt;offTime=0;
         yr.hours+=dt;yr.hashHours+=hashHours;
-      } else {running=false;runTime=0;offTime+=dt;}
-      if(!chargeFirst) chargeBattery();
+      } else {running=false;runTime=0;startupRemaining=0;offTime+=dt;}
+      if(!chargeFirst && storageWorthwhile) chargeBattery();
+      yr.houseLoad+=r.load*dt;yr.chargeKwh+=charge*dt;
+      yr.maxChargeKw=Math.max(yr.maxChargeKw,charge);yr.maxDischargeKw=Math.max(yr.maxDischargeKw,batteryDis);
+      yr.minSoc=Math.min(yr.minSoc,soc);yr.maxSoc=Math.max(yr.maxSoc,soc);
+      if(charge>1e-9 && batteryDis>1e-9)yr.simultaneous++;
       yr.btc+=btc;yr.energy+=energy;yr.asicGrid+=mineGrid*dt;yr.pv+=r.pv*dt;yr.direct+=direct*dt;
       yr.batteryHouse+=homeDis*dt;yr.batteryMining+=mineDis*dt;
       yr.losses+=(charge*(1-eta)+batteryDis*(1/eta-1))*dt;

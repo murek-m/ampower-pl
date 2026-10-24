@@ -1,0 +1,38 @@
+[
+  {
+    "mode": "advanced",
+    "overflow": false,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "mode": "advanced",
+    "overflow": false,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "mode": "advanced",
+    "overflow": false,
+    "scroll": 753,
+    "width": 768
+  },
+  {
+    "mode": "simple",
+    "overflow": false,
+    "scroll": 305,
+    "width": 320
+  },
+  {
+    "mode": "simple",
+    "overflow": false,
+    "scroll": 375,
+    "width": 390
+  },
+  {
+    "mode": "simple",
+    "overflow": false,
+    "scroll": 753,
+    "width": 768
+  }
+]

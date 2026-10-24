@@ -1,7 +1,7 @@
 import {mkdir,copyFile,rm,lstat} from 'node:fs/promises';
 const root=new URL('../',import.meta.url);
 const output=new URL('output/pv-mining-preview/',root);
-const files=['index.html','simple.html','advanced.html','style.css','app.js','engine.js','worker.js','data/market.json','data/models.json','data/profile.json'];
+const files=['index.html','simple.html','advanced.html','style.css','app.js','engine.js','worker.js','data-loader.js','data/market.json','data/models.json','data/profile.json'];
 await rm(output,{recursive:true,force:true});await mkdir(output,{recursive:true});
 for(const file of files) {
   const source=new URL(`pv-mining/${file}`,root),target=new URL(file,output);
