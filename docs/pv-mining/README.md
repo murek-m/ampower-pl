@@ -1,6 +1,6 @@
-# AMPOWER PV Mining — etap 1
+# AMPOWER PV Mining — dokumentacja projektu
 
-**Aktualny stan:** etap 2 przygotowany po zgodzie użytkownika. [Dwa prototypy, uruchomienie i ograniczenia](06_PROTOTYPY.md). Poniżej zachowano historyczny raport etapu 1.
+**Aktualny stan:** etapy 1–4 zakończone w zakresie audytu, prototypów, testów i przedstawienia wyników. Bez publikacji. Zacznij od [wyników i decyzji](08_WYNIKI_I_DECYZJE.md), [aktualnych 81 symulacji](09_AKTUALNE_SYMULACJE.md) i [raportu testów](07_TESTY.md). [Uruchomienie A/B](06_PROTOTYPY.md). Poniżej zachowano historyczny raport etapu 1; jego zgody i rekomendacje dotyczą stanu w chwili napisania.
 
 Data badania: **24.10.2026**. Wyłącznie audyt, research i obliczenia badawcze. Nie rozpoczęto prototypów ani publikacji.
 
