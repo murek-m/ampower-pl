@@ -12,3 +12,31 @@
 .mobile-toolbar{display:none}#analysis{scroll-margin-top:70px}.energy-chart text,.return-chart text{font-size:16px}@media(max-width:800px){.mobile-toolbar{display:flex;position:sticky;top:0;z-index:10;justify-content:space-between;gap:8px;padding:8px 0;margin-bottom:15px;background:var(--bg);border-bottom:1px solid var(--line)}.mobile-toolbar button,.mobile-toolbar a{display:flex;align-items:center;justify-content:center;min-height:44px;padding:8px 12px;font:600 11px var(--sans);border-radius:4px}.mobile-toolbar button{background:#ebe4cf;border:1px solid #c9ba8f;color:#685227}.mobile-toolbar a{background:var(--dark);color:#f6dd82;text-decoration:none}.inputs.mobile-collapsed{display:none}.input-tabs{top:61px}}@media(max-width:480px){.energy-chart text,.return-chart text{font-size:21px}}
 
 #results.stale{opacity:.48;pointer-events:none}
+
+/* Readable financial assumptions and accessible validation states. */
+.metric>small{font-size:14px;color:#625b4e}
+.compare-tag{font-size:14px;color:#695321;line-height:1.5}
+.field small,.toggle small,.help{font-size:14px;color:#625c50}
+.field select,.input-wrap input,.two-fields .input-wrap input{font-size:16px}
+.field label,.two-fields .field label{font-size:14px}
+.balance-list>div,.balance-list dd,.compare-card dl>div,.compare-card dd{font-size:14px}
+.metric>span,.section-label>span,.model-toggles label,.model-toggles small,.model-spec,.compare-foot{font-size:14px}
+.prototype-notice,.snapshot-pill,.analysis-toolbar p:last-child{font-size:13px}
+.chart-legend,.energy-totals span{font-size:13px;color:#625b4e}
+.energy-totals{flex-wrap:wrap}.energy-totals b{font-size:14px}
+.table-scroll table{font-size:14px}.text-button{font-size:14px}
+[aria-invalid=true]{border:2px solid #a13d33!important}
+[aria-disabled=true]{opacity:.65;pointer-events:none;cursor:default}
+#input-error .text-button{display:block;color:#6c281f}
+.payback-warning{padding:12px;border:1px solid #e6ca75;border-radius:4px}
+@media(max-width:480px){
+  .metric-grid{grid-template-columns:1fr}
+  .metric:first-child{display:block}.metric:first-child strong{font-size:28px}
+  .metric:first-child>span,.metric:first-child>small{font-size:14px}
+  .metric strong.btc-value{font-size:24px}
+  .model-toggles label{flex-basis:100%;min-height:56px}
+  .compare-card dl{display:block}
+  .section-label{flex-wrap:wrap}.section-label>span{flex:none;text-align:left}
+  .balance-list>div{flex-wrap:wrap}.balance-list dd{max-width:100%}
+  .snapshot-pill{white-space:normal}.input-panel{padding:18px}
+}

@@ -1,0 +1,90 @@
+{
+  "soc": {
+    "errorHidden": true,
+    "reserve": "95",
+    "status": "Przeliczono 8760 h profilu · 3 modele · dane szacunkowe",
+    "upper": "10"
+  },
+  "hiddenError": {
+    "ariaInvalid": null,
+    "error": "Sprawdź wartość: Kurs BTC/PLN",
+    "focus": "tab-energy",
+    "invalidPaneHidden": true
+  },
+  "mobileB": {
+    "clientWidth": 375,
+    "scrollWidth": 375,
+    "styles": [
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(139, 131, 116)",
+        "font": "9px",
+        "selector": ".metric>small",
+        "text": "Po utraconym depozycie i OPEX · rok 1"
+      },
+      {
+        "background": "rgb(255, 250, 232)",
+        "color": "rgb(136, 114, 68)",
+        "font": "8px",
+        "selector": ".compare-tag",
+        "text": "WYBRANY DO WYKRESÓW"
+      },
+      {
+        "background": "rgb(255, 255, 255)",
+        "color": "rgb(110, 107, 97)",
+        "font": "11px",
+        "selector": ".field small",
+        "text": "Dostępny profil PVGIS: południe, nachylenie 35°. Dla innej instalacji użyj własnego CSV w trybie zaawansowanym."
+      }
+    ],
+    "width": 390
+  },
+  "mobileA": {
+    "clientWidth": 375,
+    "rects": [
+      {
+        "display": "block",
+        "s": "body",
+        "width": 375,
+        "x": 0
+      },
+      {
+        "display": "flex",
+        "s": ".topbar",
+        "width": 375,
+        "x": 0
+      },
+      {
+        "display": "block",
+        "s": ".simple-hero",
+        "width": 375,
+        "x": 0
+      },
+      {
+        "display": "block",
+        "s": "h1",
+        "width": 337.5,
+        "x": 18.75
+      },
+      {
+        "display": "block",
+        "s": ".workspace",
+        "width": 375,
+        "x": 0
+      }
+    ],
+    "scrollWidth": 375,
+    "width": 390
+  },
+  "variantSwitch": {
+    "fromPv": 20,
+    "toPv": "10",
+    "url": "http://127.0.0.1:4186/advanced.html"
+  },
+  "draft": {
+    "draft": "Moc PV: 10 kWp",
+    "pv": "20",
+    "status": "Przeliczono 8760 h profilu · 3 modele · dane szacunkowe"
+  },
+  "consoleErrors": []
+}

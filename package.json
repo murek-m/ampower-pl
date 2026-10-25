@@ -20,7 +20,9 @@
     "pv:build": "node scripts/build-pv-mining.mjs",
     "pv:preview": "python3 -m http.server 4186 --bind 127.0.0.1 --directory output/pv-mining-preview",
     "pv:dev": "npm run pv:build && npm run pv:preview",
-    "pv:test": "node --test tests/pv-mining*.test.js"
+    "pv:test": "node --test tests/pv-mining*.test.js",
+    "pv:data:stage": "node scripts/pv-mining-update.mjs",
+    "pv:report": "node scripts/pv-mining-report.mjs"
   },
   "engines": {
     "node": ">=20"

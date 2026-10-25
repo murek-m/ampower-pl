@@ -1,5 +1,6 @@
 # Etap 3 — testy i poprawki
 
+**Aktualizacja 25.10.2026:** ten dokument opisuje wcześniejszy etap. Bieżący stan i odbiór poprawek: [raport napraw](11_NAPRAWY_PO_AUDYCIE.md); aktualne liczby: [symulacje po naprawie](09_AKTUALNE_SYMULACJE.md).
 24.10.2026. Zgoda użytkownika: „Kontynuuj 3 i 4 etap jeżeli będą limity”. Przed etapem odczytano 59% limitu 5 h i 73% tygodniowego; przy ponownym odczycie w trakcie 56% / 73%. Bez dodatkowych agentów, zmiany modelu, płatnych usług i publikacji.
 
 ## Wynik

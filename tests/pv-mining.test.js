@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {calculate,normalize,makeProfile,parseCsv,settle} from '../pv-mining/engine.js';
 const market={observedAt:'2026-12-31T23:59:00Z',height:900000,difficulty:1e12,feeBtc:0,btcPln:500000};
 const model={id:'test',th:100,watts:1000,price:1000};
-const defaults={selected:['test'],knownSurplus:'',horizon:1,lifetime:10,poolFee:0,firmwareFee:0,availability:100,extraWatts:0,startMinutes:0,startMargin:0,minRunMinutes:0,minOffMinutes:0,gridLimit:0,infraBudget:0,maintenance:0,emsWatts:0,exportPrice:0,difficultyGrowth:0,btcGrowth:0,importPrice:1,eligiblePrice:1};
+const defaults={costMode:'budget',selected:['test'],knownSurplus:'',horizon:1,lifetime:10,poolFee:0,firmwareFee:0,availability:100,extraWatts:0,startMinutes:0,startMargin:0,minRunMinutes:0,minOffMinutes:0,gridLimit:0,infraBudget:0,maintenance:0,emsWatts:0,exportPrice:0,difficultyGrowth:0,btcGrowth:0,importPrice:1,eligiblePrice:1};
 const near=(a,b,tol=1e-7)=>assert.ok(Math.abs(a-b)<=tol*Math.max(1,Math.abs(b)),`${a} != ${b}`);
 function profile(pv=2,load=0,dt=1){const start=Date.UTC(2023,0,1);return {source:'csv',hours:8760,rows:Array.from({length:8760/dt},(_,i)=>({stamp:start+i*dt*3600000,pv:typeof pv==='function'?pv(i*dt):pv,load:typeof load==='function'?load(i*dt):load,dt}))};}
 function run(raw={},p=profile(),m=model,mkt=market){return calculate({...defaults,...raw},[],mkt,[m],p).results[0];}

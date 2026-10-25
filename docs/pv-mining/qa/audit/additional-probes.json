@@ -1,0 +1,113 @@
+{
+  "contrast": [
+    {
+      "selector": ".metric>small",
+      "ratio": 3.752342402297744
+    },
+    {
+      "selector": ".compare-tag selected",
+      "ratio": 4.428124060511825
+    },
+    {
+      "selector": ".field small",
+      "ratio": 5.331720839933557
+    }
+  ],
+  "zeroChart": {
+    "containsNaN": true,
+    "svg": "<div class=\"chart-legend\"><span class=\"legend-asic\">Wynik według wartości BTC</span><span>Po koszcie inwestycji · PLN</span></div><svg class=\"return-chart\" viewBox=\"0 0 720 225\" role=\"img\" aria-label=\"Skumulowany wynik inwestycji w kolejnych latach w PLN\"><title>Wynik ekonomiczny po CAPEX</title><line class=\"zero-line\" x1=\"45\" x2=\"700\" y1=\"NaN\" y2=\"NaN\"/><text x=\"38\" y=\"NaN\" text-anchor=\"end\">0</text><text x=\"38\" y=\"NaN\" text-anchor=\"end\">0</text><polyline fill=\"none\" stroke=\"#daa900\" stroke-width=\"3\" points=\"45,NaN 695,NaN\"/><circle cx=\"45\" cy=\"NaN\" r=\"4\" fill=\"#daa900\"><title>Rok 0: 0</title></circle><text x=\"45\" y=\"210\" text-anchor=\"middle\">0</text><circle cx=\"695\" cy=\"NaN\" r=\"4\" fill=\"#daa900\"><title>Rok 1: 0</title></circle><text x=\"695\" y=\"210\" text-anchor=\"middle\">1</text></svg>"
+  },
+  "benchmark": {
+    "runtime": "v26.10.0",
+    "platform": "darwin",
+    "arch": "arm64",
+    "method": "one run per profile, local Node; not mobile or CWV",
+    "timings": [
+      {
+        "name": "hourly",
+        "elapsedMs": 201.408667
+      },
+      {
+        "name": "15min",
+        "elapsedMs": 611.8918329999999
+      }
+    ]
+  },
+  "publicArtifact": {
+    "bytes": 488144,
+    "files": [
+      {
+        "path": "output/pv-mining-preview/advanced.html",
+        "bytes": 1423
+      },
+      {
+        "path": "output/pv-mining-preview/app.js",
+        "bytes": 44042
+      },
+      {
+        "path": "output/pv-mining-preview/data/market.json",
+        "bytes": 672
+      },
+      {
+        "path": "output/pv-mining-preview/data/models.json",
+        "bytes": 4069
+      },
+      {
+        "path": "output/pv-mining-preview/data/profile.json",
+        "bytes": 269977
+      },
+      {
+        "path": "output/pv-mining-preview/data-loader.js",
+        "bytes": 1905
+      },
+      {
+        "path": "output/pv-mining-preview/engine.js",
+        "bytes": 21452
+      },
+      {
+        "path": "output/pv-mining-preview/fonts/archivo-1.woff2",
+        "bytes": 14436
+      },
+      {
+        "path": "output/pv-mining-preview/fonts/archivo-2.woff2",
+        "bytes": 13264
+      },
+      {
+        "path": "output/pv-mining-preview/fonts/fonts.css",
+        "bytes": 2174
+      },
+      {
+        "path": "output/pv-mining-preview/fonts/ibm-plex-mono-5.woff2",
+        "bytes": 10060
+      },
+      {
+        "path": "output/pv-mining-preview/fonts/ibm-plex-mono-6.woff2",
+        "bytes": 8848
+      },
+      {
+        "path": "output/pv-mining-preview/fonts/ibm-plex-sans-3.woff2",
+        "bytes": 40240
+      },
+      {
+        "path": "output/pv-mining-preview/fonts/ibm-plex-sans-4.woff2",
+        "bytes": 25868
+      },
+      {
+        "path": "output/pv-mining-preview/index.html",
+        "bytes": 2228
+      },
+      {
+        "path": "output/pv-mining-preview/simple.html",
+        "bytes": 1800
+      },
+      {
+        "path": "output/pv-mining-preview/style.css",
+        "bytes": 25426
+      },
+      {
+        "path": "output/pv-mining-preview/worker.js",
+        "bytes": 260
+      }
+    ]
+  }
+}

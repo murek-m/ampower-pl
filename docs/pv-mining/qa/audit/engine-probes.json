@@ -1,0 +1,91 @@
+{
+  "horizon": [
+    {
+      "horizon": 1,
+      "year1Hours": 1267,
+      "benefit": 624.5983255814792
+    },
+    {
+      "horizon": 3,
+      "year1Hours": 1267,
+      "benefit": 624.5983255814792
+    },
+    {
+      "horizon": 10,
+      "year1Hours": 1267,
+      "benefit": 624.5983255814792
+    }
+  ],
+  "dispatchCounterexample": {
+    "hours": 4380,
+    "btcValue": 25.91389598176537,
+    "billDifference": -400.8000000000027,
+    "benefit": -374.8861040182373,
+    "opex": 0
+  },
+  "gridChart": {
+    "pv": 0,
+    "energy": 23406.71999999733,
+    "asicGrid": 23406.71999999733,
+    "maxMonthlyPv": 0,
+    "maxMonthlyAsic": 1990.6400000000162
+  },
+  "silentNormalization": {
+    "blankLoad": 5000,
+    "reserve": 0.1,
+    "usableFraction": 0.1,
+    "quantity": 2
+  },
+  "invalidAccepted": {
+    "futureMarket": true,
+    "extremePrice": true,
+    "wrongEfficiency": true,
+    "shiftedWeatherYear": true,
+    "freshness": {
+      "marketStale": false,
+      "staleOffers": []
+    }
+  },
+  "paybackAfterLife": {
+    "payback": 5,
+    "lifetime": 1,
+    "lastBtc": 0
+  },
+  "zeroMiningBatteryCounterfactual": {
+    "baselineBatteryHouse": 0,
+    "withMinerBatteryHouse": 2730.2673891190548,
+    "energy": 0,
+    "btc": 0,
+    "benefit": 841.8762763616929
+  },
+  "capexSensitivity": [
+    {
+      "infraBudget": 0,
+      "capex": 6590,
+      "benefitYear1": 254.51832558147925,
+      "result10": -9825.459093025045,
+      "payback": null
+    },
+    {
+      "infraBudget": 1000,
+      "capex": 7590,
+      "benefitYear1": 254.51832558147925,
+      "result10": -10825.459093025045,
+      "payback": null
+    },
+    {
+      "infraBudget": 2000,
+      "capex": 8590,
+      "benefitYear1": 254.51832558147925,
+      "result10": -11825.459093025045,
+      "payback": null
+    },
+    {
+      "infraBudget": 4000,
+      "capex": 10590,
+      "benefitYear1": 254.51832558147925,
+      "result10": -13825.459093025045,
+      "payback": null
+    }
+  ]
+}

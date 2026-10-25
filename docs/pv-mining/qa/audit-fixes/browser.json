@@ -1,0 +1,93 @@
+{
+  "draft": {
+    "copyEnabled": true,
+    "draftPv": "Moc PV: 20 kWp",
+    "notesKept": true,
+    "pv": "20"
+  },
+  "stateBA": {
+    "pv": "20"
+  },
+  "soc": {
+    "error": "Rezerwa SOC nie może przekraczać górnego limitu SOC.Przejdź do pola",
+    "invalid": "true"
+  },
+  "hiddenField": {
+    "focus": "f-btcPrice",
+    "invalid": "true",
+    "miningHidden": false
+  },
+  "csvImport": {
+    "csv": "Wczytano ampower-pv-fix-test.csv: 8760 rekordów. Profil pozostaje lokalnie do usunięcia; nie jest wysyłany.",
+    "pvDisabled": true,
+    "status": "Przeliczono 8760 h profilu · 3 modele · CSV"
+  },
+  "csvAcrossA": {
+    "pvDisabled": true,
+    "source": "TWÓJ PROFIL CSV"
+  },
+  "mobileB": {
+    "clientWidth": 375,
+    "font": "14px",
+    "scrollWidth": 375,
+    "status": "Przeliczono 8760 h profilu · 3 modele · dane szacunkowe",
+    "width": 390
+  },
+  "mobileLayouts": [
+    {
+      "clientWidth": 305,
+      "mode": "simple",
+      "scrollWidth": 305,
+      "width": 320
+    },
+    {
+      "clientWidth": 375,
+      "mode": "simple",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "clientWidth": 753,
+      "mode": "simple",
+      "scrollWidth": 753,
+      "width": 768
+    },
+    {
+      "clientWidth": 305,
+      "mode": "advanced",
+      "scrollWidth": 305,
+      "width": 320
+    },
+    {
+      "clientWidth": 375,
+      "mode": "advanced",
+      "scrollWidth": 375,
+      "width": 390
+    },
+    {
+      "clientWidth": 753,
+      "mode": "advanced",
+      "scrollWidth": 753,
+      "width": 768
+    }
+  ],
+  "lastStaleDraft": {
+    "copyDisabled": false,
+    "mailHref": "mailto:kuba@ampower.pl",
+    "pv": "24"
+  },
+  "longDraft": {
+    "copyEnabled": true,
+    "length": 8001,
+    "mailHref": null,
+    "status": "Treść jest zbyt długa dla linku pocztowego lub zawiera niepełny znak. Skopiuj pełną treść i wklej ją do poczty."
+  },
+  "final": {
+    "costMode": "detailed",
+    "infraBudget": "",
+    "pv": "10",
+    "status": "Przeliczono 8760 h profilu · 3 modele · dane szacunkowe",
+    "title": "Najpierw uzupełnij kosztorys."
+  },
+  "consoleErrors": []
+}

@@ -1,5 +1,6 @@
 # Etap 2 — dwa lokalne prototypy
 
+**Aktualizacja 25.10.2026:** ten dokument opisuje wcześniejszy etap. Bieżący stan i odbiór poprawek: [raport napraw](11_NAPRAWY_PO_AUDYCIE.md); aktualne liczby: [symulacje po naprawie](09_AKTUALNE_SYMULACJE.md).
 **Aktualizacja:** etap 3 wykonany po późniejszej zgodzie użytkownika. [Testy i poprawki](07_TESTY.md), [wyniki końcowe](08_WYNIKI_I_DECYZJE.md). Poniższy opis zachowuje stan etapu 2.
 
 24.10.2026. Etap rozpoczęty po zgodzie użytkownika „Zaczynaj”. Gałąź `feat/pv-mining`, osobny worktree `ampower-pv-mining`. Bez publikacji, zmian main, uruchamiania płatnych usług ani agentów pomocniczych.

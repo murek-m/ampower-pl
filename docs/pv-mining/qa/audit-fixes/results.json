@@ -1,0 +1,38 @@
+{
+  "engineVersion": "2026-10-25.1",
+  "generatedAt": "2026-10-25T06:47:19.881Z",
+  "zeroMining": {
+    "btc": 0,
+    "benefit": 0,
+    "batteryHouseBaseline": 2730.2673891190548,
+    "batteryHouseWithAsic": 2730.2673891190548
+  },
+  "gridOnly": {
+    "pv": 0,
+    "energy": 23406.71999999733,
+    "pvToAsic": 0,
+    "batteryToAsic": 0,
+    "gridToAsic": 23406.71999999733
+  },
+  "benchmark": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "node": "v26.10.0",
+    "method": "one local run per interval; not mobile or CWV",
+    "timings": [
+      {
+        "dt": 1,
+        "ms": 265.099625
+      },
+      {
+        "dt": 0.25,
+        "ms": 719.535542
+      }
+    ]
+  },
+  "contrast": {
+    "metricSmall": 6.718323238051803,
+    "compareTagSelected": 7.0252019292124315
+  },
+  "stagedMarketCandidate": "2026-10-25T06-46-13-125Z-fc62e36e9c19"
+}

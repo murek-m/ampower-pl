@@ -1,5 +1,6 @@
 # AMPOWER PV Mining — wyniki i decyzje
 
+**Aktualizacja 25.10.2026:** ten dokument opisuje wcześniejszy etap. Bieżący stan i odbiór poprawek: [raport napraw](11_NAPRAWY_PO_AUDYCIE.md); aktualne liczby: [symulacje po naprawie](09_AKTUALNE_SYMULACJE.md).
 **Etap 4, 24.10.2026.** Prace na `feat/pv-mining`, osobny katalog `ampower-pv-mining`. Dwa prototypy działają lokalnie, wspólny silnik przeszedł testy. **Nie wykonano wdrożenia, push ani merge do main.** Przed etapem odczytano 49% limitu 5 h i 72% tygodniowego. Raport zamyka zakres badawczy i prototypowy; nie oznacza odbioru instalacji ani gotowości wszystkich integracji do produkcji.
 
 ## Wniosek inwestycyjny

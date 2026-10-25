@@ -1,0 +1,22 @@
+name: PV Mining data candidate (review only)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  candidate:
+    if: github.ref == 'refs/heads/feat/pv-mining'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/pv-mining*.test.js
+      - run: node scripts/pv-mining-update.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: pv-mining-data-candidate
+          path: output/pv-mining-data-candidates/
+          retention-days: 7

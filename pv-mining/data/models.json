@@ -14,7 +14,15 @@
     "source": "https://miners.pl/pl/p/Bitmain-Antminer-S21/113",
     "priceStatus": "Cena obserwowana 24.10.2026, bez dostawy",
     "stock": "Deklaracja strony: średnia ilość",
-    "verifiedAt": "2026-10-24"
+    "verifiedAt": "2026-10-24",
+    "schemaVersion": 1,
+    "offer": {
+      "status": "unconfirmed",
+      "stock": "unknown",
+      "includesDelivery": false,
+      "finalGrossPln": null,
+      "verifiedAt": "2026-10-24"
+    }
   },
   {
     "id": "s21-pro",
@@ -31,7 +39,15 @@
     "source": "https://www.unlimitedminer.com/sklep/s21-pro",
     "priceStatus": "Cena z indeksu 24.10.2026 — do potwierdzenia, bez dostawy",
     "stock": "Do potwierdzenia",
-    "verifiedAt": "2026-10-24"
+    "verifiedAt": "2026-10-24",
+    "schemaVersion": 1,
+    "offer": {
+      "status": "unconfirmed",
+      "stock": "unknown",
+      "includesDelivery": false,
+      "finalGrossPln": null,
+      "verifiedAt": "2026-10-24"
+    }
   },
   {
     "id": "s21-xp",
@@ -48,7 +64,15 @@
     "source": "https://unlimitedminer.com/sklep",
     "priceStatus": "Cena z indeksu 24.10.2026 — do potwierdzenia, bez dostawy",
     "stock": "Do potwierdzenia",
-    "verifiedAt": "2026-10-24"
+    "verifiedAt": "2026-10-24",
+    "schemaVersion": 1,
+    "offer": {
+      "status": "unconfirmed",
+      "stock": "unknown",
+      "includesDelivery": false,
+      "finalGrossPln": null,
+      "verifiedAt": "2026-10-24"
+    }
   },
   {
     "id": "s23",
@@ -65,7 +89,15 @@
     "source": "https://shop-product-service.bitmain.com/api/productshow/getMainProduct",
     "priceStatus": "Budżet po przeliczeniu katalogowych 9150 USD i VAT; brak frachtu, cła, odprawy",
     "stock": "Katalog: sold out; porównanie poglądowe",
-    "verifiedAt": "2026-10-24"
+    "verifiedAt": "2026-10-24",
+    "schemaVersion": 1,
+    "offer": {
+      "status": "unconfirmed",
+      "stock": "sold-out",
+      "includesDelivery": false,
+      "finalGrossPln": null,
+      "verifiedAt": "2026-10-24"
+    }
   },
   {
     "id": "s23-hydro",
@@ -82,7 +114,15 @@
     "source": "https://unlimitedminer.com/sklep",
     "priceStatus": "Cena z indeksu 24.10.2026 — do potwierdzenia; bez obiegu chłodzenia",
     "stock": "Do potwierdzenia",
-    "verifiedAt": "2026-10-24"
+    "verifiedAt": "2026-10-24",
+    "schemaVersion": 1,
+    "offer": {
+      "status": "unconfirmed",
+      "stock": "unknown",
+      "includesDelivery": false,
+      "finalGrossPln": null,
+      "verifiedAt": "2026-10-24"
+    }
   },
   {
     "id": "s21-plus",
@@ -99,7 +139,15 @@
     "source": "https://shop-product-service.bitmain.com/api/productshow/getMainProduct",
     "priceStatus": "Budżet katalogowych 3240 USD po kursie i VAT; bez frachtu, cła i odprawy",
     "stock": "Katalog: sold out",
-    "verifiedAt": "2026-10-24"
+    "verifiedAt": "2026-10-24",
+    "schemaVersion": 1,
+    "offer": {
+      "status": "unconfirmed",
+      "stock": "sold-out",
+      "includesDelivery": false,
+      "finalGrossPln": null,
+      "verifiedAt": "2026-10-24"
+    }
   },
   {
     "id": "m60s-plusplus",
@@ -116,6 +164,14 @@
     "source": "https://shop.whatsminer.com/products/details/74?skuId=169",
     "priceStatus": "Nie uzyskano potwierdzonej ceny. Wpisz własną ofertę w zakładce Mining.",
     "stock": "Niepotwierdzony",
-    "verifiedAt": "2026-10-24"
+    "verifiedAt": "2026-10-24",
+    "schemaVersion": 1,
+    "offer": {
+      "status": "unconfirmed",
+      "stock": "unknown",
+      "includesDelivery": false,
+      "finalGrossPln": null,
+      "verifiedAt": "2026-10-24"
+    }
   }
 ]

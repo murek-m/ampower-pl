@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "observedAt": "2026-10-25T06:46:13.125Z",
+  "sha256": "fc62e36e9c199783fa5b03aad716e88a01f8a0084ed4126ba75031ed969dcd41",
+  "apply": "local review only; no deployment",
+  "preserved": [
+    "ASIC offer dates and prices",
+    "PV profile",
+    "historical energy assumptions"
+  ]
+}

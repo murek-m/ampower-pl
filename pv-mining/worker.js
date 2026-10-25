@@ -1,5 +1,14 @@
-import {calculate} from './engine.js';
-self.onmessage=({data})=>{
-  try { self.postMessage({id:data.id,result:calculate(data.raw,data.profile,data.market,data.models,data.imported)}); }
-  catch(error) { self.postMessage({id:data.id,error:error.message}); }
+import {calculate,parseCsv} from './engine.js';
+let dataset,imported=null;
+self.onmessage=async({data})=>{
+  try {
+    if(data.type==='init'){dataset=data.dataset;return;}
+    if(data.type==='csv') {
+      if(data.file.size>8_000_000)throw new Error('Plik przekracza 8 MB. Wybierz jeden rok danych.');
+      const next=parseCsv(await data.file.text());imported=next;
+      self.postMessage({id:data.id,type:'csv',imported});return;
+    }
+    if(data.type==='profile'){imported=data.imported;return;}
+    if(data.type==='calculate')self.postMessage({id:data.id,result:calculate(data.raw,dataset.profile,dataset.market,dataset.models,imported)});
+  }catch(error){self.postMessage({id:data.id,error:error.message,type:data.type});}
 };

@@ -1,5 +1,9 @@
 # AMPOWER PV Mining — dokumentacja projektu
 
+**Naprawy 25.10.2026:** [Raport zmian i odbioru](11_NAPRAWY_PO_AUDYCIE.md), [przeliczone 81 scenariuszy](09_AKTUALNE_SYMULACJE.md). 266/266 testów repozytorium, w tym 47 PV Mining. Błędy odtworzone w audycie mają poprawki i dowody odbioru; produkcja i sprzęt wymagają osobnego wdrożenia oraz pilotażu. Starsze raporty etapów opisują wcześniejszy stan.
+
+**Aktualizacja 25.10.2026:** [Pełny audyt prototypów i plan poprawek](10_PELNY_AUDYT_I_PLAN_POPRAWEK.md) wykazał błędy porównania ekonomicznego oraz problemy kosztorysu i interfejsu. Przed wykorzystaniem wyników w doradztwie należy naprawić silnik i ponownie przeliczyć symulacje. Poniższe raporty etapów pozostają zapisem historycznym; ich zakończenie nie oznacza gotowości produkcyjnej. Audyt nie wprowadza poprawek aplikacji ani publikacji.
+
 **Aktualny stan:** etapy 1–4 zakończone w zakresie audytu, prototypów, testów i przedstawienia wyników. Bez publikacji. Zacznij od [wyników i decyzji](08_WYNIKI_I_DECYZJE.md), [aktualnych 81 symulacji](09_AKTUALNE_SYMULACJE.md) i [raportu testów](07_TESTY.md). [Uruchomienie A/B](06_PROTOTYPY.md). Poniżej zachowano historyczny raport etapu 1; jego zgody i rekomendacje dotyczą stanu w chwili napisania.
 
 Data badania: **24.10.2026**. Wyłącznie audyt, research i obliczenia badawcze. Nie rozpoczęto prototypów ani publikacji.
