@@ -32,7 +32,7 @@ input,select,textarea,fieldset,details,section,[tabindex] { scroll-margin-top:10
 .btn-volt:hover { background:#ffd34d; }
 .btn-ghost { color:inherit; border-color:var(--line); background:transparent; }
 .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
-.actions > * { flex:1 1 auto; }
+.actions > * { flex:1 1 auto; min-width:0; max-width:100%; overflow-wrap:anywhere; }
 .skip { position:fixed; top:8px; left:8px; z-index:100; transform:translateY(-200%); background:var(--volt); color:#181613; padding:12px; }
 .skip:focus { transform:none; }
 header { position:relative; top:0; z-index:50; background:var(--panel); color:#f2efe6; border-bottom:1px solid #35312a; }
@@ -63,7 +63,8 @@ header { position:relative; top:0; z-index:50; background:var(--panel); color:#f
 .hero .help { color:#c6c0b4; }
 .hero .btn-ghost { border-color:#797266; }
 .breadcrumbs { font-size:.9rem; margin-bottom:24px; color:#c6c0b4; }
-.grid { display:grid; gap:20px; }
+.grid { display:grid; grid-template-columns:minmax(0,1fr); gap:20px; }
+.grid > * { min-width:0; }
 .card { padding:24px; border:1px solid var(--line); border-radius:12px; background:var(--surface); }
 .card p { margin-top:12px; }
 .card .eyebrow { margin-top:0; }
@@ -149,3 +150,41 @@ footer .wrap { display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
 .spam-trap{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}
 #spam-challenge{max-width:100%;overflow:hidden}
 #price-title{overflow-wrap:anywhere}
+
+/* Detailed offer lives here; the home page keeps only its service card. */
+.smart-offer .section { border-bottom:1px solid var(--line); }
+.smart-offer .feature { background:var(--panel); color:#f2efe6; }
+.smart-offer .feature .eyebrow { color:var(--volt); }
+.smart-offer .feature .feature-copy p,.smart-offer .smart-spec-note,.smart-offer figcaption { color:#c6c0b4; }
+.smart-offer .feature-grid { display:grid; gap:28px; }
+.smart-offer .feature-copy p + p { margin-top:16px; }
+.smart-offer .feature-ctas { display:flex; gap:12px; flex-wrap:wrap; margin-top:24px; }
+.smart-offer .spec { border:1px solid #797266; border-radius:12px; padding:24px; }
+.smart-offer .spec-title { font-weight:600; margin-bottom:16px; }
+.smart-offer .spec dl { margin:0; }
+.smart-offer .spec-row { display:flex; gap:12px; justify-content:space-between; padding:10px 0; border-bottom:1px solid #35312a; }
+.smart-offer .spec-row dt { color:#c6c0b4; }
+.smart-offer .spec-row dd { margin:0; text-align:right; overflow-wrap:anywhere; }
+.smart-offer .smart-spec-note { font-size:.9rem; margin-top:16px; }
+.smart-offer .smart-panel { margin:32px 0 0; }
+.smart-offer .smart-panel h3 { margin-bottom:16px; }
+.smart-offer .smart-panel a { display:block; overflow:hidden; border:1px solid #797266; border-radius:12px; }
+.smart-offer .smart-panel img { display:block; width:100%; height:auto; }
+.smart-offer figcaption { margin-top:12px; max-width:760px; font-size:.94rem; }
+.smart-offer h3 { font-size:1.16rem; line-height:1.35; }
+.smart-offer .card { display:flex; flex-direction:column; align-items:start; gap:12px; }
+.smart-offer .card > * { min-width:0; max-width:100%; overflow-wrap:anywhere; }
+.smart-offer .card p { margin-top:0; }
+.smart-offer .card .btn { margin-top:auto; max-width:100%; overflow-wrap:anywhere; }
+.smart-offer .automation-list { grid-template-columns:1fr; }
+.smart-offer .faq summary { padding-block:18px; }
+.smart-offer a { overflow-wrap:anywhere; }
+@media (min-width:900px) {
+ .smart-offer .feature-grid { grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); }
+ .smart-offer .automation-list { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+/* Legal information remains readable without competing with the offer. */
+.privacy-page .section h2 + p { margin-top:16px; }
+.privacy-page .section p + h2 { margin-top:36px; }
+
+.privacy-page .section p,.privacy-page code { overflow-wrap:anywhere; }

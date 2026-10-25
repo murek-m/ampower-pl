@@ -25,9 +25,9 @@ test('focus na ciemnych panelach także w sekcji kontaktu ma kontrast >= 3', () 
   assert.ok(contrast('#a6d9ff', '#181613') >= 3);
   assert.match(css, /\.contact :focus-visible[^}]*outline-color:#a6d9ff/);
 });
-test('podstrona podglądowa ma SEO, noindex i wyłącznie lokalne skrypty', () => {
+test('podstrona oferty ma SEO, indeksowanie i lokalny moduł zgód', () => {
   const html = readFileSync('smart-home-energy/index.html', 'utf8');
-  assert.match(html, /<meta name="robots" content="noindex, nofollow">/);
+  assert.match(html, /<meta name="robots" content="index, follow">/);
   assert.match(html, /rel="canonical" href="https:\/\/ampower.pl\/smart-home-energy\/"/);
   assert.doesNotMatch(html, /<script[^>]+src="https?:/);
   assert.doesNotMatch(html, /(?:Offer|AggregateRating|gtag|fetch\()/);

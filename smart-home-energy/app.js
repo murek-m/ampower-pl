@@ -112,8 +112,11 @@ function syncPanels(raw) {
   showGroup('host-model-group', raw.host === 'owned');
   showGroup('email-group', true);
   showGroup('phone-group', true);
-  $('email').required = true;
-  $('phone').required = false;
+  const emailRequired = INQUIRY_CONFIG.enabled || raw.channel !== 'phone';
+  $('email').required = emailRequired;
+  $('phone').required = raw.channel === 'phone';
+  document.querySelector('label[for="email"]').textContent = emailRequired ? 'Adres e-mail — wymagany' : 'Adres e-mail — opcjonalnie';
+  document.querySelector('label[for="phone"]').textContent = raw.channel === 'phone' ? 'Numer telefonu — wymagany' : 'Numer telefonu — opcjonalnie';
 }
 function renderSummary(raw) {
   const result = evaluate(raw);
@@ -216,22 +219,6 @@ function prepare() {
     : 'Przygotowano wiadomość. Otwórz ją i wyślij w swojej aplikacji pocztowej; strona nie potwierdza wysłania.';
   return true;
 }
-function setupMenu() {
-  const toggle = document.querySelector('.nav-toggle');
-  const links = $('nav-links');
-  const close = () => { links.classList.remove('is-open'); toggle.setAttribute('aria-expanded', 'false'); toggle.setAttribute('aria-label', 'Otwórz menu'); };
-  toggle.addEventListener('click', () => {
-    const opened = links.classList.toggle('is-open');
-    toggle.setAttribute('aria-expanded', String(opened));
-    toggle.setAttribute('aria-label', opened ? 'Zamknij menu' : 'Otwórz menu');
-  });
-  links.addEventListener('click', event => { if (event.target.closest('a')) close(); });
-  document.addEventListener('keydown', event => { if (event.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') { close(); toggle.focus(); } });
-  window.addEventListener('resize', () => { if (window.innerWidth > 1200) close(); });
-  document.documentElement.classList.add('menu-ready');
-}
-
-setupMenu();
 setupPanels();
 for (const [title, copy] of PRICE_POLICY.components) {
   const row = element('div');
@@ -243,6 +230,7 @@ form.addEventListener('change', update);
 let sending = false;
 form.addEventListener('submit', async event => {
   event.preventDefault();
+  if (!INQUIRY_CONFIG.enabled) { if (prepare()) $('draft-panel').focus(); return; }
   if (sending) return;
   const raw = read();
   const errors = validateSubmission(raw);
@@ -259,7 +247,15 @@ form.addEventListener('submit', async event => {
 });
 $('preview-config').addEventListener('click', () => { if (prepare()) $('draft-panel').focus(); });
 configureChallenge(INQUIRY_CONFIG, $('spam-challenge')).catch(() => { $('inquiry-availability').textContent = 'Ochrona formularza jest niedostępna. Spróbuj później lub zadzwoń.'; });
-if (INQUIRY_CONFIG.enabled) $('inquiry-availability').textContent = 'Zapytanie prześlemy bez otwierania programu pocztowego. Po przyjęciu otrzymasz numer zgłoszenia.';
+$('send-inquiry').hidden = !INQUIRY_CONFIG.enabled;
+$('dataNoticeAccepted').closest('label').hidden = !INQUIRY_CONFIG.enabled;
+if (INQUIRY_CONFIG.enabled) {
+  $('inquiry-availability').textContent = 'Zapytanie prześlemy bez otwierania programu pocztowego. Po przyjęciu otrzymasz numer zgłoszenia.';
+  document.querySelector('label[for="name"]').textContent = 'Imię — wymagane';
+  document.querySelector('label[for="locality"]').textContent = 'Miejscowość realizacji — wymagana';
+  $('submission-privacy').textContent = 'Dane przekażemy do AMPOWER po kliknięciu Wyślij zapytanie. Potwierdzenie oznacza zapis z numerem zgłoszenia, a nie wysłanie oferty.';
+  $('privacy-state').textContent = 'Formularz przekazuje dane do odbiornika zapytań. Podgląd i kopiowanie nie wysyłają danych.';
+}
 
 $('copy-config').addEventListener('click', async () => {
   if (!preparedText && !prepare()) return;

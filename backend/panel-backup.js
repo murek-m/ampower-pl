@@ -15,8 +15,8 @@ const sourceRelative=relative(source,destination);
 if (!(sourceRelative==='..' || sourceRelative.startsWith('../'))) throw new Error('Backup musi być poza magazynem źródłowym');
 await store.transaction(async()=>{
  const manifest={createdAt:new Date().toISOString(),source,files:{}};
- for(const name of (await readdir(source)).filter(n=>/^[a-f0-9]{64}\.json$/.test(n))){
-  await store.readPrivate(join(source,name));const data=await readFile(join(source,name));await writeFile(join(destination,name),data,{mode:0o600,flag:'wx'});manifest.files[name]=createHash('sha256').update(data).digest('hex');
+ for(const name of (await readdir(source)).filter(n=>/^(?:[a-f0-9]{64}\.json|pdf-[a-f0-9]{64}-[a-f0-9]{64}\.pdf)$/.test(n))){
+  const data=await store.readPrivateBytes(join(source,name));await writeFile(join(destination,name),data,{mode:0o600,flag:'wx'});manifest.files[name]=createHash('sha256').update(data).digest('hex');
  }
  await writeFile(join(destination,'manifest.json'),JSON.stringify(manifest,null,2),{mode:0o600,flag:'wx'});
  console.log(`Prywatna kopia: ${destination}; plików: ${Object.keys(manifest.files).length}. Kopia nieszyfrowana, zawiera dane i historię; retencja osobno.`);

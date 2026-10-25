@@ -5,7 +5,7 @@ import { readFile, realpath } from 'node:fs/promises';
 import { homedir, networkInterfaces } from 'node:os';
 import { dirname, join, resolve, relative } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { FileStore } from './store.js';
+import { FileStore, fingerprint } from './store.js';
 import { loadCatalog } from './catalog.js';
 import { reviseOffer, approveOffer, customerOffer } from './offers.js';
 import { calculateInternal } from './internal-calculator.js';
@@ -21,15 +21,17 @@ const privateIPv4 = s => /^(?:10\.|192\.168\.|172\.(?:1[6-9]|2\d|3[01])\.)/.test
 const digest = s => createHash('sha256').update(s).digest();
 const secretEquals = (a,b) => typeof a === 'string' && a.length < 256 && timingSafeEqual(digest(a),digest(b));
 const fail = (message,status=422) => Object.assign(new Error(message),{status});
-const types = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.woff2':'font/woff2','.svg':'image/svg+xml'};
+const types = {'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.woff2':'font/woff2','.svg':'image/svg+xml','.png':'image/png'};
 const assets = new Map([['/','backend/panel/index.html'],['/panel.css','backend/panel/panel.css'],['/panel.js','backend/panel/panel.js'],['/favicon.svg','favicon.svg']]);
 for (const f of ['fonts.css','ibm-plex-sans-4.woff2','ibm-plex-sans-3.woff2','ibm-plex-mono-5.woff2','ibm-plex-mono-6.woff2','archivo-1.woff2','archivo-2.woff2']) assets.set(`/fonts/${f}`,`smart-home-energy/fonts/${f}`);
-const demoAssets = ['index.html','style.css','app.js','data.js','model.js','pricing.js','price-book.js','inquiry-client.js','inquiry-config.js','fonts/fonts.css','fonts/ibm-plex-sans-4.woff2','fonts/ibm-plex-sans-3.woff2','fonts/ibm-plex-mono-5.woff2','fonts/ibm-plex-mono-6.woff2','fonts/archivo-1.woff2','fonts/archivo-2.woff2'];
+for (const path of ['assets/consent.js','assets/consent.css','assets/smart-home-panel.png']) assets.set('/'+path,path);
+assets.set('/prywatnosc/','prywatnosc/index.html');
+const demoAssets = ['index.html','style.css','menu.js','app.js','data.js','model.js','pricing.js','price-book.js','inquiry-client.js','inquiry-config.js','fonts/fonts.css','fonts/ibm-plex-sans-4.woff2','fonts/ibm-plex-sans-3.woff2','fonts/ibm-plex-mono-5.woff2','fonts/ibm-plex-mono-6.woff2','fonts/archivo-1.woff2','fonts/archivo-2.woff2'];
 export function createPanelServer({store,book,loginCode,actor='właściciel AMPOWER (sesja lokalna)',allowLAN=false,allowedHosts=['127.0.0.1','localhost','[::1]'],clock=()=>new Date(),pdf=generateOfferPdf,sessionDuration=3600000}) {
   if (!store || !book || typeof loginCode !== 'string' || loginCode.length < 16) throw new Error('Panel wymaga magazynu, katalogu i silnego kodu logowania');
   const sessions = new Map();const attempts = new Map();const inquiries = new Map();
   const server = http.createServer(async (req,res) => {
-    const security = {'Cache-Control':'no-store','X-Content-Type-Options':'nosniff','X-Frame-Options':'DENY','Referrer-Policy':'no-referrer','Permissions-Policy':'camera=(), microphone=(), geolocation=()',
+    const security = {'Cache-Control':'no-store','X-Robots-Tag':'noindex, nofollow, noarchive','X-Content-Type-Options':'nosniff','X-Frame-Options':'DENY','Referrer-Policy':'no-referrer','Permissions-Policy':'camera=(), microphone=(), geolocation=()',
       'Content-Security-Policy':"default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'; object-src 'none'"};
     const reply = (status,body,headers={}) => {res.writeHead(status,{...security,'Content-Type':'application/json; charset=utf-8',...headers});res.end(typeof body === 'string' || Buffer.isBuffer(body) ? body : JSON.stringify(body));};
     try {
@@ -128,6 +130,7 @@ export function createPanelServer({store,book,loginCode,actor='właściciel AMPO
           const snapshot=record.offerHistory?.find(h=>h.offer.revision===body.revision);
           if (!snapshot) throw fail('Nie znaleziono wersji',404);
           next=reviseOffer(record,snapshot.offer.quote,actor,clock());next.status='draft';
+          next.data=structuredClone(snapshot.data);
           next.audit.push({action:'offer-restored',fromRevision:body.revision,actor,at:clock().toISOString()});
         } else if (operation === 'status') {
           const transitions = {new:['estimating'],estimating:['new'],draft:[],approved:['sent'],sent:['accepted'],accepted:[]};
@@ -147,14 +150,27 @@ export function createPanelServer({store,book,loginCode,actor='właściciel AMPO
             if (!historical) throw fail('Nie znaleziono wersji',404);
             source={...record,...historical};
           }
-          const exported=customerOffer(source,body.draft === true,clock());
-          const pdfData=await pdf(exported);
-          record.audit.push({action:'pdf-generated',revision:exported.revision,state:exported.state,actor,at:clock().toISOString(),hash:createHash('sha256').update(pdfData).digest('hex')});
-          await store.put(record.storageKey,record);return {pdf:pdfData,revision:exported.revision};
+          const key=fingerprint({inquiryId:id,offer:source.offer,data:source.data});
+          let archived=record.pdfArchives?.find(a=>a.key===key);
+          const retrievedFromArchive=Boolean(archived);
+          let pdfData;
+          if (archived && (body.draft === true || archived.state === 'approved')) {
+            pdfData=await store.archivedPdf(id,key);
+            if (!pdfData || createHash('sha256').update(pdfData).digest('hex') !== archived.hash) throw fail('Brak lub uszkodzenie archiwum PDF. Odtwórz plik z prywatnej kopii.',503);
+          } else {
+            const exported=customerOffer(source,body.draft === true,clock());
+            pdfData=await pdf(exported);
+            await store.archivePdf(id,key,pdfData);
+            archived={key,revision:exported.revision,state:exported.state,validUntil:exported.validUntil,hash:createHash('sha256').update(pdfData).digest('hex')};
+            record.pdfArchives ||= [];record.pdfArchives.push(archived);
+          }
+          const expired=Date.parse(archived.validUntil) <= +clock();
+          record.audit.push({action:'pdf-generated',retrievedFromArchive,revision:archived.revision,state:archived.state,actor,at:clock().toISOString(),hash:archived.hash,expired});
+          await store.put(record.storageKey,record);return {pdf:pdfData,revision:archived.revision,expired};
         } else throw fail('Nie znaleziono',404);
         await store.put(next.storageKey,next);return {record:next,quote:next.offer?.quote || draftForInquiry(next,book,clock()),version:next.audit.length};
       });
-      if (result.pdf) return reply(200,result.pdf,{'Content-Type':'application/pdf','Content-Disposition':`attachment; filename="${id}-v${result.revision}.pdf"`});
+      if (result.pdf) return reply(200,result.pdf,{'Content-Type':'application/pdf','X-AMPOWER-Offer-Expired':String(result.expired),'Content-Disposition':`attachment; filename="${id}-v${result.revision}${result.expired ? '-ARCHIWALNA-WYGASLA' : ''}.pdf"`});
       return reply(200,result);
     } catch (error) {if (!res.headersSent) reply(error.status || 422,{error:error.status || ['Nieprawid','Niekompletny','Wymagan','Zatwierdz','Kosztorys','Oferta','Marża','Podaj','Opis','Brak'].some(s=>error.message.startsWith(s)) ? error.message : 'Operacja nie powiodła się. Nie potwierdzono zapisu.'}); else res.end();}
   });

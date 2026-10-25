@@ -31,6 +31,7 @@ const page = await ctx.newPage();
 async function fresh(p = page) {
   await p.goto(`${origin.origin}/smart-home-energy/`);
   await p.locator('#smart-form').waitFor({ state: 'visible' });
+  if(await p.locator('#cookie-banner').isVisible())await p.locator('#cookie-reject').click();
 }
 async function basic(categories, p = page) {
   for (const id of categories) await p.locator(`#category-${id}`).check();
@@ -182,10 +183,8 @@ try {
     assert.equal((await page.locator('#calc-total').innerText()).replace(/\s/g,''), '17000–23450zł');
     assert.equal(new URL(await page.locator('#calc-mail').getAttribute('href')).pathname, 'kuba@ampower.pl');
     assert.match(await page.locator('#calc-sms').getAttribute('href'), /^sms:\+48785668797/);
-    await page.locator('.nav-toggle').click(); await page.locator('#nav-links a[href="#smart-home-energy"]').click();
-    assert.equal(new URL(page.url()).pathname, '/');
-    assert.equal(new URL(page.url()).hash, '#smart-home-energy');
-    await page.locator('#smart-home-energy a[href="/smart-home-energy/#konfigurator"]').click();
+    await page.locator('.nav-toggle').click(); await page.locator('#nav-links a[href="/smart-home-energy/"]').click();
+    assert.equal(new URL(page.url()).pathname, '/smart-home-energy/');
     await page.locator('#smart-form').waitFor({state:'visible'});
     await page.locator('header .brand').click(); assert.equal(new URL(page.url()).pathname, '/');
   });
@@ -193,7 +192,7 @@ try {
     await fresh();
     assert.equal(await page.locator('h1').count(), 1);
     assert.equal(await page.locator('html').getAttribute('lang'), 'pl');
-    assert.equal(await page.locator('meta[name=robots]').getAttribute('content'), 'noindex, nofollow');
+    assert.equal(await page.locator('meta[name=robots]').getAttribute('content'), 'index, follow');
     assert.equal(await page.locator('link[rel=canonical]').getAttribute('href'), 'https://ampower.pl/smart-home-energy/');
     const schema = await page.locator('script[type="application/ld+json"]').allTextContents();
     assert.ok(schema.length); for (const json of schema) JSON.parse(json);
@@ -220,9 +219,9 @@ try {
       await perf.close();
     }
   });
-  await run('Brak wyjątków JavaScript, żądań zewnętrznych, cookies i trwałego zapisu danych', async () => {
+  await run('Brak wyjątków JavaScript, żądań zewnętrznych, cookies analitycznych i trwałego zapisu formularza', async () => {
     assert.deepEqual(errors, []); assert.deepEqual(rejectedRequests, []);
-    await fresh(); assert.equal(await page.evaluate(() => localStorage.length + sessionStorage.length),0);
+    await fresh(); assert.equal(await page.evaluate(() => sessionStorage.length + Object.keys(localStorage).filter(k=>k!=='ampower-consent-v3').length),0);
     assert.equal((await ctx.cookies()).length,0);
   });
 } finally {

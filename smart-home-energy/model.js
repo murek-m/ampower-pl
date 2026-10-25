@@ -97,7 +97,7 @@ export function evaluate(raw, book = PRICE_BOOK, now = new Date()) {
   })) messages.push('Wybrany zakres może wymagać prac na miejscu. Dobierzemy sposób realizacji po rozmowie.');
   const calculated = estimate(selectionFromRaw(raw), book, now);
   if (calculated.status === 'estimated') return { ...calculated, title: `Szacunkowy koszt instalacji: ${new Intl.NumberFormat('pl-PL').format(calculated.price.low)} zł – ${new Intl.NumberFormat('pl-PL').format(calculated.price.high)} zł`, reason: `Kwoty brutto. VAT: ${calculated.price.vatRates.join('% / ')}%. Sprzęt, montaż i konfiguracja według wybranego zakresu.`, messages };
-  return { status: selected.length ? 'individual' : 'empty', title: selected.length ? 'Wymaga indywidualnej wyceny' : 'Wybierz, co chcesz integrować.', reason: calculated.reasons[0] || PRICE_POLICY.reason, messages: messages.slice(0, 2), price: null, priceListVersion: null };
+  return { status: selected.length ? 'individual' : 'empty', title: selected.length ? 'Wymaga indywidualnej wyceny' : 'Wybierz, co chcesz integrować.', reason: book.enabled ? calculated.reasons[0] || PRICE_POLICY.reason : PRICE_POLICY.reason, messages: messages.slice(0, 2), price: null, priceListVersion: null };
 }
 
 export function buildInquiry(raw) {
@@ -141,8 +141,7 @@ export function inquiryText(inquiry) {
   if (inquiry.notes) lines.push('Uwagi: ' + inquiry.notes);
   lines.push('', 'Cena: ' + inquiry.pricing.title, inquiry.pricing.reason, ...inquiry.pricing.messages,
     'Podział do ustalenia: sprzęt i materiały; prace instalacyjne; konfiguracja; osobno dojazd / wysyłka, usługi zewnętrzne i opcjonalna opieka.',
-    'To wstępny dobór zakresu, nie wiążąca oferta. Funkcje i zakres prac wymagają potwierdzenia.',
-    `Formularz: ${inquiry.service} v${inquiry.formVersion}; cennik: ${inquiry.pricing.priceListVersion || 'brak zatwierdzonej wersji'}; informacja o danych: ${inquiry.dataNoticeVersion}.`);
+    'To wstępny dobór zakresu, nie wiążąca oferta. Funkcje i zakres prac wymagają potwierdzenia.');
   return lines.join('\n');
 }
 

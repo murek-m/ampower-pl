@@ -12,13 +12,27 @@
     "preview": "python3 -m http.server 4173 --bind 127.0.0.1 --directory dist",
     "prices:export": "node scripts/export-prices.js",
     "backend:local": "node backend/server.js",
+    "reviews:local": "node backend/reviews-server.js",
+    "reviews:backup": "node backend/reviews-backup.js",
+    "reviews:start": "NODE_ENV=production node backend/reviews-server.js",
+    "test:e2e:reviews": "node scripts/qa_reviews.mjs",
     "owner": "node backend/owner.js",
     "test:e2e:sales": "node scripts/qa_sales.mjs",
     "panel:local": "AMPOWER_LOCAL_TEST=1 node backend/panel-server.js",
     "panel:backup": "node backend/panel-backup.js",
-    "test:e2e:panel": "node scripts/qa_panel.mjs"
+    "test:e2e:panel": "node scripts/qa_panel.mjs",
+    "release:check": "node scripts/check-release.js",
+    "notifications:worker": "node backend/notification-worker.js",
+    "notifications:webhook": "node backend/notification-webhook.js",
+    "backup:verify": "node backend/backup-verify.js",
+    "retention:plan": "node backend/retention.js",
+    "test:e2e:fixes": "node scripts/qa_post_audit.mjs",
+    "test:release": "node scripts/qa_release.mjs",
+    "test:e2e:consent": "node scripts/qa_consent.mjs",
+    "test:e2e:publication": "node scripts/qa_publication.mjs",
+    "package:public": "npm run build && node scripts/package-public.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.13"
   }
 }

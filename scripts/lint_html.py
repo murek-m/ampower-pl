@@ -25,7 +25,7 @@ class Page(HTMLParser):
             if a.get(key): self.references.extend(a[key].split())
 
 root = Path.cwd()
-pages = {p: Page(root / p) for p in ['index.html', 'smart-home-energy/index.html']}
+pages = {p: Page(root / p) for p in ['index.html', 'smart-home-energy/index.html', 'prywatnosc/index.html']}
 for name, page in pages.items():
     if page.h1 != 1: page.errors.append('expected exactly one H1')
     for control in page.controls:

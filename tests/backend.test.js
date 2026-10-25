@@ -99,8 +99,8 @@ test('oferta: wygaśnięcie i niepełne VAT/kwalifikacja blokują eksport',()=>{
 });
 test('outbox: zapis, błąd/retry i potwierdzenie dostawcy; brak ponowienia po sukcesie',async t=>{
   const {post,store}=await setup(t);const receipt=await(await post()).json();let calls=0;
-  await processNotifications(store,async()=>{calls++;throw new Error('offline')});assert.equal((await store.find(receipt.inquiryId)).notification.status,'retry-needed');
-  await processNotifications(store,async m=>{calls++;assert.equal(m.to,'kuba@ampower.pl');assert.match(m.text,/internalCalculation/);return{id:'fake-provider-id'}});assert.equal((await store.find(receipt.inquiryId)).notification.status,'provider-accepted');
+  await processNotifications(store,async()=>{calls++;throw new Error('offline')},NOW);assert.equal((await store.find(receipt.inquiryId)).notification.status,'retry-needed');
+  await processNotifications(store,async m=>{calls++;assert.equal(m.to,'kuba@ampower.pl');assert.match(m.text,/internalCalculation/);return{id:'fake-provider-id'}},new Date(+NOW+60000));assert.equal((await store.find(receipt.inquiryId)).notification.status,'provider-accepted');
   await processNotifications(store,async()=>{calls++;return{id:'again'}});assert.equal(calls,2);
 });
 test('adapter poczty: stały odbiorca i klucz idempotencji, wyłącznie mock',async()=>{
