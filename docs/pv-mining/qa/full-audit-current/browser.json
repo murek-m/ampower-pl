@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-25",
+  "commit": "db9f2ae",
+  "method": "CUA browser interaction and read-only DOM inspection",
+  "rangeMismatch": {
+    "numberValue": "40",
+    "rangeValue": "30",
+    "rangeMax": "30"
+  },
+  "refresh": {
+    "before": "40",
+    "after": "10",
+    "note": "Reload before navigating through application links restores last saved state"
+  },
+  "keyboardTabs": {
+    "selectedTab": "Mining",
+    "focus": "tab-mining",
+    "passed": true
+  },
+  "comparisonKeyboard": {
+    "activeTag": "BODY",
+    "activeId": "",
+    "selected": "Antminer S21 Pro"
+  },
+  "mobileTables": {
+    "viewport": 320,
+    "documentClient": 305,
+    "documentScroll": 305,
+    "containerWidth": 239,
+    "tableScrollWidth": 687,
+    "note": "Internal horizontal scroll, not whole-page overflow"
+  },
+  "visibleInputLabels": {
+    "missing": []
+  },
+  "collapsedError": {
+    "alert": "Sprawdź wartość: Kurs BTC/PLNPrzejdź do pola",
+    "fieldRect": 0,
+    "focus": "Przejdź do pola",
+    "sidebarDisplay": "none"
+  },
+  "consoleErrors": []
+}

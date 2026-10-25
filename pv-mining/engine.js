@@ -1,6 +1,6 @@
 // Shared calculation engine for both local prototypes. No DOM or network access.
 export const SATOSHIS = 100_000_000;
-export const ENGINE_VERSION = '2026-10-25.1';
+export const ENGINE_VERSION = '2026-10-25.2';
 
 export function assumptionIssues(raw, imported=false) {
   const issues=[];
@@ -337,8 +337,9 @@ export function calculate(raw,dataset,market,models,imported=null) {
     });
     const hydroReady=!model.id.includes('hydro')||(raw.hydroConfirmed===true&&s.costMode==='detailed'&&s.costs.ventilation!==null&&s.extraWatts>0);
     const validEconomics=hydroReady&&priceKnown&&(s.costMode==='budget'?s.infraBudget!==null:complete)&&(s.battery!=='new'||s.batteryBudget!==null);
+    const lossAfterPayback=validEconomics&&payback!==null?(annual.findIndex((r,i)=>i+1>payback&&r.result<0)+1||null):null;
     if(!validEconomics) annual.forEach(r=>{r.cash=null;r.result=null;r.npv=null;});
-    return {validEconomics,planner,paybackAfterLife:payback!==null&&payback>s.lifetime,model,devicePrice,priceKnown,capex,complete:s.costMode==='detailed'&&complete,priceMode:s.costMode,knownSubtotal:devicePrice*s.quantity+detailed.reduce((v,x)=>v+(x||0),0),annual,payback:validEconomics?payback:null,cashPayback:validEconomics?cashPayback:null,roi:validEconomics&&capex>0?(s.battery==='new'?annual[0].combinedBenefit:annual[0].benefit)/capex:null,npv:validEconomics?annual.at(-1).npv:null};
+    return {validEconomics,planner,lossAfterPayback,paybackReversed:lossAfterPayback!==null,paybackAfterLife:payback!==null&&payback>s.lifetime,model,devicePrice,priceKnown,capex,complete:s.costMode==='detailed'&&complete,priceMode:s.costMode,knownSubtotal:devicePrice*s.quantity+detailed.reduce((v,x)=>v+(x||0),0),annual,payback:validEconomics?payback:null,cashPayback:validEconomics?cashPayback:null,roi:validEconomics&&capex>0?(s.battery==='new'?annual[0].combinedBenefit:annual[0].benefit)/capex:null,npv:validEconomics?annual.at(-1).npv:null};
   });
   return {engineVersion:ENGINE_VERSION,assumptionNotes:!imported&&raw.annualLoad===''?['Nie podano zużycia domu: zastosowano przykładowe 5000 kWh/rok.']:[],settings:s,source:profile.source,note:profile.note,hours:profile.hours,results,baseline:baseline.years[0],baselineLedger:baseline.ledger.annual[0],noBattery:noBattery.years[0],market};
 }

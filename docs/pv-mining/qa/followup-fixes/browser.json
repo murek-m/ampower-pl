@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-25",
+  "range": {
+    "field": "40",
+    "slider": "40"
+  },
+  "refreshPv": "40",
+  "mobileError": {
+    "display": "block",
+    "fieldHeight": 46,
+    "focus": "f-btcPrice"
+  },
+  "draftReload": {
+    "copyDisabled": true,
+    "notes": true
+  },
+  "comparisonFocus": {
+    "focus": "s21-pro",
+    "open": true
+  },
+  "layout": [
+    {
+      "client": 305,
+      "scroll": 305,
+      "width": 320
+    },
+    {
+      "client": 753,
+      "scroll": 753,
+      "width": 768
+    },
+    {
+      "client": 1351,
+      "scroll": 1351,
+      "width": 1366
+    }
+  ],
+  "csvAfterReload": {
+    "disabled": true,
+    "status": "Przywrócono lokalny profil CSV: 8760 rekordów."
+  },
+  "csvInSimple": {
+    "disabled": true,
+    "source": "TWÓJ PROFIL CSV"
+  },
+  "csvAfterClear": {
+    "disabled": false,
+    "source": "SYMULACJA PVGIS"
+  },
+  "summaryGeometry": {
+    "client": 375,
+    "ctaY": 2774.984375,
+    "height": 3830,
+    "scroll": 375,
+    "summaryY": 76.390625
+  },
+  "expectedSnapshot": "2026-10-24",
+  "script": "./app.js?v=4a16e5f8343f7dba",
+  "consoleErrors": [],
+  "note": "One caught local JSON fetch failure during A/B navigation recovered with Spróbuj ponownie; no form or mail sent."
+}

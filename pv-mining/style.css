@@ -40,3 +40,12 @@
   .balance-list>div{flex-wrap:wrap}.balance-list dd{max-width:100%}
   .snapshot-pill{white-space:normal}.input-panel{padding:18px}
 }
+
+/* Summary first, with optional catalogue and analysis below it. */
+.summary-contact{margin:20px 0}.summary-contact .button{white-space:normal;text-align:center}
+.analysis-details,.model-picker{border:1px solid var(--line);border-radius:8px;padding:18px;background:#fff;margin:20px 0}
+.analysis-details>summary,.model-picker>summary{font-weight:600;cursor:pointer;min-height:44px;line-height:1.5;padding:10px 0}
+.analysis-details[open]>summary,.model-picker[open]>summary{margin-bottom:16px}
+.table-hint{font-size:13px;color:#625b4e;margin:12px 0}.table-scroll:focus-visible,#summary:focus-visible{outline:3px solid #947000;outline-offset:4px}
+.summary-contact .help{margin-top:10px}#summary{scroll-margin-top:76px}
+@media(max-width:480px){.summary-contact .button{width:100%}.analysis-details{padding:12px}.analysis-details .result-panel{padding:16px 12px}.analysis-details .result-grid{display:block}.analysis-details .section-label{display:block}.analysis-details .section-label>span{display:block;margin-top:8px}}

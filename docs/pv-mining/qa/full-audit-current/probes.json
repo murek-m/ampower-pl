@@ -1,0 +1,137 @@
+{
+  "generatedAt": "2026-10-25T15:44:55.307Z",
+  "commit": "db9f2ae",
+  "paybackReversal": {
+    "synthetic": true,
+    "note": "Artificial stress case, not an offer or price forecast",
+    "raw": {
+      "pvKwp": 10,
+      "selected": [
+        "s21-151"
+      ],
+      "costMode": "budget",
+      "infraBudget": 0,
+      "devicePrices": {
+        "s21-151": 100
+      },
+      "btcPrice": 900000,
+      "btcGrowth": -50,
+      "maintenance": 300,
+      "emsWatts": 8,
+      "horizon": 10,
+      "lifetime": 5,
+      "exportMode": "historical"
+    },
+    "payback": 1,
+    "firstResult": 1888.2416930087772,
+    "finalResult": -2768.9542688886463,
+    "annual": [
+      {
+        "year": 2027,
+        "result": 1888.2416930087772,
+        "benefit": 1988.2416930087775
+      },
+      {
+        "year": 2028,
+        "result": 131.66074730351738,
+        "benefit": -399.4045286068073
+      },
+      {
+        "year": 2029,
+        "result": -1037.383882062416,
+        "benefit": -370.08
+      },
+      {
+        "year": 2030,
+        "result": -1806.946196745383,
+        "benefit": -370.08
+      },
+      {
+        "year": 2031,
+        "result": -2474.1654009022072,
+        "benefit": -467.47804681534086
+      },
+      {
+        "year": 2032,
+        "result": -2675.325601384826,
+        "benefit": -101.28962181187728
+      },
+      {
+        "year": 2033,
+        "result": -2725.260890720197,
+        "benefit": 0
+      },
+      {
+        "year": 2034,
+        "result": -2750.2285353878824,
+        "benefit": 0
+      },
+      {
+        "year": 2035,
+        "result": -2762.712357721725,
+        "benefit": 0
+      },
+      {
+        "year": 2036,
+        "result": -2768.9542688886463,
+        "benefit": 0
+      }
+    ]
+  },
+  "catalogMarkup": {
+    "markupAccepted": true,
+    "note": "Inert markup only; no script executed. app.js model picker inserts model name without esc()."
+  },
+  "corruptSessionReset": {
+    "resetError": "Expected property name or '}' in JSON at position 1 (line 1 column 2)",
+    "removed": false
+  },
+  "files": {
+    "app.js": {
+      "bytes": 50465,
+      "sha256": "59c4e3d0287992c385fbc465c426df1d6e4806b954edc69bb26ee68b11aa1e9b",
+      "previewMatches": true
+    },
+    "engine.js": {
+      "bytes": 24840,
+      "sha256": "c5bf431698a83caf9e83cb33f612130f6e20107268edb6af22ae585ddc5a814f",
+      "previewMatches": true
+    },
+    "session.js": {
+      "bytes": 2059,
+      "sha256": "8c0f866281a92fcb372fa20931df0ef70f932ce1133c2dca2ad5e1ba84eb876d",
+      "previewMatches": true
+    },
+    "data-loader.js": {
+      "bytes": 3601,
+      "sha256": "6959a37798d22e2d9eb53797b42b4bcc2d9fb3bf0d0595478f95325c8a61bcae",
+      "previewMatches": true
+    },
+    "charts.js": {
+      "bytes": 3051,
+      "sha256": "94a364d1eafb07575be8a8bb92e97614e2ec3378c9cd8d2ec00b6208fb43409a",
+      "previewMatches": true
+    },
+    "style.css": {
+      "bytes": 27087,
+      "sha256": "df8051145da55e6d6c5d41b83d817cadf09d1e4dc7d6dca633bd5b281606a67a",
+      "previewMatches": true
+    },
+    "data/market.json": {
+      "bytes": 694,
+      "sha256": "fd71f01c6bd246dc3d3fd7cc3b37941b8556403111df226a8afd3452c4db42f0",
+      "previewMatches": true
+    },
+    "data/models.json": {
+      "bytes": 5457,
+      "sha256": "d7f7259fe22ed4b9b4c097c4c50cc5da056a78616bfcff865fbca38e80ebfaf8",
+      "previewMatches": true
+    },
+    "data/profile.json": {
+      "bytes": 269977,
+      "sha256": "02b9b5d3c87728560e0957b79c81180cae3d3f06a50d69a4b2dedb96a2d44e20",
+      "previewMatches": true
+    }
+  },
+  "totalPreviewBytes": 508334
+}
