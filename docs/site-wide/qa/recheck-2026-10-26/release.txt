@@ -1,0 +1,5 @@
+
+> release:check
+> node scripts/check-release.js
+
+PUBLIC ARTIFACT PASS: 74 dozwolonych plików. Publikacja wymaga osobnego działania; obecne ustawienia hostingu nie zostały zmienione.

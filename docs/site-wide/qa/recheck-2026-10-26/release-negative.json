@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-26T12:14:14.760Z",
+  "results": [
+    {
+      "name": "prawidłowy artefakt",
+      "status": "passed"
+    },
+    {
+      "name": "dodatkowy plik prywatny blokuje wydanie",
+      "status": "passed"
+    },
+    {
+      "name": "poufne pole w głównym HTML blokuje wydanie",
+      "status": "passed"
+    },
+    {
+      "name": "niezatwierdzony skrypt inline blokuje wydanie",
+      "status": "passed"
+    },
+    {
+      "name": "symlink blokuje wydanie",
+      "status": "passed"
+    }
+  ]
+}

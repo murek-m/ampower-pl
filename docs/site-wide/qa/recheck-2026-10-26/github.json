@@ -1,0 +1,11 @@
+{
+  "remoteHeads": "06a79027bc8325526a261a32f7f390658639f948\trefs/heads/main\ne3988ec850ef3e9647d1619169cca2b2af491314\trefs/heads/review/ampower-site-2026-10-26\n",
+  "pages": {
+    "build_type": "legacy",
+    "html_url": "https://ampower.pl/",
+    "source": {
+      "branch": "main",
+      "path": "/"
+    }
+  }
+}

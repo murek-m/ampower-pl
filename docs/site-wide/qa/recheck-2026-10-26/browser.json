@@ -1,0 +1,208 @@
+{
+  "date": "2026-10-26T12:14:34.874Z",
+  "cases": [
+    {
+      "case": "zero points no board",
+      "state": {
+        "href": null,
+        "sub": "Uzupełnij ilość lub wybierz zakres prac.",
+        "total": "—"
+      }
+    },
+    {
+      "case": "standalone board",
+      "state": {
+        "draft": "Dzień dobry, policzyłem wycenę na stronie ampower.pl:\n\n- Elektryka: 1 200 – 2 800 zł\n  0 punktów, nowa instalacja (kucie bruzd), z rozdzielnicą\n\nMiejscowość: \n\nProszę o kontakt i dokładną wycenę.",
+        "total": "1 200 – 2 800 zł"
+      }
+    },
+    {
+      "case": "copy quote",
+      "status": "Skopiowano zapytanie. Wklej je do swojej wiadomości."
+    },
+    {
+      "case": "invalid points focus",
+      "state": {
+        "focus": "elek-punkty",
+        "href": null,
+        "input": "2.5",
+        "total": "—"
+      }
+    },
+    {
+      "case": "smart valid email",
+      "state": {
+        "href": true,
+        "preview": true
+      }
+    },
+    {
+      "case": "smart channel invalidates old draft",
+      "state": {
+        "draftVisible": false,
+        "emailVisible": false,
+        "oldHref": null
+      }
+    },
+    {
+      "case": "smart phone draft",
+      "state": {
+        "oldEmail": false,
+        "phone": true,
+        "statuses": [
+          "Wybrane kategorie: 1. Wymaga indywidualnej wyceny",
+          "Konfiguracja skopiowana. Wklej ją do swojej wiadomości.",
+          ""
+        ]
+      }
+    },
+    {
+      "case": "smart invalid email focus",
+      "state": {
+        "focus": "email",
+        "invalid": "true"
+      }
+    },
+    {
+      "case": "mobile menu escape",
+      "state": {
+        "expanded": "false",
+        "focus": "Otwórz menu"
+      }
+    },
+    {
+      "case": "cookies reject",
+      "state": {
+        "bannerVisible": false,
+        "googleScripts": []
+      }
+    },
+    {
+      "case": "skip main content",
+      "focus": "top"
+    }
+  ],
+  "viewports": [
+    {
+      "route": "/",
+      "width": 320,
+      "height": 740,
+      "brokenImages": [],
+      "client": 305,
+      "h1": "Prąd. Klimat. Bezpieczeństwo.",
+      "missingAlt": 0,
+      "scroll": 305
+    },
+    {
+      "route": "/smart-home-energy/",
+      "width": 320,
+      "height": 740,
+      "brokenImages": [],
+      "client": 305,
+      "h1": "Smart Home & Energy.Twój dom w jednej aplikacji.",
+      "missingAlt": 0,
+      "scroll": 305
+    },
+    {
+      "route": "/prywatnosc/",
+      "width": 320,
+      "height": 740,
+      "brokenImages": [],
+      "client": 305,
+      "h1": "Prywatność i cookies",
+      "missingAlt": 0,
+      "scroll": 305
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "height": 844,
+      "brokenImages": [],
+      "client": 375,
+      "h1": "Prąd. Klimat. Bezpieczeństwo.",
+      "missingAlt": 0,
+      "scroll": 375
+    },
+    {
+      "route": "/smart-home-energy/",
+      "width": 390,
+      "height": 844,
+      "brokenImages": [],
+      "client": 375,
+      "h1": "Smart Home & Energy.Twój dom w jednej aplikacji.",
+      "missingAlt": 0,
+      "scroll": 375
+    },
+    {
+      "route": "/prywatnosc/",
+      "width": 390,
+      "height": 844,
+      "brokenImages": [],
+      "client": 375,
+      "h1": "Prywatność i cookies",
+      "missingAlt": 0,
+      "scroll": 375
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": [],
+      "client": 753,
+      "h1": "Prąd. Klimat. Bezpieczeństwo.",
+      "missingAlt": 0,
+      "scroll": 753
+    },
+    {
+      "route": "/smart-home-energy/",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": [],
+      "client": 753,
+      "h1": "Smart Home & Energy.Twój dom w jednej aplikacji.",
+      "missingAlt": 0,
+      "scroll": 753
+    },
+    {
+      "route": "/prywatnosc/",
+      "width": 768,
+      "height": 1024,
+      "brokenImages": [],
+      "client": 753,
+      "h1": "Prywatność i cookies",
+      "missingAlt": 0,
+      "scroll": 753
+    },
+    {
+      "route": "/",
+      "width": 1366,
+      "height": 900,
+      "brokenImages": [],
+      "client": 1351,
+      "h1": "Prąd. Klimat. Bezpieczeństwo.",
+      "missingAlt": 0,
+      "scroll": 1351
+    },
+    {
+      "route": "/smart-home-energy/",
+      "width": 1366,
+      "height": 900,
+      "brokenImages": [],
+      "client": 1351,
+      "h1": "Smart Home & Energy.Twój dom w jednej aplikacji.",
+      "missingAlt": 0,
+      "scroll": 1351
+    },
+    {
+      "route": "/prywatnosc/",
+      "width": 1366,
+      "height": 900,
+      "brokenImages": [],
+      "client": 1351,
+      "h1": "Prywatność i cookies",
+      "missingAlt": 0,
+      "scroll": 1351
+    }
+  ],
+  "consoleErrors": []
+}

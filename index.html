@@ -1240,8 +1240,8 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
               </div>
               <div class="calc-field">
                 <label for="elek-punkty">Liczba punktów</label>
-                <input type="number" id="elek-punkty" value="12" min="1" max="999" step="1" data-calc>
-                <span class="calc-hint">Gniazdka, włączniki, punkty oświetleniowe</span>
+                <input type="number" id="elek-punkty" value="12" min="0" max="999" step="1" data-calc>
+                <span class="calc-hint">Gniazdka, włączniki, punkty oświetleniowe. Wpisz 0, jeśli wyceniasz samą rozdzielnicę.</span>
               </div>
               <div class="calc-field">
                 <label for="elek-rozdz">Rozdzielnica</label>
@@ -1809,8 +1809,10 @@ var CENNIK = {
     $('calc-empty').hidden = Boolean(w.pozycje.length);
 
     if (!w.pozycje.length) {
+      var selected = ['c-elek', 'c-klima', 'c-mon', 'c-naw'].some(function(id) { return $(id).checked; });
       $('calc-total').textContent = '—';
-      $('calc-sub').textContent = 'Zaznacz usługi po lewej stronie.';
+      $('calc-sub').textContent = selected ? 'Uzupełnij ilość lub wybierz zakres prac.' : 'Zaznacz usługi po lewej stronie.';
+      $('calc-empty').textContent = selected ? 'Wybrano usługę bez zakresu prac do wyceny.' : 'Nic jeszcze nie wybrano.';
     } else {
       $('calc-total').textContent = widelki(w.suma);
       $('calc-sub').textContent = w.pozycje.length === 1

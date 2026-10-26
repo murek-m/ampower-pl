@@ -22,7 +22,7 @@ function calculate(values) {
   for (const id of ['kalkulator', 'calc-rows', 'calc-empty', 'calc-total', 'calc-sub', 'calc-mail', 'calc-sms', 'calc-validation', 'calc-message', 'calc-copy', 'calc-copy-status']) nodes.set(id, fakeNode());
   for (const [id, value] of Object.entries(values)) Object.assign(nodes.get(id), typeof value === 'boolean' ? { checked: value } : { value: String(value) });
   runInNewContext(calculator(source), { Intl, document: { getElementById: id => nodes.get(id), createElement: () => fakeNode() } });
-  return { total: nodes.get('calc-total').textContent.replace(/[\s\u00a0]/g, ''), mail: nodes.get('calc-mail').href ? decodeURIComponent(nodes.get('calc-mail').href) : '', validation:nodes.get('calc-validation').hidden, quantity:nodes.get('elek-punkty').value };
+  return { total: nodes.get('calc-total').textContent.replace(/[\s\u00a0]/g, ''), mail: nodes.get('calc-mail').href ? decodeURIComponent(nodes.get('calc-mail').href) : '', validation:nodes.get('calc-validation').hidden, quantity:nodes.get('elek-punkty').value, sub:nodes.get('calc-sub').textContent };
 }
 const cases = [
   ['brak wyboru', {}, '—'],
@@ -46,3 +46,5 @@ test('strona główna używa lokalnego modułu zgody; tag Google nie jest osadzo
 
 for(const value of ['2.5','',-1,1000])test('nieprawidłowa liczba punktów blokuje wycenę bez zmiany wpisu: '+value,()=>{const r=calculate({'c-elek':true,'elek-punkty':value,'elek-zakres':'nowa','elek-rozdz':'0'});assert.equal(r.total,'—');assert.equal(r.mail,'');assert.equal(r.quantity,String(value));assert.equal(r.validation,false);});
 test('trasa klimatyzacji zachowuje części metra',()=>{const base={'c-klima':true,'klima-ile':1,'klima-moc':'3.5','klima-zakres':'komplet','klima-trasa':5.5};const r=calculate(base);assert.match(r.mail,/trasa 5.5 m/);assert.notEqual(r.total,calculate({...base,'klima-trasa':5}).total);});
+test('sama rozdzielnica nie wymaga nowych punktów',()=>{const r=calculate({'c-elek':true,'elek-zakres':'nowa','elek-punkty':0,'elek-rozdz':'1'});assert.equal(r.total,'1200–2800zł');assert.equal(r.validation,true);assert.match(r.mail,/z rozdzielnicą/i);});
+test('wybrana elektryka bez punktów i rozdzielnicy prosi o zakres, bez wyceny i kontaktu',()=>{const r=calculate({'c-elek':true,'elek-zakres':'nowa','elek-punkty':0,'elek-rozdz':'0'});assert.equal(r.total,'—');assert.equal(r.mail,'');assert.equal(r.validation,true);assert.equal(r.sub,'Uzupełnij ilość lub wybierz zakres prac.');});
