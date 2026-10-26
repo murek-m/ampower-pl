@@ -19,7 +19,12 @@ export function analyzeDescription(description, book) {
     // Ilość tylko obok nazwy. Ułamki, zakresy, „około”, negacje i sprzeczne liczby wymagają rozmowy.
     const stems = {blinds:'rolet',lights:'(?:obwod(?:ów|ow)?\\s+(?:oświetl|oswietl)|(?:świat|swiat))',ac:'(?:klimatyzator|jednost(?:ek|ki)\\s+(?:klimatyzac|daikin))',floor:'(?:stref(?:y|a)?\\s+(?:podłog|podlog))',sensors:'(?:czujnik|sensor)',pv:'falownik',storage:'magazyn',ev:'ładowark',gate:'bram',security:'kamer'}[category];
     const matches = stems ? [...text.matchAll(new RegExp(`(?<![\\d.,])([1-9]\\d{0,2})\\s+${stems}`, 'gu'))] : [];
-    const quantities = matches.filter(m => !/(?:około|ok\.|może|do|od|nie ma|bez|nie chce|nie potrzebuje)\s*$/.test(text.slice(Math.max(0,m.index-24),m.index)) && !/(?:\d[.,]|[–-])\s*$/.test(text.slice(Math.max(0,m.index-3),m.index))).map(m => Number(m[1]));
+    const quantities = matches.filter(m => {
+      // A number in a negated, bounded or approximate clause is never a confirmed count.
+      const clause = normalize(text.slice(0,m.index).split(/[.!?;\n]/u).at(-1));
+      const uncertain = /(?:^|\s)(?:nie|bez|brak|okolo|ok|moze|maksymalnie|minimalnie|minimum|maksimum|najwyzej|najmniej|do|od|ponad|prawie|ewentualnie|przynajmniej|co\s+najmniej)(?:\s|$)/u.test(clause);
+      return !uncertain && !/(?:\d[.,]|[–-])\s*$/.test(text.slice(Math.max(0,m.index-3),m.index));
+    }).map(m => Number(m[1]));
     const quantity = matches.length === 1 && quantities.length === 1 ? quantities[0] : null;
     if (quantity === null) missing.push(`${label}: jednoznaczna liczba punktów / stref.`);
     missing.push(`${label}: model, interfejs i stan instalacji; potwierdzenie zgodności.`);

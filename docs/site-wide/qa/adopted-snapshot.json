@@ -1,0 +1,22 @@
+[
+  {
+    "path": "index.html",
+    "sha256": "331ff07d53d98a5b628e14df311dcb7137050e7c5c1dc62f40f621bfced61d04",
+    "source": "ampower-murek-review working copy, read only snapshot"
+  },
+  {
+    "path": "prywatnosc/index.html",
+    "sha256": "55c4d58ad21bf369ca0d87f7babed54c2cace5275c15a380b402af28cb35e17c",
+    "source": "ampower-murek-review working copy, read only snapshot"
+  },
+  {
+    "path": "scripts/build.js",
+    "sha256": "8f51a47a98895a2a61c8a011f03e3f0af9beb32594ab0dbd87b4c17960a45566",
+    "source": "ampower-murek-review working copy, read only snapshot"
+  },
+  {
+    "path": "scripts/check-release.js",
+    "sha256": "9d81a8bae4bbdae93528d705a75f3b0c0642f817c6f5d8e68f3ec60fec989204",
+    "source": "ampower-murek-review working copy, read only snapshot"
+  }
+]

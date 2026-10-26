@@ -1,39 +1,43 @@
 // Prototyp outbox. Uruchamiany wyłącznie przez operatora; domyślnie bez wysyłki.
+import { randomUUID } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 import { FileStore } from './store.js';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
-export async function processNotifications(store, send, now = new Date()) {
+const finalStates = new Set(['provider-accepted','delivered','bounced','complained','reconcile-needed']);
+export async function processNotifications(store, send, now = new Date(), {retryBaseMs=60000,leaseMs=30000,maxAttempts=8} = {}) {
   if (typeof send !== 'function') throw new Error('Brak zatwierdzonego dostawcy');
-  return store.transaction(async () => {
-    const results = [];
-    for (const record of await store.records()) {
-      if (record.demo || record.notification.status === 'demo-disabled') continue;
-      if (['provider-accepted', 'reconcile-needed'].includes(record.notification.status)) continue;
-      if (record.notification.firstAttemptAt && +now - Date.parse(record.notification.firstAttemptAt) >= 23 * 3600000) {
-        record.notification.status = 'reconcile-needed';
-        await store.put(record.storageKey, record);
-        results.push({ id:record.receipt.inquiryId, status:'reconcile-needed' });
-        continue;
+  const results = [];
+  for (const candidate of await store.records()) {
+    const claim = await store.transaction(async () => {
+      const record = await store.get(candidate.storageKey);
+      if (!record || record.deleted || record.demo || !record.notification || record.notification.status === 'demo-disabled') return null;
+      const n = record.notification;
+      if (finalStates.has(n.status) || Date.parse(n.nextAttemptAt) > +now || n.status === 'sending' && Date.parse(n.leaseUntil) > +now) return null;
+      if (n.firstAttemptAt && +now - Date.parse(n.firstAttemptAt) >= 23 * 3600000 || n.attempts >= maxAttempts) {
+        n.status = 'reconcile-needed';await store.put(record.storageKey,record);
+        results.push({id:record.receipt.inquiryId,status:n.status});return null;
       }
-      record.notification.firstAttemptAt ||= now.toISOString();
-      record.notification.attempts++;
-      // Stały odbiorca; treść jako text, bez danych w temacie poza UUID.
-      const message = { to:'kuba@ampower.pl', subject:`AMPOWER — zapytanie ${record.receipt.inquiryId}`, text:JSON.stringify({ id:record.receipt.inquiryId, configuration:record.data, internalCalculation:record.internalCalculation }, null, 2), key:`inquiry-${record.receipt.inquiryId}` };
-      record.notification.status = 'sending';
-      await store.put(record.storageKey, record); // Ślad przed zewnętrzną operacją, także przy awarii procesu.
-      try {
-        const receipt = await send(message);
-        if (!receipt?.id) throw new Error('Brak potwierdzenia dostawcy');
-        record.notification.status = 'provider-accepted';
-        record.notification.providerId = receipt.id;
-        record.notification.error = null;
-      } catch { record.notification.status = 'retry-needed'; record.notification.error = 'Nie potwierdzono odbioru przez dostawcę'; }
-      await store.put(record.storageKey, record);
-      results.push({ id:record.receipt.inquiryId, status:record.notification.status });
-    }
-    return results;
-  });
+      n.firstAttemptAt ||= now.toISOString();n.attempts++;
+      n.status='sending';n.leaseToken=randomUUID();n.leaseUntil=new Date(+now+leaseMs).toISOString();
+      await store.put(record.storageKey,record);
+      return {storageKey:record.storageKey,token:n.leaseToken,id:record.receipt.inquiryId,message:{to:'kuba@ampower.pl',subject:`AMPOWER — zapytanie ${record.receipt.inquiryId}`,text:JSON.stringify({id:record.receipt.inquiryId,configuration:record.data,internalCalculation:record.internalCalculation},null,2),key:`inquiry-${record.receipt.inquiryId}`}};
+    });
+    if (!claim) continue;
+    // The provider runs outside the storage lock. All retries retain its idempotency key.
+    let receipt;
+    try { receipt=await send(claim.message); if (!receipt?.id) throw new Error('Brak potwierdzenia dostawcy'); } catch { receipt=null; }
+    await store.transaction(async () => {
+      const record=await store.get(claim.storageKey);
+      if (!record || record.deleted || record.notification.leaseToken !== claim.token) return;
+      const n=record.notification;
+      delete n.leaseUntil;delete n.leaseToken;
+      if (receipt) {n.status='provider-accepted';n.providerId=receipt.id;n.error=null;delete n.nextAttemptAt;}
+      else {n.status='retry-needed';n.error='Nie potwierdzono odbioru przez dostawcę';n.nextAttemptAt=new Date(+now+Math.min(3600000,retryBaseMs*2**(n.attempts-1))).toISOString();}
+      await store.put(record.storageKey,record);results.push({id:claim.id,status:n.status});
+    });
+  }
+  return results;
 }
 export async function resendNotification(message, { apiKey, from }, transport = fetch) {
   if (!apiKey || !from || message.to !== 'kuba@ampower.pl') throw new Error('Brak zatwierdzonej konfiguracji poczty');

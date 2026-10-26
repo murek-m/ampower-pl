@@ -1,0 +1,35 @@
+{
+  "date": "2026-10-25",
+  "unitTests": 262,
+  "unitFailures": 0,
+  "browserScenarios": {
+    "publication": {
+      "passed": 9,
+      "failed": 0
+    },
+    "reviews": {
+      "passed": 10,
+      "failed": 0
+    },
+    "configurator": {
+      "passed": 29,
+      "failed": 0
+    },
+    "additional": {
+      "passed": 13,
+      "failed": 0
+    },
+    "webkit": {
+      "passed": 9,
+      "failed": 0
+    },
+    "consent": {
+      "passed": 12,
+      "failed": 0
+    }
+  },
+  "browserExecutions": 82,
+  "realGoogleEventsSent": 0,
+  "externalEmailsSentDuringQA": 0,
+  "productionDeployment": false
+}

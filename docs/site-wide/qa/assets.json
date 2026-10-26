@@ -1,0 +1,92 @@
+[
+  {
+    "file": "index.html",
+    "url": "/assets/consent.css?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "index.html",
+    "url": "/assets/consent.js?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "smart-home-energy/index.html",
+    "url": "./style.css?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "smart-home-energy/index.html",
+    "url": "./menu.js?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "smart-home-energy/index.html",
+    "url": "./app.js?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "smart-home-energy/index.html",
+    "url": "/assets/consent.css?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "smart-home-energy/index.html",
+    "url": "/assets/consent.js?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "smart-home-energy/inquiry-client.js",
+    "url": "./model.js?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "smart-home-energy/model.js",
+    "url": "./price-book.js?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "smart-home-energy/model.js",
+    "url": "./pricing.js?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "smart-home-energy/model.js",
+    "url": "./data.js?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "smart-home-energy/app.js",
+    "url": "./inquiry-config.js?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "smart-home-energy/app.js",
+    "url": "./inquiry-client.js?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "smart-home-energy/app.js",
+    "url": "./data.js?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "smart-home-energy/app.js",
+    "url": "./model.js?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "prywatnosc/index.html",
+    "url": "/smart-home-energy/style.css?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "prywatnosc/index.html",
+    "url": "/assets/consent.css?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  },
+  {
+    "file": "prywatnosc/index.html",
+    "url": "/assets/consent.js?v=958c11895cf07969",
+    "version": "958c11895cf07969"
+  }
+]

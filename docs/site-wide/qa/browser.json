@@ -1,0 +1,120 @@
+{
+  "smartContact": {
+    "draftHasPhone": true,
+    "emailHidden": true,
+    "phoneVisible": true,
+    "status": "Konfiguracja skopiowana. Wklej ją do swojej wiadomości."
+  },
+  "smartSwitch": {
+    "draftHidden": true,
+    "emailVisible": true,
+    "phoneHidden": true
+  },
+  "layouts": [
+    {
+      "client": 305,
+      "page": "smart",
+      "scroll": 305,
+      "width": 320
+    },
+    {
+      "client": 375,
+      "page": "smart",
+      "scroll": 375,
+      "width": 390
+    },
+    {
+      "client": 753,
+      "page": "smart",
+      "scroll": 753,
+      "width": 768
+    },
+    {
+      "client": 1351,
+      "page": "smart",
+      "scroll": 1351,
+      "width": 1366
+    },
+    {
+      "client": 305,
+      "page": "home",
+      "scroll": 305,
+      "width": 320
+    },
+    {
+      "client": 375,
+      "page": "home",
+      "scroll": 375,
+      "width": 390
+    },
+    {
+      "client": 753,
+      "page": "home",
+      "scroll": 753,
+      "width": 768
+    },
+    {
+      "client": 1351,
+      "page": "home",
+      "scroll": 1351,
+      "width": 1366
+    },
+    {
+      "client": 305,
+      "page": "privacy",
+      "scroll": 305,
+      "width": 320
+    },
+    {
+      "client": 375,
+      "page": "privacy",
+      "scroll": 375,
+      "width": 390
+    },
+    {
+      "client": 753,
+      "page": "privacy",
+      "scroll": 753,
+      "width": 768
+    },
+    {
+      "client": 1351,
+      "page": "privacy",
+      "scroll": 1351,
+      "width": 1366
+    }
+  ],
+  "smartMenu": {
+    "expanded": "false",
+    "focus": "nav-toggle"
+  },
+  "homeInvalid": {
+    "entered": "2.5",
+    "errors": "Liczba punktów: podaj pełną liczbę od 1 do 999.",
+    "mail": null,
+    "total": "—"
+  },
+  "homeErrorFocus": {
+    "id": "elek-punkty",
+    "value": "2.5"
+  },
+  "homeCopy": {
+    "draft": "Dzień dobry, policzyłem wycenę na stronie ampower.pl:\n\n- Elektryka: 1 700 – 2 400 zł\n  12 punktów, nowa instalacja (kucie bruzd), bez rozdzielnicy\n\nMiejscowość: \n\nProszę o kontakt i dokładną wycenę.",
+    "status": "Skopiowano zapytanie. Wklej je do swojej wiadomości.",
+    "total": "1 700 – 2 400 zł"
+  },
+  "skip": "top",
+  "homeMenuOpen": "true",
+  "smartError": {
+    "focus": "email",
+    "invalid": "true"
+  },
+  "consoleErrors": [],
+  "generatedAt": "2026-10-26T06:53:39.768Z",
+  "runtime": "CUA in-app browser; synthetic contact data; no mail, SMS or server submission",
+  "finalScripts": [
+    "./menu.js?v=958c11895cf07969",
+    "./app.js?v=958c11895cf07969",
+    "/assets/consent.js?v=958c11895cf07969"
+  ]
+}

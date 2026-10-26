@@ -1,0 +1,378 @@
+[
+  {
+    "base": "https://ampower.pl",
+    "pages": [
+      {
+        "path": "/",
+        "sha256": "030c5843f266e7c4bf89a9cc1eacb5aad1d053d1b24211959dcf04458ccbcb2e",
+        "bytes": 74798
+      },
+      {
+        "path": "/smart-home-energy/",
+        "sha256": "7f1e74c849b941fdcf2242909d42ba97e8fae1e9ee7193cbe803e2a1d2fce6f5",
+        "bytes": 36563
+      },
+      {
+        "path": "/prywatnosc/",
+        "sha256": "9cf6aa53f6c1150bb688075824c3a46031021540eab0a208e4489967efe0c858",
+        "bytes": 5810
+      }
+    ],
+    "checked": 24,
+    "issues": [],
+    "resources": [
+      {
+        "url": "https://ampower.pl/",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/consent.css",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/consent.js",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/07a15c8b45b58583.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/28f6e385f82148b0.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/2d2ce3446ef262fc.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/46b8499de7e26344.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/73a7f260f6f667b0.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/8a4caa7cf2a77137.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/9c66586df3b99119.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/a2d0d908077a228b.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/c12dbc8899570065.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/c4918a472589f84b.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/d7eb6bfae0e7d817.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/d9a6d05cea391a2e.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/e959a2c01a8ccb71.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/images/fe361def1b65f862.jpg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/assets/smart-home-panel.png",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/favicon.svg",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/prywatnosc/",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/smart-home-energy/",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/smart-home-energy/app.js",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/smart-home-energy/menu.js",
+        "status": 200
+      },
+      {
+        "url": "https://ampower.pl/smart-home-energy/style.css",
+        "status": 200
+      }
+    ]
+  },
+  {
+    "base": "http://127.0.0.1:4190",
+    "pages": [
+      {
+        "path": "/",
+        "sha256": "fae834dd48bd8bd9c6a39ce1d1c739474d5988b84072d3b07f0951373303b6f5",
+        "bytes": 83159
+      },
+      {
+        "path": "/smart-home-energy/",
+        "sha256": "2da572b1f7284b93948a0b7f90105c8a3dfd6ab89d46b39399c4b1752db142d7",
+        "bytes": 37777
+      },
+      {
+        "path": "/prywatnosc/",
+        "sha256": "a750411063071d90b0629f57906e96497beae553f9e966def5b31742486185ed",
+        "bytes": 6670
+      }
+    ],
+    "checked": 58,
+    "issues": [],
+    "resources": [
+      {
+        "url": "http://127.0.0.1:4190/",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/consent.css",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/consent.js",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/fonts/056e4e2459f57a00.woff2",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/fonts/1051971168a34fbc.woff2",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/fonts/2995622a3e4021e7.woff2",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/fonts/ae1d854fefa1167a.woff2",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/04f531e208f4ec42.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/08e354bcbb2cb80f.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/0ad38122aca144b3.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/16d1bde140401db8.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/1cf0942f4cca414d.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/28f6e385f82148b0.jpg",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/2d2ce3446ef262fc.jpg",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/3178037b307ce6a9.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/36854d39bf49c696.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/37ed155154aa61ec.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/47851eeb873bcdef.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/509f84b211322dc9.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/60c8f06f7ff36654.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/6176d81f2f69a418.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/649a7530db08209a.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/6fac2160f6e7b929.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/727f33a157993677.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/8374d98393f0a095.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/851ad7153d934c22.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/89a9fc743139ddf8.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/8b05c3d3f9f73d0b.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/8bf451dc4c72bd5a.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/8ee926901145241b.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/8f9f734cfcbcc1c2.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/9044f26107b27e99.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/91db57c9f10e391f.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/93d02483d93d5dd0.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/9a276d786d4b5681.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/a5fec96c472d1f9d.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/ba937d8f808f86d8.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/bb03b9d0254d17bf.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/bbf7eb2fdfbdea4d.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/c4918a472589f84b.jpg",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/c51bc6c2393145cb.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/cc0c091eeab6e5c9.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/d9a6d05cea391a2e.jpg",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/dc38304701b1e043.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/e959a2c01a8ccb71.jpg",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/f7b5523804544849.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/images/fac0de74b8043910.webp",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/assets/smart-home-panel.png",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/favicon.svg",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/prywatnosc/",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/smart-home-energy/",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/smart-home-energy/app.js",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/smart-home-energy/fonts/archivo-1.woff2",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/smart-home-energy/fonts/archivo-2.woff2",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/smart-home-energy/fonts/ibm-plex-sans-3.woff2",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/smart-home-energy/fonts/ibm-plex-sans-4.woff2",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/smart-home-energy/menu.js",
+        "status": 200
+      },
+      {
+        "url": "http://127.0.0.1:4190/smart-home-energy/style.css",
+        "status": 200
+      }
+    ]
+  }
+]

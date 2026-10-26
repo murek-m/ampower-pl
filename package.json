@@ -22,9 +22,23 @@
     "pv:dev": "npm run pv:build && npm run pv:preview",
     "pv:test": "node --test tests/pv-mining*.test.js",
     "pv:data:stage": "node scripts/pv-mining-update.mjs",
-    "pv:report": "node scripts/pv-mining-report.mjs"
+    "pv:report": "node scripts/pv-mining-report.mjs",
+    "reviews:local": "node backend/reviews-server.js",
+    "reviews:backup": "node backend/reviews-backup.js",
+    "reviews:start": "NODE_ENV=production node backend/reviews-server.js",
+    "test:e2e:reviews": "node scripts/qa_reviews.mjs",
+    "release:check": "node scripts/check-release.js",
+    "notifications:worker": "node backend/notification-worker.js",
+    "notifications:webhook": "node backend/notification-webhook.js",
+    "backup:verify": "node backend/backup-verify.js",
+    "retention:plan": "node backend/retention.js",
+    "test:e2e:fixes": "node scripts/qa_post_audit.mjs",
+    "test:release": "node scripts/qa_release.mjs",
+    "test:e2e:consent": "node scripts/qa_consent.mjs",
+    "test:e2e:publication": "node scripts/qa_publication.mjs",
+    "package:public": "npm run build && node scripts/package-public.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22.13"
   }
 }

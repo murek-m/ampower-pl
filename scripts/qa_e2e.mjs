@@ -37,6 +37,7 @@ async function fresh() {
   pageErrors = [];
   await page.goto(`${origin.origin}/smart-home-energy/`);
   await page.locator('#smart-form').waitFor({ state: 'visible' });
+  if(await page.locator('#cookie-banner').isVisible())await page.locator('#cookie-reject').click();
 }
 async function basic(category = 'blinds') {
   await page.locator(`#category-${category}`).check();
@@ -199,7 +200,8 @@ try {
     assert.equal(new URL(href).searchParams.get('body'), text);
     assert.equal(new URL(href).searchParams.get('subject'), 'Zapytanie Smart Home & Energy — AMPOWER');
     assert.equal(await page.evaluate(() => Boolean(window.qaExecuted)), false);
-    assert.equal(await page.evaluate(() => localStorage.length + sessionStorage.length), 0);
+    assert.equal(await page.evaluate(() => Object.keys(localStorage).filter(key => key !== 'ampower-consent-v3').length + sessionStorage.length), 0);
+    assert.equal(await page.evaluate(() => JSON.parse(localStorage.getItem('ampower-consent-v3'))?.analytics ?? false), false);
     assert.equal((await ctx.cookies()).length, 0);
     assert.equal(new URL(page.url()).search, '');
   });
@@ -223,7 +225,7 @@ try {
       assert.equal(await p.locator('#smart-form').isVisible(), false);
       assert.equal(await p.locator('h1').count(), 1);
       assert.equal(await p.locator('#kontakt a[href="mailto:kuba@ampower.pl"]').isVisible(), true);
-      await p.goto(`${origin.origin}/#smart-home-energy`);
+      await p.goto(`${origin.origin}/smart-home-energy/#smart-faq`);
       assert.equal(await p.locator('#smart-faq summary').count(), 14);
       assert.equal(await p.locator('#smart-korzysci h2').count(), 1);
       await fallback.close();
