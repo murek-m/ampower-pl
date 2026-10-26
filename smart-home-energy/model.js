@@ -1,6 +1,6 @@
-import { PRICE_BOOK } from './price-book.js';
-import { estimate, selectionFromRaw } from './pricing.js';
-import { ACCESS, CATEGORIES, CONNECTION, CONTACT, DELIVERY, GOALS, HOST, PRICE_POLICY, SECURITY, STATUS, UNKNOWN, YES_NO } from './data.js';
+import { PRICE_BOOK } from './price-book.js?v=0b752a23e42edad3';
+import { estimate, selectionFromRaw } from './pricing.js?v=0b752a23e42edad3';
+import { ACCESS, CATEGORIES, CONNECTION, CONTACT, DELIVERY, GOALS, HOST, PRICE_POLICY, SECURITY, STATUS, UNKNOWN, YES_NO } from './data.js?v=0b752a23e42edad3';
 
 const clean = value => String(value ?? '').trim();
 const option = (value, choices) => Object.hasOwn(choices, value) ? value : UNKNOWN;

@@ -1,7 +1,7 @@
-import { INQUIRY_CONFIG } from './inquiry-config.js';
-import { sendInquiry, configureChallenge } from './inquiry-client.js';
-import { CATEGORIES, DELIVERY, GOALS, PRICE_POLICY } from './data.js';
-import { buildInquiry, emailDraft, evaluate, fieldsFor, inquiryText, validate, validateSubmission } from './model.js';
+import { INQUIRY_CONFIG } from './inquiry-config.js?v=0b752a23e42edad3';
+import { sendInquiry, configureChallenge } from './inquiry-client.js?v=0b752a23e42edad3';
+import { CATEGORIES, DELIVERY, GOALS, PRICE_POLICY } from './data.js?v=0b752a23e42edad3';
+import { buildInquiry, emailDraft, evaluate, fieldsFor, inquiryText, validate, validateSubmission } from './model.js?v=0b752a23e42edad3';
 
 const $ = id => document.getElementById(id);
 const form = $('smart-form');
@@ -110,8 +110,8 @@ function syncPanels(raw) {
   showGroup('locality-group', true);
   showGroup('remote-group', raw.delivery === 'remote');
   showGroup('host-model-group', raw.host === 'owned');
-  showGroup('email-group', true);
-  showGroup('phone-group', true);
+  showGroup('email-group', INQUIRY_CONFIG.enabled || raw.channel !== 'phone');
+  showGroup('phone-group', INQUIRY_CONFIG.enabled || raw.channel === 'phone');
   const emailRequired = INQUIRY_CONFIG.enabled || raw.channel !== 'phone';
   $('email').required = emailRequired;
   $('phone').required = raw.channel === 'phone';
@@ -171,7 +171,8 @@ function renderErrors(errors, focus = false) {
     if (target) target.setAttribute('aria-invalid', 'true');
     if (error) { error.textContent = message; error.hidden = false; }
     const li = element('li');
-    const link = element('a', message, { href: `#${field}` });
+    const link = element('button', message, { type: 'button', className: 'error-link' });
+    if(target)link.setAttribute('aria-controls',field);
     link.addEventListener('click', event => {
       event.preventDefault();
       const details = target?.closest('details');
@@ -226,7 +227,7 @@ for (const [title, copy] of PRICE_POLICY.components) {
   $('cost-components').append(row);
 }
 form.addEventListener('input', update);
-form.addEventListener('change', update);
+form.addEventListener('change', event => { if (event.target.matches('select,input[type=checkbox],input[type=radio]')) update(); });
 let sending = false;
 form.addEventListener('submit', async event => {
   event.preventDefault();

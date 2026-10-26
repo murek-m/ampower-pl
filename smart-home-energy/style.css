@@ -107,7 +107,7 @@ summary { cursor:pointer; font-weight:600; padding:16px; min-height:56px; }
 .field-error { color:var(--error); font-weight:500; margin-top:8px; }
 [aria-invalid='true'] { border-color:var(--error); }
 .error-summary { border:2px solid var(--error); padding:20px; margin-bottom:24px; background:var(--surface); }
-.error-summary a { color:var(--error); display:inline-block; padding:4px 0; }
+.error-summary a,.error-summary .error-link { color:var(--error); display:inline-block; padding:4px 0; }
 .status { margin-top:20px; font-weight:600; }
 #draft-panel { margin-top:24px; padding:24px; border:1px solid var(--line); border-radius:8px; background:var(--surface); }
 #message-preview { min-height:280px; font:16px/1.6 'IBM Plex Mono',monospace; }
@@ -188,3 +188,5 @@ footer .wrap { display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
 .privacy-page .section p + h2 { margin-top:36px; }
 
 .privacy-page .section p,.privacy-page code { overflow-wrap:anywhere; }
+
+.error-link{font:inherit;text-align:left;background:none;border:0;cursor:pointer;text-decoration:underline;min-height:44px}
