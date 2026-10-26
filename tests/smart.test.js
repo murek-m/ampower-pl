@@ -64,12 +64,31 @@ test('PV i magazyn mogą być jednym systemem; gałąź znika po odznaczeniu PV'
   raw.categories = ['storage'];
   assert.equal(buildInquiry(raw).categories[0].answers.sharedPv, undefined);
 });
-test('wybór zdalny wyklucza miejscowość, lokalny wyklucza gotowość zdalną', () => {
-  const raw = { ...base(), delivery: 'remote', remoteReady: 'yes', locality: 'x'.repeat(81) };
+test('widoczna miejscowość jest zachowana także zdalnie, lokalnie pomijamy gotowość zdalną', () => {
+  const raw = { ...base(), delivery: 'remote', remoteReady: 'yes', locality: 'Głogów' };
   assert.deepEqual(validate(raw), []);
-  assert.equal(buildInquiry(raw).locality, null);
+  assert.equal(buildInquiry(raw).locality, 'Głogów');
+  assert.match(inquiryText(buildInquiry(raw)), /Miejscowość: Głogów/);
+  assert.equal(validate({ ...raw, locality: 'x'.repeat(81) })[0].field, 'locality');
   raw.delivery = 'local'; raw.locality = 'Łódź';
   assert.equal(buildInquiry(raw).remoteReady, null);
+});
+test('wszystkie wybrane ustawienia wspólne trafiają do szkicu bez fikcyjnej ceny', () => {
+  const raw = { ...base(), radioChoice:'p03', infrastructure:'ready', complexity:'complex', simpleScenes:'3', advancedScenes:'2', support:'extended' };
+  const inquiry = buildInquiry(raw), text = inquiryText(inquiry);
+  assert.deepEqual(inquiry.project, {radioChoice:'p03', infrastructure:'ready', complexity:'complex', simpleScenes:3, advancedScenes:2, support:'extended'});
+  for(const phrase of ['Mam SONOFF ZBDongle-E','Sprawna sieć i gotowe punkty instalacji','Dodatkowa diagnostyka / złożone integracje','proste automatyzacje — liczba: 3','zaawansowane automatyzacje — liczba: 2','Dodatkowe wsparcie rozszerzone']) assert.ok(text.includes(phrase),phrase);
+  assert.equal(inquiry.pricing.price,null);
+  assert.doesNotMatch(text,/\d[\d\s,.]*\s*zł/);
+});
+test('pusta liczba automatyzacji i jawne zero pozostają różnymi założeniami',()=>{
+  const inquiry=buildInquiry({...base(),simpleScenes:'',advancedScenes:'0'}),text=inquiryText(inquiry);
+  assert.equal(inquiry.project.simpleScenes,null);assert.equal(inquiry.project.advancedScenes,0);
+  assert.doesNotMatch(text,/proste automatyzacje — liczba:/);assert.match(text,/zaawansowane automatyzacje — liczba: 0/);
+});
+for(const value of ['-2','abc','1.5','1e2','1000','04'])test('szkic odrzuca błędną liczbę automatyzacji: '+value,()=>{
+  const errors=validate({...base(),simpleScenes:value,advancedScenes:value});
+  assert.deepEqual(errors.map(e=>e.field),['simpleScenes','advancedScenes']);
 });
 test('zdalnie + montaż i sterowanie energią wymagają kwalifikacji', () => {
   const raw = { ...base(), delivery: 'remote', categories: ['blinds', 'ev'], details: { blinds: { control: 'buttons' }, ev: { function: 'power' } } };

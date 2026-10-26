@@ -101,8 +101,9 @@
      <div class="field"><label for="radioChoice">Czy masz radio Zigbee do centrali Home Assistant?</label><select id="radioChoice" name="radioChoice"><option value="unknown">Nie wiem</option><option value="none">Nie mam — dobór i dostawa według potrzeb</option><option value="p03">Mam SONOFF ZBDongle-E</option><option value="p02">Mam Home Assistant Connect ZBT-2 (Zigbee)</option></select><p class="help">Posiadane zgodne radio wykorzystamy ponownie; nie naliczamy drugiego adaptera.</p></div>
      <div class="field"><label for="infrastructure">Warunki instalacji</label><select id="infrastructure" name="infrastructure"><option value="unknown">Nie wiem / wymaga sprawdzenia</option><option value="ready">Sprawna sieć i gotowe punkty instalacji</option></select></div>
      <div class="field"><label for="complexity">Stopień złożoności</label><select id="complexity" name="complexity"><option value="unknown">Do oceny przez AMPOWER</option><option value="simple">Standardowe integracje, bez przebudowy</option><option value="complex">Dodatkowa diagnostyka / złożone integracje</option></select></div>
-     <div class="field"><label for="simpleScenes">Dodatkowe proste automatyzacje — liczba</label><input id="simpleScenes" name="simpleScenes" inputmode="numeric" maxlength="3" aria-describedby="simpleScenes-error"><p class="field-error" id="simpleScenes-error" hidden></p></div>
-     <div class="field"><label for="advancedScenes">Dodatkowe zaawansowane automatyzacje — liczba</label><input id="advancedScenes" name="advancedScenes" inputmode="numeric" maxlength="3" aria-describedby="advancedScenes-error"><p class="field-error" id="advancedScenes-error" hidden></p></div>
+     <p class="help" id="scenes-help">Liczba dodatkowych automatyzacji: od 0 do 999. Puste pole oznacza „Do ustalenia”. Zakres i koszt potwierdzimy w ofercie.</p>
+     <div class="field"><label for="simpleScenes">Dodatkowe proste automatyzacje — liczba</label><input id="simpleScenes" name="simpleScenes" inputmode="numeric" maxlength="3" aria-describedby="scenes-help simpleScenes-error"><p class="field-error" id="simpleScenes-error" hidden></p></div>
+     <div class="field"><label for="advancedScenes">Dodatkowe zaawansowane automatyzacje — liczba</label><input id="advancedScenes" name="advancedScenes" inputmode="numeric" maxlength="3" aria-describedby="scenes-help advancedScenes-error"><p class="field-error" id="advancedScenes-error" hidden></p></div>
      <div class="field"><label for="support">Jednorazowe wsparcie po uruchomieniu</label><select id="support" name="support"><option value="none">Standardowe przekazanie</option><option value="basic">Dodatkowe wsparcie podstawowe</option><option value="extended">Dodatkowe wsparcie rozszerzone</option></select><p class="help">Zakres ustalimy w ofercie. Opcjonalną opiekę omawiamy osobno.</p></div>
     </div></details>
     <fieldset id="delivery"><legend>Jak chcesz zrealizować usługę?</legend><div class="choice-list">
@@ -120,6 +121,7 @@
     <strong>Wybrane integracje</strong><ul id="summary-categories"></ul>
     <strong>Cele</strong><p id="summary-goals"></p>
     <p class="help">Sposób realizacji: <span id="summary-delivery"></span></p>
+    <strong>Ustawienia dodatkowe</strong><ul id="summary-project"></ul>
     <p class="help">Szczegóły do ustalenia: kompatybilność, sprzęt i zakres prac.</p>
     <p id="shared-system" class="note" hidden>PV i magazyn: wspólny system do weryfikacji. Nie liczymy automatycznie dwóch integracji.</p>
     <dl id="cost-components"></dl>

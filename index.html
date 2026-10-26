@@ -1366,6 +1366,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
           <p class="calc-total" id="calc-total">—</p>
           <div id="calc-validation" class="calc-validation" role="alert" hidden></div>
           <p class="calc-total-sub" id="calc-sub">Zaznacz usługi po lewej stronie.</p>
+          <p class="calc-hint">Przedziały zaokrąglamy do 50 zł. Kwota łączna jest sumą wyświetlonych pozycji.</p>
           <p class="calc-empty" id="calc-empty">Nic jeszcze nie wybrano.</p>
           <dl class="calc-rows" id="calc-rows" hidden></dl>
           <div class="calc-ctas">
@@ -1592,7 +1593,8 @@ var CENNIK = {
   if (!root) return;
 
   var fmt = new Intl.NumberFormat('pl-PL', { maximumFractionDigits: 0, useGrouping: 'always' });
-  function kw(n) { return fmt.format(Math.round(n / 50) * 50); }
+  function rounded(n) { return Math.round(n / 50) * 50; }
+  function kw(n) { return fmt.format(rounded(n)); }
   function widelki(r) {
     if (r[0] === r[1]) { return kw(r[0]) + ' zł'; }
     return kw(r[0]) + ' – ' + kw(r[1]) + ' zł';
@@ -1803,6 +1805,10 @@ var CENNIK = {
       ['calc-sms','calc-mail'].forEach(function(id){$(id).removeAttribute('href');$(id).setAttribute('aria-disabled','true');$(id).tabIndex=-1;$(id).classList.toggle('is-disabled',true);});return;
     }
     var w = policz();
+    // Sumujemy te same kwoty, które klient widzi przy usługach i w szkicu.
+    w.suma = w.pozycje.reduce(function(sum, item) {
+      return dodaj(sum, item.zakres.map(rounded));
+    }, [0, 0]);
     var rows = $('calc-rows');
     rows.replaceChildren();
     rows.hidden = !w.pozycje.length;

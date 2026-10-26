@@ -1,5 +1,7 @@
 # AMPOWER — ponowny audyt i wysyłka do GitHub
 
+Późniejszy odbiór po odnowieniu limitu i kolejne naprawy opisano w [raporcie 03](03_KONCOWE_POPRAWKI_I_ODBIOR_2026-10-26.md). Poniżej pozostawiono historyczny wynik poprzedniego odbioru.
+
 26.10.2026. Zakres: strona główna, Smart Home & Energy, prywatność i publiczny pakiet statyczny. Kontrola wersji po raporcie `01_AUDYT_I_NAPRAWY_2026-10-26.md`, na lokalnej gałęzi `feat/pv-mining`, od commita `5534b01`. Bez agentów, zmiany modelu, wysyłania zapytań i publikacji produkcyjnej.
 
 ## Werdykt

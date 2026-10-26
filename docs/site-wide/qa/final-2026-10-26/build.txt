@@ -1,0 +1,5 @@
+
+> build
+> node scripts/build.js
+
+Build OK (zasoby 0fcd0f186417ed95):  jawne pliki publiczne, bez backendu i dokumentacji. Bez publikacji.

@@ -25,7 +25,7 @@ test('85 995 kombinacji kategorii, celów i realizacji: brak ceny i poprawny akt
         assert.equal(inquiry.pricing.status, 'individual');
         assert.equal(inquiry.pricing.price, null);
         assert.equal(inquiry.pricing.priceListVersion, null);
-        assert.equal(inquiry.locality, delivery === 'remote' ? null : 'MIEJSCOWOSC-QA');
+        assert.equal(inquiry.locality, 'MIEJSCOWOSC-QA');
         assert.equal(inquiry.remoteReady, delivery === 'remote' ? 'yes' : null);
         combinations++;
       }
@@ -56,7 +56,7 @@ test('kocioł i podłogówka opisują źródło i strefy osobno, bez zgadywania 
   assert.doesNotMatch(text, /pętle|\d[\d\s,.]*\s*zł/);
 });
 test('dane nieaktywnych kategorii i gałęzi nie wpływają na walidację ani wynik', () => {
-  const raw = { ...base, categories: ['pv', 'storage', 'security', 'other'], goals, delivery: 'remote', hostModel: 'UKRYTE-HOST', locality: 'UKRYTE-MIASTO', phone: 'UKRYTE-TELEFON', details: {
+  const raw = { ...base, categories: ['pv', 'storage', 'security', 'other'], goals, delivery: 'remote', hostModel: 'UKRYTE-HOST', locality: 'WIDOCZNE-MIASTO', phone: 'UKRYTE-TELEFON', details: {
     blinds: { count: '0', model: 'UKRYTE-ROLETY' },
     pv: { hasLogger: 'no', logger: 'UKRYTE-LOGGER', connection: 'network', connectionOther: 'UKRYTE-POLACZENIE' },
     storage: { sharedPv: 'unknown' },
@@ -66,6 +66,7 @@ test('dane nieaktywnych kategorii i gałęzi nie wpływają na walidację ani wy
   assert.deepEqual(validate(raw), []);
   const text = inquiryText(buildInquiry(raw));
   assert.doesNotMatch(text, /UKRYTE-/);
+  assert.match(text, /WIDOCZNE-MIASTO/);
   assert.match(text, /CENTRALA-QA|Nieznana integracja/);
 });
 test('nieznane modele i sterowanie energią pozostają indywidualną kwalifikacją', () => {

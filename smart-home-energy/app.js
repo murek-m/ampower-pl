@@ -1,7 +1,7 @@
 import { INQUIRY_CONFIG } from './inquiry-config.js';
 import { sendInquiry, configureChallenge } from './inquiry-client.js';
-import { CATEGORIES, DELIVERY, GOALS, PRICE_POLICY } from './data.js';
-import { buildInquiry, emailDraft, evaluate, fieldsFor, inquiryText, validate, validateSubmission } from './model.js';
+import { CATEGORIES, DELIVERY, GOALS, PRICE_POLICY, PROJECT_FIELDS } from './data.js';
+import { buildInquiry, emailDraft, evaluate, fieldsFor, inquiryText, projectLines, validate, validateSubmission } from './model.js';
 
 const $ = id => document.getElementById(id);
 const form = $('smart-form');
@@ -132,6 +132,7 @@ function renderSummary(raw) {
   }
   $('summary-goals').textContent = raw.goals.map(id => GOALS[id]).join(' ') || 'Wybierz cel integracji.';
   $('summary-delivery').textContent = DELIVERY[raw.delivery];
+  $('summary-project').replaceChildren(...projectLines(raw).map(line => element('li', line)));
   $('price-title').textContent = result.status === 'individual' ? 'Wymaga indywidualnej wyceny' : result.title;
   $('price-reason').textContent = result.reason;
   const componentList = $('cost-components');
@@ -221,6 +222,10 @@ function prepare() {
   return true;
 }
 setupPanels();
+for (const field of PROJECT_FIELDS) {
+  document.querySelector(`label[for="${field.key}"]`).textContent = field.label;
+  if (field.options) $(field.key).replaceChildren(...Object.entries(field.options).map(([value, label]) => element('option', label, { value })));
+}
 for (const [title, copy] of PRICE_POLICY.components) {
   const row = element('div');
   row.append(element('dt', title), element('dd', copy));

@@ -1,0 +1,86 @@
+{
+  "date": "2026-10-26T16:50:08.055Z",
+  "cases": [
+    {
+      "case": "all project choices and remote locality in draft",
+      "state": {
+        "errorVisible": false,
+        "href": "mailto:kuba@ampower.pl?subject=Zapytanie%20Smart%20Home%20%26%20Energy%20%E2%80%94%20AMPOWER&body=Dzie%C5%84%20dobry%2C%20prosz%C4%99%20o%20om%C3%B3wienie%20mo%C5%BCliwo%C5%9Bci%20i%20indywidualn%C4%85%20wycen%C4%99%20Smart%20Home%20%26%20Energy.%0A%0AWybrane%20integracje%3A%0A%0ARolety%3A%0A-%20Wariant%20urz%C4%85dzenia%20%E2%80%94%20je%C5%9Bli%20znasz%3A%20Dob%C3%B3r%20urz%C4%85dzenia%20przez%20AMPOWER%0A-%20Czy%20sprz%C4%99t%20ma%20by%C4%87%20dostarczony%3F%3A%20Nie%20wiem%0A-%20Oznaczenie%20wsp%C3%B3lnej%20bramki%20%2F%20systemu%20%E2%80%94%20opcjonalnie%3A%20Ustalimy%20podczas%20rozmowy%0A-%20Ile%20niezale%C5%BCnych%20rolet%20chcesz%20po%C5%82%C4%85czy%C4%87%3F%3A%20Ustalimy%20podczas%20rozmowy%0A-%20Czy%20urz%C4%85dzenia%20s%C4%85%20ju%C5%BC%20zamontowane%3F%3A%20Nie%20wiem%0A-%20Jak%20sterujesz%20roletami%3F%3A%20Nie%20wiem%0A-%20Marka%20i%20model%20urz%C4%85dzenia%20%E2%80%94%20je%C5%9Bli%20znasz%3A%20Ustalimy%20podczas%20rozmowy%0A-%20Jak%20urz%C4%85dzenie%20%C5%82%C4%85czy%20si%C4%99%20ze%20swoim%20systemem%3F%3A%20Nie%20wiem%0A%0ACele%3A%20Chc%C4%99%20automatyzacje.%0ARealizacja%3A%20Zestaw%20z%20konfiguracj%C4%85%20zdaln%C4%85%0ADost%C4%99p%20do%20sterowania%3A%20Nie%20wiem%0ACentrala%20Smart%20Home%3A%20Nie%20wiem%0AMiejscowo%C5%9B%C4%87%3A%20G%C5%82og%C3%B3w%0AEthernet%20i%20osoba%20na%20miejscu%3A%20Nie%20wiem%0A%0AUstawienia%20dodatkowe%3A%0ACzy%20masz%20radio%20Zigbee%20do%20centrali%20Home%20Assistant%3F%3A%20Mam%20SONOFF%20ZBDongle-E%0AWarunki%20instalacji%3A%20Sprawna%20sie%C4%87%20i%20gotowe%20punkty%20instalacji%0AStopie%C5%84%20z%C5%82o%C5%BCono%C5%9Bci%3A%20Dodatkowa%20diagnostyka%20%2F%20z%C5%82o%C5%BCone%20integracje%0ADodatkowe%20proste%20automatyzacje%20%E2%80%94%20liczba%3A%203%0ADodatkowe%20zaawansowane%20automatyzacje%20%E2%80%94%20liczba%3A%202%0AJednorazowe%20wsparcie%20po%20uruchomieniu%3A%20Dodatkowe%20wsparcie%20rozszerzone%0AZakres%20i%20koszt%20dodatkowych%20prac%20oraz%20wsparcia%20potwierdzimy%20w%20ofercie.%0APreferowany%20kontakt%3A%20e-mail%0AKontakt%3A%20audyt%40example.com%0A%0ACena%3A%20Wymaga%20indywidualnej%20wyceny%0AKoszt%20zale%C5%BCy%20od%20kompatybilno%C5%9Bci%20urz%C4%85dze%C5%84%2C%20potrzebnego%20sprz%C4%99tu%20i%20zakresu%20prac.%0APodzia%C5%82%20do%20ustalenia%3A%20sprz%C4%99t%20i%20materia%C5%82y%3B%20prace%20instalacyjne%3B%20konfiguracja%3B%20osobno%20dojazd%20%2F%20wysy%C5%82ka%2C%20us%C5%82ugi%20zewn%C4%99trzne%20i%20opcjonalna%20opieka.%0ATo%20wst%C4%99pny%20dob%C3%B3r%20zakresu%2C%20nie%20wi%C4%85%C5%BC%C4%85ca%20oferta.%20Funkcje%20i%20zakres%20prac%20wymagaj%C4%85%20potwierdzenia.",
+        "price": "Wymaga indywidualnej wyceny",
+        "summary": [
+          "Czy masz radio Zigbee do centrali Home Assistant?: Mam SONOFF ZBDongle-E",
+          "Warunki instalacji: Sprawna sieć i gotowe punkty instalacji",
+          "Stopień złożoności: Dodatkowa diagnostyka / złożone integracje",
+          "Dodatkowe proste automatyzacje — liczba: 3",
+          "Dodatkowe zaawansowane automatyzacje — liczba: 2",
+          "Jednorazowe wsparcie po uruchomieniu: Dodatkowe wsparcie rozszerzone"
+        ],
+        "text": "Dzień dobry, proszę o omówienie możliwości i indywidualną wycenę Smart Home & Energy.\n\nWybrane integracje:\n\nRolety:\n- Wariant urządzenia — jeśli znasz: Dobór urządzenia przez AMPOWER\n- Czy sprzęt ma być dostarczony?: Nie wiem\n- Oznaczenie wspólnej bramki / systemu — opcjonalnie: Ustalimy podczas rozmowy\n- Ile niezależnych rolet chcesz połączyć?: Ustalimy podczas rozmowy\n- Czy urządzenia są już zamontowane?: Nie wiem\n- Jak sterujesz roletami?: Nie wiem\n- Marka i model urządzenia — jeśli znasz: Ustalimy podczas rozmowy\n- Jak urządzenie łączy się ze swoim systemem?: Nie wiem\n\nCele: Chcę automatyzacje.\nRealizacja: Zestaw z konfiguracją zdalną\nDostęp do sterowania: Nie wiem\nCentrala Smart Home: Nie wiem\nMiejscowość: Głogów\nEthernet i osoba na miejscu: Nie wiem\n\nUstawienia dodatkowe:\nCzy masz radio Zigbee do centrali Home Assistant?: Mam SONOFF ZBDongle-E\nWarunki instalacji: Sprawna sieć i gotowe punkty instalacji\nStopień złożoności: Dodatkowa diagnostyka / złożone integracje\nDodatkowe proste automatyzacje — liczba: 3\nDodatkowe zaawansowane automatyzacje — liczba: 2\nJednorazowe wsparcie po uruchomieniu: Dodatkowe wsparcie rozszerzone\nZakres i koszt dodatkowych prac oraz wsparcia potwierdzimy w ofercie.\nPreferowany kontakt: e-mail\nKontakt: audyt@example.com\n\nCena: Wymaga indywidualnej wyceny\nKoszt zależy od kompatybilności urządzeń, potrzebnego sprzętu i zakresu prac.\nPodział do ustalenia: sprzęt i materiały; prace instalacyjne; konfiguracja; osobno dojazd / wysyłka, usługi zewnętrzne i opcjonalna opieka.\nTo wstępny dobór zakresu, nie wiążąca oferta. Funkcje i zakres prac wymagają potwierdzenia."
+      }
+    },
+    {
+      "case": "invalid automation clears previous draft",
+      "state": {
+        "draftVisible": false,
+        "errors": "Podaj pełną liczbę automatyzacji od 0 do 999 albo pozostaw pole puste.",
+        "href": null
+      }
+    },
+    {
+      "case": "error opens common details and focuses invalid input",
+      "state": {
+        "focus": "simpleScenes",
+        "invalid": "true",
+        "open": true
+      }
+    },
+    {
+      "case": "corrected zero copies full current draft",
+      "state": {
+        "status": "Konfiguracja skopiowana. Wklej ją do swojej wiadomości.",
+        "text": "Dzień dobry, proszę o omówienie możliwości i indywidualną wycenę Smart Home & Energy.\n\nWybrane integracje:\n\nRolety:\n- Wariant urządzenia — jeśli znasz: Dobór urządzenia przez AMPOWER\n- Czy sprzęt ma być dostarczony?: Nie wiem\n- Oznaczenie wspólnej bramki / systemu — opcjonalnie: Ustalimy podczas rozmowy\n- Ile niezależnych rolet chcesz połączyć?: Ustalimy podczas rozmowy\n- Czy urządzenia są już zamontowane?: Nie wiem\n- Jak sterujesz roletami?: Nie wiem\n- Marka i model urządzenia — jeśli znasz: Ustalimy podczas rozmowy\n- Jak urządzenie łączy się ze swoim systemem?: Nie wiem\n\nCele: Chcę automatyzacje.\nRealizacja: Zestaw z konfiguracją zdalną\nDostęp do sterowania: Nie wiem\nCentrala Smart Home: Nie wiem\nMiejscowość: Głogów\nEthernet i osoba na miejscu: Nie wiem\n\nUstawienia dodatkowe:\nCzy masz radio Zigbee do centrali Home Assistant?: Mam SONOFF ZBDongle-E\nWarunki instalacji: Sprawna sieć i gotowe punkty instalacji\nStopień złożoności: Dodatkowa diagnostyka / złożone integracje\nDodatkowe proste automatyzacje — liczba: 0\nDodatkowe zaawansowane automatyzacje — liczba: 2\nJednorazowe wsparcie po uruchomieniu: Dodatkowe wsparcie rozszerzone\nZakres i koszt dodatkowych prac oraz wsparcia potwierdzimy w ofercie.\nPreferowany kontakt: e-mail\nKontakt: audyt@example.com\n\nCena: Wymaga indywidualnej wyceny\nKoszt zależy od kompatybilności urządzeń, potrzebnego sprzętu i zakresu prac.\nPodział do ustalenia: sprzęt i materiały; prace instalacyjne; konfiguracja; osobno dojazd / wysyłka, usługi zewnętrzne i opcjonalna opieka.\nTo wstępny dobór zakresu, nie wiążąca oferta. Funkcje i zakres prac wymagają potwierdzenia."
+      }
+    },
+    {
+      "case": "rounded service lines add up to total",
+      "state": {
+        "rows": "Elektryka · 1 pkt50 – 100 złMonitoring · 4 kamery3 350 – 5 400 zł",
+        "text": "Dzień dobry, policzyłem wycenę na stronie ampower.pl:\n\n- Elektryka: 50 – 100 zł\n  1 punkt, wymiana osprzętu w gotowych puszkach, bez rozdzielnicy\n\n- Monitoring: 3 350 – 5 400 zł\n  4 kamery, nowa instalacja, sprzęt + rejestrator + montaż\n\nRazem: 3 400 – 5 500 zł\n\nMiejscowość: \n\nProszę o kontakt i dokładną wycenę.",
+        "total": "3 400 – 5 500 zł"
+      }
+    }
+  ],
+  "layouts": [
+    {
+      "page": "smart populated summary and draft",
+      "width": 320,
+      "client": 305,
+      "mailtoMatchesPreview": true,
+      "scroll": 305,
+      "summaryWidth": 223
+    },
+    {
+      "page": "smart populated summary and draft",
+      "width": 390,
+      "client": 375,
+      "mailtoMatchesPreview": true,
+      "scroll": 375,
+      "summaryWidth": 293
+    },
+    {
+      "page": "smart populated summary and draft",
+      "width": 1366,
+      "client": 1351,
+      "mailtoMatchesPreview": true,
+      "scroll": 1351,
+      "summaryWidth": 330.390625
+    },
+    {
+      "page": "home populated quote",
+      "width": 390,
+      "client": 375,
+      "scroll": 375
+    }
+  ],
+  "consoleErrors": []
+}

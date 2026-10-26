@@ -1,0 +1,380 @@
+{
+  "branch": "review/ampower-site-2026-10-26",
+  "previousArtifact": "e3988ec850ef3e9647d1619169cca2b2af491314",
+  "mainBeforePush": "06a79027bc8325526a261a32f7f390658639f948",
+  "artifactCommit": "ddb54a4fea3ac4cf7be1f54a0e08022e67c4e234",
+  "tree": "0e286e35c4c1d99ef6ddcf793602fc9d7405c79a",
+  "fileCount": 74,
+  "files": [
+    {
+      "file": ".nojekyll",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "CNAME",
+      "bytes": 10,
+      "sha256": "cf5e1949c5e5ba9339ead39df31f1f0090aff12c213443dcb218b77fa619398e"
+    },
+    {
+      "file": "assets/consent.css",
+      "bytes": 1562,
+      "sha256": "37627a203f42d6ccac0c5b82fa926784d950ec114ae9acd68f3016a48eb4ea8f"
+    },
+    {
+      "file": "assets/consent.js",
+      "bytes": 6768,
+      "sha256": "244e4027748818695b29eeb37f1bc1e0611dc58aa5924e72fc947cc05a2a282a"
+    },
+    {
+      "file": "assets/fonts/056e4e2459f57a00.woff2",
+      "bytes": 40240,
+      "sha256": "056e4e2459f57a0033c8c9c844ff19d6e42ac8602027803d4345823bcc939818"
+    },
+    {
+      "file": "assets/fonts/1051971168a34fbc.woff2",
+      "bytes": 13264,
+      "sha256": "1051971168a34fbc875caf9b7ccc7953c3896367b48451877ed7fa5bf1e6b1de"
+    },
+    {
+      "file": "assets/fonts/2995622a3e4021e7.woff2",
+      "bytes": 14436,
+      "sha256": "2995622a3e4021e730bfea260fee758858342921930caab513363e8d316b64bc"
+    },
+    {
+      "file": "assets/fonts/77f03e26f981c582.woff2",
+      "bytes": 8848,
+      "sha256": "77f03e26f981c582bdba3a7abed4baa2d3149211c01366bb3ab3ba7622ec4ae5"
+    },
+    {
+      "file": "assets/fonts/a76f53ca6612e7b3.woff2",
+      "bytes": 10060,
+      "sha256": "a76f53ca6612e7b3828eec2311098675b7f9849ae4169a8bcef6302aec02a6c0"
+    },
+    {
+      "file": "assets/fonts/ae1d854fefa1167a.woff2",
+      "bytes": 25868,
+      "sha256": "ae1d854fefa1167a79071f1afe01d4d51b60c5840c1be36dd74bd5fe7375b405"
+    },
+    {
+      "file": "assets/images/04f531e208f4ec42.webp",
+      "bytes": 10970,
+      "sha256": "04f531e208f4ec421d558b247c43466679dd915ffcebbd4944dcc041ef69010f"
+    },
+    {
+      "file": "assets/images/07a15c8b45b58583.jpg",
+      "bytes": 82759,
+      "sha256": "07a15c8b45b58583de23b2957b9fcf6de5632dc8d71a17711507183841ab0e99"
+    },
+    {
+      "file": "assets/images/08e354bcbb2cb80f.webp",
+      "bytes": 22380,
+      "sha256": "08e354bcbb2cb80fd31a2017f2e11656204f23744f88412f0e7cef73b721d6c9"
+    },
+    {
+      "file": "assets/images/0ad38122aca144b3.webp",
+      "bytes": 34932,
+      "sha256": "0ad38122aca144b30d1b2c119e8915ad1d2ae015d6b9074f479200a5fe12cf85"
+    },
+    {
+      "file": "assets/images/16d1bde140401db8.webp",
+      "bytes": 15822,
+      "sha256": "16d1bde140401db848b09c618ba5f190a6d1fe56b4e2a34a0339e5ba3814cb22"
+    },
+    {
+      "file": "assets/images/1cf0942f4cca414d.webp",
+      "bytes": 7464,
+      "sha256": "1cf0942f4cca414d3102397b3e848858ca50fce9843e7637e94870410bd7a432"
+    },
+    {
+      "file": "assets/images/28f6e385f82148b0.jpg",
+      "bytes": 138343,
+      "sha256": "28f6e385f82148b0cf0e94a18c70fddda4f9007f92dee58480b017c1dc855e57"
+    },
+    {
+      "file": "assets/images/2d2ce3446ef262fc.jpg",
+      "bytes": 155102,
+      "sha256": "2d2ce3446ef262fce50ba418b98e1608410474be74628e4c20d72460584a7540"
+    },
+    {
+      "file": "assets/images/3178037b307ce6a9.webp",
+      "bytes": 29016,
+      "sha256": "3178037b307ce6a998e16c377466441a101c292758d9610c080dee7546b6dc5f"
+    },
+    {
+      "file": "assets/images/36854d39bf49c696.webp",
+      "bytes": 12076,
+      "sha256": "36854d39bf49c69679e5853b7386e17f2d614bafacc018278bf65612b362d23c"
+    },
+    {
+      "file": "assets/images/37ed155154aa61ec.webp",
+      "bytes": 16048,
+      "sha256": "37ed155154aa61ec580f4e924b2d5e04b874743ba1a0c6c5d0cc63beb9bff3d2"
+    },
+    {
+      "file": "assets/images/47851eeb873bcdef.webp",
+      "bytes": 61182,
+      "sha256": "47851eeb873bcdefa875c55c57a8798d2ce148c2ecd8458d2ae4454eeb48efe4"
+    },
+    {
+      "file": "assets/images/509f84b211322dc9.webp",
+      "bytes": 10424,
+      "sha256": "509f84b211322dc9d1c39d3087f295358562b758fb06e85c723189917d0624f3"
+    },
+    {
+      "file": "assets/images/60c8f06f7ff36654.webp",
+      "bytes": 26274,
+      "sha256": "60c8f06f7ff366548d0054eff213874eb70d1127abdc2f54bc2941a8e79ba68a"
+    },
+    {
+      "file": "assets/images/6176d81f2f69a418.webp",
+      "bytes": 88766,
+      "sha256": "6176d81f2f69a41803c41196b2c49e2038f44eb1f84e18826c60d503d665f98b"
+    },
+    {
+      "file": "assets/images/649a7530db08209a.webp",
+      "bytes": 90412,
+      "sha256": "649a7530db08209a0e52ca24728ecda1ed9bdc151d16f28f490a84b8bc48765b"
+    },
+    {
+      "file": "assets/images/6fac2160f6e7b929.webp",
+      "bytes": 49788,
+      "sha256": "6fac2160f6e7b929dd2476e0be7910254487937515a2ab421a32ff73ca5eac52"
+    },
+    {
+      "file": "assets/images/727f33a157993677.webp",
+      "bytes": 37734,
+      "sha256": "727f33a157993677ad1a9b7c01b62956466105c4bc91c7d2139ee00a9c2a6b5d"
+    },
+    {
+      "file": "assets/images/8374d98393f0a095.webp",
+      "bytes": 4818,
+      "sha256": "8374d98393f0a0950d62eee1bbd7d3a57ee06b311afd8c645052f8c2a3840ea8"
+    },
+    {
+      "file": "assets/images/851ad7153d934c22.webp",
+      "bytes": 10446,
+      "sha256": "851ad7153d934c22e3e55ced07cc3a7dd2a344206fe13a8c883cd5dc0132db11"
+    },
+    {
+      "file": "assets/images/89a9fc743139ddf8.webp",
+      "bytes": 25522,
+      "sha256": "89a9fc743139ddf88d22a8de88b28d17a9f17c488a0dfffc42ee8eefd89bb510"
+    },
+    {
+      "file": "assets/images/8b05c3d3f9f73d0b.webp",
+      "bytes": 47568,
+      "sha256": "8b05c3d3f9f73d0b5d6df974ebf5084444fc9a0634e07d10feaadaa7c624867b"
+    },
+    {
+      "file": "assets/images/8bf451dc4c72bd5a.webp",
+      "bytes": 23106,
+      "sha256": "8bf451dc4c72bd5a87652659a38ba50e9b89eaa0ff77be60a83fd564975f8565"
+    },
+    {
+      "file": "assets/images/8ee926901145241b.webp",
+      "bytes": 17460,
+      "sha256": "8ee926901145241ba8809246ea739c509f26256bb1adf28f92c58659a02885a8"
+    },
+    {
+      "file": "assets/images/8f9f734cfcbcc1c2.webp",
+      "bytes": 91376,
+      "sha256": "8f9f734cfcbcc1c299869514c18849d30aba997266539230e537b68987bdc2f4"
+    },
+    {
+      "file": "assets/images/9044f26107b27e99.webp",
+      "bytes": 3330,
+      "sha256": "9044f26107b27e9975d68ba0a8b0e604e6d605da52e6ee281045784e908b1978"
+    },
+    {
+      "file": "assets/images/91db57c9f10e391f.webp",
+      "bytes": 16430,
+      "sha256": "91db57c9f10e391f0289b95803242cf2f714097585373b803d3ef7323e09190e"
+    },
+    {
+      "file": "assets/images/93d02483d93d5dd0.webp",
+      "bytes": 24018,
+      "sha256": "93d02483d93d5dd003bac8b1c67d2de7cca5e55b7ecebf876a41abff315acc72"
+    },
+    {
+      "file": "assets/images/9a276d786d4b5681.webp",
+      "bytes": 48210,
+      "sha256": "9a276d786d4b5681753e58745dcb728364022d42733f66785a14eef6031c10a7"
+    },
+    {
+      "file": "assets/images/a5fec96c472d1f9d.webp",
+      "bytes": 71914,
+      "sha256": "a5fec96c472d1f9d19fd7ce40c808fdbaf42f47a9a434d232b99699010ab8a30"
+    },
+    {
+      "file": "assets/images/ba937d8f808f86d8.webp",
+      "bytes": 15668,
+      "sha256": "ba937d8f808f86d89d5bf0d81757ffd3f3b8a944f194052e88f408dc6ae28e6f"
+    },
+    {
+      "file": "assets/images/bb03b9d0254d17bf.webp",
+      "bytes": 52226,
+      "sha256": "bb03b9d0254d17bf0e5d1a16a5a8b589856812f533e1746d06b590eee57722cd"
+    },
+    {
+      "file": "assets/images/bbf7eb2fdfbdea4d.webp",
+      "bytes": 43100,
+      "sha256": "bbf7eb2fdfbdea4dec9660916f454e4a9923e3a7da8c2591a2a1cee49c70acf8"
+    },
+    {
+      "file": "assets/images/c4918a472589f84b.jpg",
+      "bytes": 98015,
+      "sha256": "c4918a472589f84b706d90740584edb2af32af5426432cd7dfd356f77fdd8f07"
+    },
+    {
+      "file": "assets/images/c51bc6c2393145cb.webp",
+      "bytes": 26986,
+      "sha256": "c51bc6c2393145cb680c6d3f97dfec7be4faa67879fbfff6cd253f8194a42a37"
+    },
+    {
+      "file": "assets/images/cc0c091eeab6e5c9.webp",
+      "bytes": 66006,
+      "sha256": "cc0c091eeab6e5c9ce5f169b85ff4090da3d3311d3f6ab22d37707757479aafe"
+    },
+    {
+      "file": "assets/images/d9a6d05cea391a2e.jpg",
+      "bytes": 186583,
+      "sha256": "d9a6d05cea391a2eac9c9135d26dcea1e7cf5c7e4cce9f686581cb94a682a7b3"
+    },
+    {
+      "file": "assets/images/dc38304701b1e043.webp",
+      "bytes": 46142,
+      "sha256": "dc38304701b1e043a09b321c2b3b33c2ce8cc387804e5b73011b8d26b645feac"
+    },
+    {
+      "file": "assets/images/e959a2c01a8ccb71.jpg",
+      "bytes": 79943,
+      "sha256": "e959a2c01a8ccb71cc631674864bb2252462fa1ef07e97106430acb590dfb797"
+    },
+    {
+      "file": "assets/images/f7b5523804544849.webp",
+      "bytes": 24846,
+      "sha256": "f7b552380454484913ba64a76dc541b8cf3c9243c25a411e639a9c45057c67b8"
+    },
+    {
+      "file": "assets/images/fac0de74b8043910.webp",
+      "bytes": 120166,
+      "sha256": "fac0de74b804391080061e37129d3e1166019404032cccae8f42a3e8845e2ae3"
+    },
+    {
+      "file": "assets/smart-home-panel.png",
+      "bytes": 434604,
+      "sha256": "a8c8744eb05d6bde250a6ebccac65ef6f830281858b3a460b1e688bcd9888ae3"
+    },
+    {
+      "file": "favicon.svg",
+      "bytes": 184,
+      "sha256": "7819b405923b921b0a86ad7eadcd5db9264ae46730d767124acf4fcefa9be7c2"
+    },
+    {
+      "file": "index.html",
+      "bytes": 84386,
+      "sha256": "0a52f7b634784b2b1c16bb94b991d1266cddc18d955f5cbe5a3a9a5a535eb306"
+    },
+    {
+      "file": "prywatnosc/index.html",
+      "bytes": 6727,
+      "sha256": "21ce2727753210277af64cbdd177c3a88d43eaf1832d78e46fffa13a26024cc0"
+    },
+    {
+      "file": "robots.txt",
+      "bytes": 109,
+      "sha256": "ce44a91b5a5bf79f03ca9046f2f977f948e1c1fff66462185b958776a311a5e2"
+    },
+    {
+      "file": "sitemap.xml",
+      "bytes": 274,
+      "sha256": "3aa565fd73a0ea85e87b078ce8102b1d8be99c2425a0c33f32beabe6cac3cb7d"
+    },
+    {
+      "file": "smart-home-energy/app.js",
+      "bytes": 15517,
+      "sha256": "f03dae50159bbe2bd9caf09579725443fc409f66c078f36a28ce4523ddcd476e"
+    },
+    {
+      "file": "smart-home-energy/data.js",
+      "bytes": 6197,
+      "sha256": "442aa70fd6bfd6604f4ad3687c5133f6ce9dfd5bfcda3053cb3f11fb38c68c7e"
+    },
+    {
+      "file": "smart-home-energy/fonts/archivo-1.woff2",
+      "bytes": 14436,
+      "sha256": "2995622a3e4021e730bfea260fee758858342921930caab513363e8d316b64bc"
+    },
+    {
+      "file": "smart-home-energy/fonts/archivo-2.woff2",
+      "bytes": 13264,
+      "sha256": "1051971168a34fbc875caf9b7ccc7953c3896367b48451877ed7fa5bf1e6b1de"
+    },
+    {
+      "file": "smart-home-energy/fonts/fonts.css",
+      "bytes": 2174,
+      "sha256": "10bb3fcc3cc866f452dc72b3acb55e7537de380f665111a74b3ad7c83e7c6eb0"
+    },
+    {
+      "file": "smart-home-energy/fonts/ibm-plex-mono-5.woff2",
+      "bytes": 10060,
+      "sha256": "a76f53ca6612e7b3828eec2311098675b7f9849ae4169a8bcef6302aec02a6c0"
+    },
+    {
+      "file": "smart-home-energy/fonts/ibm-plex-mono-6.woff2",
+      "bytes": 8848,
+      "sha256": "77f03e26f981c582bdba3a7abed4baa2d3149211c01366bb3ab3ba7622ec4ae5"
+    },
+    {
+      "file": "smart-home-energy/fonts/ibm-plex-sans-3.woff2",
+      "bytes": 40240,
+      "sha256": "056e4e2459f57a0033c8c9c844ff19d6e42ac8602027803d4345823bcc939818"
+    },
+    {
+      "file": "smart-home-energy/fonts/ibm-plex-sans-4.woff2",
+      "bytes": 25868,
+      "sha256": "ae1d854fefa1167a79071f1afe01d4d51b60c5840c1be36dd74bd5fe7375b405"
+    },
+    {
+      "file": "smart-home-energy/index.html",
+      "bytes": 38149,
+      "sha256": "10c5ad044c5b66a361e99e94c3fb28df6042bef1c498a178dd99afe26975146e"
+    },
+    {
+      "file": "smart-home-energy/inquiry-client.js",
+      "bytes": 3129,
+      "sha256": "c8c85ee26dc6061bdb638c5a0d03a66860061426fc02ea37925a9fdfe3e487af"
+    },
+    {
+      "file": "smart-home-energy/inquiry-config.js",
+      "bytes": 224,
+      "sha256": "3999bea70af73074d5b2da9cd9745291f3f5625801b7083b336dc6206467e2a4"
+    },
+    {
+      "file": "smart-home-energy/menu.js",
+      "bytes": 1163,
+      "sha256": "040e58c465cc35069b16e51d8e8be68ddb434b47031769d8ef19bb2e6247d494"
+    },
+    {
+      "file": "smart-home-energy/model.js",
+      "bytes": 13951,
+      "sha256": "87dbf96a34f9a039fc1b8925d7f17570d540493156360080825c5fb775daeca6"
+    },
+    {
+      "file": "smart-home-energy/price-book.js",
+      "bytes": 20603,
+      "sha256": "1e76bea65524fb01e58524959f38a915c0d1b0a74249def99f026b0840febbfa"
+    },
+    {
+      "file": "smart-home-energy/pricing.js",
+      "bytes": 11902,
+      "sha256": "111750da2ceef31b413da7df4cf474547872c6f16af4ff17d02efd4043a7e59a"
+    },
+    {
+      "file": "smart-home-energy/style.css",
+      "bytes": 12911,
+      "sha256": "0fc41a25d03baed4c2de0dfd0afa3b01557ee4aa3e82590355ec5359eb290e0e"
+    }
+  ]
+}

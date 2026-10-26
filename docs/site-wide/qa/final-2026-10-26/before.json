@@ -1,0 +1,71 @@
+{
+  "raw": {
+    "categories": [
+      "blinds"
+    ],
+    "goals": [
+      "automation"
+    ],
+    "details": {},
+    "delivery": "remote",
+    "locality": "Głogów",
+    "remoteReady": "yes",
+    "channel": "email",
+    "email": "audyt@example.com",
+    "host": "owned",
+    "hostModel": "Centrala testowa",
+    "access": "home",
+    "radioChoice": "p03",
+    "infrastructure": "ready",
+    "complexity": "complex",
+    "simpleScenes": "3",
+    "advancedScenes": "2",
+    "support": "extended"
+  },
+  "inquiry": {
+    "service": "ampower-smart-home-energy",
+    "formVersion": "1.0",
+    "categories": [
+      {
+        "id": "blinds",
+        "label": "Rolety",
+        "answers": {
+          "quoteDevice": "unknown",
+          "ownership": "unknown",
+          "systemId": null,
+          "count": null,
+          "status": "unknown",
+          "control": "unknown",
+          "model": null,
+          "connection": "unknown"
+        }
+      }
+    ],
+    "goals": [
+      "automation"
+    ],
+    "delivery": "remote",
+    "access": "home",
+    "host": "owned",
+    "hostModel": "Centrala testowa",
+    "locality": null,
+    "remoteReady": "yes",
+    "name": null,
+    "notes": null,
+    "contact": {
+      "channel": "email",
+      "value": "audyt@example.com"
+    },
+    "pricing": {
+      "status": "individual",
+      "title": "Wymaga indywidualnej wyceny",
+      "reason": "Koszt zależy od kompatybilności urządzeń, potrzebnego sprzętu i zakresu prac.",
+      "messages": [],
+      "price": null,
+      "priceListVersion": null
+    },
+    "dataNoticeVersion": "draft-local-1"
+  },
+  "text": "Dzień dobry, proszę o omówienie możliwości i indywidualną wycenę Smart Home & Energy.\n\nWybrane integracje:\n\nRolety:\n- Wariant urządzenia — jeśli znasz: Dobór urządzenia przez AMPOWER\n- Czy sprzęt ma być dostarczony?: Nie wiem\n- Oznaczenie wspólnej bramki / systemu — opcjonalnie: Ustalimy podczas rozmowy\n- Ile niezależnych rolet chcesz połączyć?: Ustalimy podczas rozmowy\n- Czy urządzenia są już zamontowane?: Nie wiem\n- Jak sterujesz roletami?: Nie wiem\n- Marka i model urządzenia — jeśli znasz: Ustalimy podczas rozmowy\n- Jak urządzenie łączy się ze swoim systemem?: Nie wiem\n\nCele: Chcę automatyzacje.\nRealizacja: Zestaw z konfiguracją zdalną\nDostęp do sterowania: W domu\nCentrala Smart Home: Tak\nModel centrali Smart Home: Centrala testowa\nEthernet i osoba na miejscu: Tak\nPreferowany kontakt: e-mail\nKontakt: audyt@example.com\n\nCena: Wymaga indywidualnej wyceny\nKoszt zależy od kompatybilności urządzeń, potrzebnego sprzętu i zakresu prac.\nPodział do ustalenia: sprzęt i materiały; prace instalacyjne; konfiguracja; osobno dojazd / wysyłka, usługi zewnętrzne i opcjonalna opieka.\nTo wstępny dobór zakresu, nie wiążąca oferta. Funkcje i zakres prac wymagają potwierdzenia.",
+  "invalidScenes": []
+}

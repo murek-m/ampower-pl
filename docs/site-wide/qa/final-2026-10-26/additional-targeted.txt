@@ -1,0 +1,14 @@
+✔ katalog zawiera dokładnie 12 kategorii ustalonych w UX (0.723625ms)
+✔ 85 995 kombinacji kategorii, celów i realizacji: brak ceny i poprawny aktywny zakres (1114.222542ms)
+✔ wspólna bramka światła/rolety i wspólny falownik PV/magazyn nie generują opłat (0.663083ms)
+✔ kocioł i podłogówka opisują źródło i strefy osobno, bez zgadywania liczby pętli (0.181625ms)
+✔ dane nieaktywnych kategorii i gałęzi nie wpływają na walidację ani wynik (0.217542ms)
+✔ nieznane modele i sterowanie energią pozostają indywidualną kwalifikacją (0.124375ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1238.948708

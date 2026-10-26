@@ -18,6 +18,15 @@ export const DELIVERY = { unknown: 'Jeszcze nie wiem', local: 'Montaż i konfigu
 export const ACCESS = { unknown: 'Nie wiem', home: 'W domu', away: 'Również poza domem' };
 export const HOST = { unknown: 'Nie wiem', owned: 'Tak', needed: 'Potrzebuję doboru' };
 export const YES_NO = { unknown: 'Nie wiem', yes: 'Tak', no: 'Nie' };
+// Wspólne etykiety dla formularza, podsumowania i przygotowanej wiadomości.
+export const PROJECT_FIELDS = [
+  { key: 'radioChoice', label: 'Czy masz radio Zigbee do centrali Home Assistant?', options: { unknown: 'Nie wiem', none: 'Nie mam — dobór i dostawa według potrzeb', p03: 'Mam SONOFF ZBDongle-E', p02: 'Mam Home Assistant Connect ZBT-2 (Zigbee)' } },
+  { key: 'infrastructure', label: 'Warunki instalacji', options: { unknown: 'Nie wiem / wymaga sprawdzenia', ready: 'Sprawna sieć i gotowe punkty instalacji' } },
+  { key: 'complexity', label: 'Stopień złożoności', options: { unknown: 'Do oceny przez AMPOWER', simple: 'Standardowe integracje, bez przebudowy', complex: 'Dodatkowa diagnostyka / złożone integracje' } },
+  { key: 'simpleScenes', label: 'Dodatkowe proste automatyzacje — liczba' },
+  { key: 'advancedScenes', label: 'Dodatkowe zaawansowane automatyzacje — liczba' },
+  { key: 'support', label: 'Jednorazowe wsparcie po uruchomieniu', options: { none: 'Standardowe przekazanie', basic: 'Dodatkowe wsparcie podstawowe', extended: 'Dodatkowe wsparcie rozszerzone' } }
+];
 const control = { unknown: 'Nie wiem', central: 'Wspólna centrala / bramka', perDrive: 'Osobny sterownik na każdy napęd', buttons: 'Same przyciski', mixed: 'Układ mieszany' };
 const heating = { unknown: 'Nie wiem', central: 'Regulator / bramka producenta', separate: 'Osobne sterowniki / termostaty' };
 const heatFunction = { unknown: 'Nie wiem', read: 'Podgląd', control: 'Regulacja', both: 'Podgląd i regulacja' };

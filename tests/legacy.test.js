@@ -48,3 +48,8 @@ for(const value of ['2.5','',-1,1000])test('nieprawidłowa liczba punktów bloku
 test('trasa klimatyzacji zachowuje części metra',()=>{const base={'c-klima':true,'klima-ile':1,'klima-moc':'3.5','klima-zakres':'komplet','klima-trasa':5.5};const r=calculate(base);assert.match(r.mail,/trasa 5.5 m/);assert.notEqual(r.total,calculate({...base,'klima-trasa':5}).total);});
 test('sama rozdzielnica nie wymaga nowych punktów',()=>{const r=calculate({'c-elek':true,'elek-zakres':'nowa','elek-punkty':0,'elek-rozdz':'1'});assert.equal(r.total,'1200–2800zł');assert.equal(r.validation,true);assert.match(r.mail,/z rozdzielnicą/i);});
 test('wybrana elektryka bez punktów i rozdzielnicy prosi o zakres, bez wyceny i kontaktu',()=>{const r=calculate({'c-elek':true,'elek-zakres':'nowa','elek-punkty':0,'elek-rozdz':'0'});assert.equal(r.total,'—');assert.equal(r.mail,'');assert.equal(r.validation,true);assert.equal(r.sub,'Uzupełnij ilość lub wybierz zakres prac.');});
+test('suma wyświetlonych zaokrąglonych pozycji jest zgodna z kwotą łączną i szkicem',()=>{
+ const r=calculate({'c-elek':true,'elek-zakres':'osprzet','elek-punkty':1,'elek-rozdz':'0','c-mon':true,'mon-kamery':4,'mon-rodzaj':'nowa','mon-zakres':'komplet'});
+ assert.equal(r.total,'3400–5500zł');
+ assert.match(r.mail.replace(/[\s\u00a0]/g,''),/Razem:3400–5500zł/);
+});

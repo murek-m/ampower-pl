@@ -1,0 +1,8 @@
+
+> lint
+> node scripts/lint.js
+
+index.html: HTML IDs, labels, ARIA, links OK
+smart-home-energy/index.html: HTML IDs, labels, ARIA, links OK
+prywatnosc/index.html: HTML IDs, labels, ARIA, links OK
+Lint OK: składnia 70 plików JS, skryptów inline, JSON-LD i kontrakt HTML. Bez zewnętrznych zależności.
