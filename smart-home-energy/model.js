@@ -1,6 +1,6 @@
-import { PRICE_BOOK } from './price-book.js?v=0b752a23e42edad3';
-import { estimate, selectionFromRaw } from './pricing.js?v=0b752a23e42edad3';
-import { ACCESS, CATEGORIES, CONNECTION, CONTACT, DELIVERY, GOALS, HOST, PRICE_POLICY, SECURITY, STATUS, UNKNOWN, YES_NO } from './data.js?v=0b752a23e42edad3';
+import { PRICE_BOOK } from './price-book.js?v=0fcd0f186417ed95';
+import { estimate, selectionFromRaw } from './pricing.js?v=0fcd0f186417ed95';
+import { ACCESS, CATEGORIES, CONNECTION, CONTACT, DELIVERY, GOALS, HOST, PRICE_POLICY, PROJECT_FIELDS, SECURITY, STATUS, UNKNOWN, YES_NO } from './data.js?v=0fcd0f186417ed95';
 
 const clean = value => String(value ?? '').trim();
 const option = (value, choices) => Object.hasOwn(choices, value) ? value : UNKNOWN;
@@ -8,6 +8,19 @@ export function parseCount(value) {
   const text = clean(value);
   if (!text) return { value: null, valid: true };
   return /^[1-9]\d{0,2}$/.test(text) ? { value: Number(text), valid: true } : { value: null, valid: false };
+}
+function parseScenes(value) {
+  const text = clean(value);
+  return { valid: !text || /^(0|[1-9]\d{0,2})$/.test(text), value: text && /^(0|[1-9]\d{0,2})$/.test(text) ? Number(text) : null };
+}
+function projectAnswers(raw) {
+  return Object.fromEntries(PROJECT_FIELDS.map(f => [f.key, f.options ? option(raw[f.key], f.options) : parseScenes(raw[f.key]).value]));
+}
+export function projectLines(source = {}) {
+  return PROJECT_FIELDS.flatMap(f => {
+    const value = f.options ? f.options[source[f.key]] : parseScenes(source[f.key]).value;
+    return source[f.key] === UNKNOWN || value === null || value === undefined ? [] : [`${f.label}: ${value}`];
+  });
 }
 
 // Jedno źródło reguł pól dla renderowania, walidacji i budowania zapytania.
@@ -80,8 +93,9 @@ export function validate(raw) {
   for (const [key, max] of [['name', 80], ['notes', 1000]]) {
     if (clean(raw[key]).length > max) add(key, `Skróć odpowiedź do ${max} znaków.`);
   }
-  if (raw.delivery !== 'remote' && clean(raw.locality).length > 80) add('locality', 'Skróć miejscowość do 80 znaków.');
+  if (clean(raw.locality).length > 80) add('locality', 'Skróć miejscowość do 80 znaków.');
   if (raw.host === 'owned' && clean(raw.hostModel).length > 120) add('hostModel', 'Skróć model do 120 znaków.');
+  for (const key of ['simpleScenes', 'advancedScenes']) if (!parseScenes(raw[key]).valid) add(key, 'Podaj pełną liczbę automatyzacji od 0 do 999 albo pozostaw pole puste.');
   return errors;
 }
 
@@ -112,11 +126,11 @@ export function buildInquiry(raw) {
     categories, goals: Object.keys(GOALS).filter(id => raw.goals?.includes(id)),
     delivery: option(raw.delivery, DELIVERY), access: option(raw.access, ACCESS),
     host: option(raw.host, HOST), hostModel: raw.host === 'owned' ? clean(raw.hostModel) || null : null,
-    locality: raw.delivery === 'remote' ? null : clean(raw.locality) || null,
+    locality: clean(raw.locality) || null,
     remoteReady: raw.delivery === 'remote' ? option(raw.remoteReady, YES_NO) : null,
     name: clean(raw.name) || null, notes: clean(raw.notes) || null,
     contact: { channel: raw.channel, value: clean(raw.channel === 'phone' ? raw.phone : raw.email) },
-    pricing: evaluate(raw), dataNoticeVersion: 'draft-local-1'
+    project: projectAnswers(raw), pricing: evaluate(raw), dataNoticeVersion: 'draft-local-1'
   };
 }
 
@@ -135,6 +149,8 @@ export function inquiryText(inquiry) {
   if (inquiry.hostModel) lines.push('Model centrali Smart Home: ' + inquiry.hostModel);
   if (inquiry.locality) lines.push('Miejscowość: ' + inquiry.locality);
   if (inquiry.remoteReady) lines.push('Ethernet i osoba na miejscu: ' + YES_NO[inquiry.remoteReady]);
+  const project = projectLines(inquiry.project);
+  if (project.length) lines.push('', 'Ustawienia dodatkowe:', ...project, 'Zakres i koszt dodatkowych prac oraz wsparcia potwierdzimy w ofercie.');
   if (inquiry.categories.some(c => c.id === 'storage' && c.answers.sharedPv === 'yes')) lines.push('PV i magazyn: wspólny system do weryfikacji, bez automatycznego liczenia dwóch integracji.');
   if (inquiry.name) lines.push('Imię: ' + inquiry.name);
   lines.push('Preferowany kontakt: ' + (inquiry.contact.channel === 'phone' ? 'telefon' : 'e-mail'), 'Kontakt: ' + inquiry.contact.value);
@@ -167,7 +183,6 @@ export function validateSubmission(raw) {
   if (!['local', 'remote', 'unknown'].includes(raw.delivery)) errors.push({ field: 'delivery', message: 'Wybierz sposób realizacji.' });
   if (clean(raw.phone)) errors.push(...validate({ ...raw, channel: 'phone' }).filter(e => e.field === 'phone'));
   if (raw.dataNoticeAccepted !== true) errors.push({ field: 'dataNoticeAccepted', message: 'Potwierdź zapoznanie się z informacją o danych.' });
-  for (const key of ['simpleScenes', 'advancedScenes']) if (raw[key] && !/^(0|[1-9]\d{0,2})$/.test(String(raw[key]))) errors.push({ field: key, message: 'Podaj pełną liczbę automatyzacji od 0 do 999 albo pozostaw pole puste.' });
   return errors;
 }
 export function submissionData(raw) {

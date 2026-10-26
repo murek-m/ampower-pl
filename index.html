@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5FTvYTB76V6Jut78BYzgOUzKpG8d0H3HKGwWEuawD1w=' 'sha256-tqse2UcYFDcgX/c09LDTjydLQPm67S/VnRpAVzla6Z4=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-5FTvYTB76V6Jut78BYzgOUzKpG8d0H3HKGwWEuawD1w=' 'sha256-4/EjBC8hsXUfqxaOYVPao6waH5EuGgurqAF1Dwzh3Vo=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'none'; form-action 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -908,8 +908,8 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
 .calc-draft{margin:18px 0}.calc-draft summary{cursor:pointer;min-height:44px;padding:10px 0;font-weight:600}.calc-draft label{display:block;margin:10px 0}.calc-draft textarea{display:block;width:100%;min-height:160px;font:inherit;font-size:16px;line-height:1.5;color:var(--ink);background:var(--bg);padding:12px;border:1px solid var(--line);border-radius:6px;resize:vertical}.calc-draft .btn{margin-top:12px}.calc-draft p{font-size:14px;margin-top:10px}
 .skip-link{position:fixed;top:8px;left:8px;z-index:1000;transform:translateY(-200%);background:var(--volt);color:#181613;padding:12px;border-radius:6px;font-weight:600}.skip-link:focus{transform:none}
 </style>
-<link rel="stylesheet" href="/assets/consent.css?v=0b752a23e42edad3">
-<script defer src="/assets/consent.js?v=0b752a23e42edad3"></script>
+<link rel="stylesheet" href="/assets/consent.css?v=0fcd0f186417ed95">
+<script defer src="/assets/consent.js?v=0fcd0f186417ed95"></script>
 <noscript><style>@media(max-width:1200px){.nav{height:auto;min-height:68px;flex-wrap:wrap;padding-block:16px}.nav-links{display:flex;position:static;order:4;width:100%;padding:0;background:transparent;border:0}.nav-toggle{display:none!important}}</style></noscript>
 </head>
 <body>
@@ -1368,6 +1368,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
           <p class="calc-total" id="calc-total">—</p>
           <div id="calc-validation" class="calc-validation" role="alert" hidden></div>
           <p class="calc-total-sub" id="calc-sub">Zaznacz usługi po lewej stronie.</p>
+          <p class="calc-hint">Przedziały zaokrąglamy do 50 zł. Kwota łączna jest sumą wyświetlonych pozycji.</p>
           <p class="calc-empty" id="calc-empty">Nic jeszcze nie wybrano.</p>
           <dl class="calc-rows" id="calc-rows" hidden></dl>
           <div class="calc-ctas">
@@ -1594,7 +1595,8 @@ var CENNIK = {
   if (!root) return;
 
   var fmt = new Intl.NumberFormat('pl-PL', { maximumFractionDigits: 0, useGrouping: 'always' });
-  function kw(n) { return fmt.format(Math.round(n / 50) * 50); }
+  function rounded(n) { return Math.round(n / 50) * 50; }
+  function kw(n) { return fmt.format(rounded(n)); }
   function widelki(r) {
     if (r[0] === r[1]) { return kw(r[0]) + ' zł'; }
     return kw(r[0]) + ' – ' + kw(r[1]) + ' zł';
@@ -1805,6 +1807,10 @@ var CENNIK = {
       ['calc-sms','calc-mail'].forEach(function(id){$(id).removeAttribute('href');$(id).setAttribute('aria-disabled','true');$(id).tabIndex=-1;$(id).classList.toggle('is-disabled',true);});return;
     }
     var w = policz();
+    // Sumujemy te same kwoty, które klient widzi przy usługach i w szkicu.
+    w.suma = w.pozycje.reduce(function(sum, item) {
+      return dodaj(sum, item.zakres.map(rounded));
+    }, [0, 0]);
     var rows = $('calc-rows');
     rows.replaceChildren();
     rows.hidden = !w.pozycje.length;
