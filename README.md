@@ -92,6 +92,8 @@ Workflow `.github/workflows/regression.yml` sprawdza push/PR: lint (w tym PV),
 jednostki, oba buildy, whitelistę/CSP i przeglądarki. Nie publikuje ani nie aktualizuje danych.
 QA jest oddzielone od zależności strony: Playwright **1.62.1** z przypisanymi
 Chromium i WebKit, Ubuntu 24.04 i Node 22.22.0. Wersje silników i raporty trafiają do artefaktu CI.
+Istniejące testy PDF używają osobnego środowiska Python 3.12 z ReportLab 4.4.9
+i fontem DejaVu Sans. CI przygotowuje je w katalogu tymczasowym; nie aktywuje backendu.
 
 Po zbudowaniu obu artefaktów można użyć istniejącego środowiska QA:
 

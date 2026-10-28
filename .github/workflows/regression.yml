@@ -19,6 +19,19 @@ jobs:
         with:
           node-version: '22.22.0'
       - run: npm run lint
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Isolated PDF test runtime
+        run: |
+          python -m venv "$RUNNER_TEMP/ampower-pdf"
+          "$RUNNER_TEMP/ampower-pdf/bin/pip" install --disable-pip-version-check reportlab==4.4.9
+          if [ ! -r /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf ]; then
+            sudo apt-get update
+            sudo apt-get install -y fonts-dejavu-core
+          fi
+          echo "AMPOWER_PYTHON=$RUNNER_TEMP/ampower-pdf/bin/python" >> "$GITHUB_ENV"
+          echo "AMPOWER_PDF_FONT=/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf" >> "$GITHUB_ENV"
       - run: npm test
       - run: npm run build
       - run: npm run pv:build
