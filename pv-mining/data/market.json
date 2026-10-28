@@ -1,0 +1,26 @@
+{
+  "observedAt": "2026-10-24T19:43:09.000580+00:00",
+  "btcPln": 316113.6182181032,
+  "difficulty": 140577680051919.6,
+  "height": 972966,
+  "feeBtc": 0.01398418298611111,
+  "sources": [
+    {
+      "label": "Coinbase BTC/PLN",
+      "url": "https://api.coinbase.com/v2/prices/BTC-PLN/spot"
+    },
+    {
+      "label": "mempool.space — trudność i opłaty",
+      "url": "https://mempool.space/docs/api/rest"
+    },
+    {
+      "label": "PSE — RCEm",
+      "url": "https://www.pse.pl/oire/rcem-rynkowa-miesieczna-cena-energii-elektrycznej"
+    },
+    {
+      "label": "JRC PVGIS — profil 2023",
+      "url": "https://re.jrc.ec.europa.eu/pvg_tools/en/"
+    }
+  ],
+  "schemaVersion": 1
+}
