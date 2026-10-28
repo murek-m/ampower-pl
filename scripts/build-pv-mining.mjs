@@ -1,14 +1,23 @@
 import {mkdir,copyFile,rm,lstat,readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {decodeProfile} from '../pv-mining/data-loader.js';
 const root=new URL('../',import.meta.url);
 const output=new URL('output/pv-mining-preview/',root);
-const files=['index.html','simple.html','advanced.html','style.css','app.js','engine.js','worker.js','data-loader.js','charts.js','session.js','data/market.json','data/models.json','data/profile.json'];
+const files=['favicon.svg','index.html','simple.html','advanced.html','style.css','app.js','engine.js','worker.js','data-loader.js','charts.js','session.js','data/market.json','data/models.json','data/profile.json'];
 const sources=new Map();
 const hash=createHash('sha256');
 for(const file of files){
-  const source=new URL(`pv-mining/${file}`,root);
+  const source=new URL(file==='favicon.svg'?file:`pv-mining/${file}`,root);
   if(!(await lstat(source)).isFile())throw new Error(`Nieprawidłowy plik ${file}`);
-  const bytes=await readFile(source);sources.set(file,bytes);hash.update(file).update(bytes);
+  let bytes=await readFile(source);
+  if(file==='data/profile.json'){
+    const rows=JSON.parse(bytes),packed={format:'ampower-pv-hourly-v1',start:rows[0]?.[0],values:rows.map(row=>row[1])};
+    // Fail before replacing the old artifact if any timestamp/value would change.
+    assert.deepEqual(decodeProfile(packed),rows,'Profile compaction must be lossless');
+    bytes=Buffer.from(JSON.stringify(packed));
+  }
+  sources.set(file,bytes);hash.update(file).update(bytes);
 }
 const version=hash.digest('hex').slice(0,16);
 await rm(output,{recursive:true,force:true});await mkdir(output,{recursive:true});

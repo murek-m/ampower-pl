@@ -21,7 +21,7 @@
   const actions=node('div',null,{className:'amp-consent-actions'});
   const reject=node('button','Tylko niezbędne',{type:'button',id:'cookie-reject',className:'amp-choice'});
   const accept=node('button','Zgadzam się na statystyki',{type:'button',id:'cookie-accept',className:'amp-choice'});
-  actions.append(reject,accept);panel.append(title,copy,actions);document.body.append(panel);
+  actions.append(reject,accept);panel.append(title,copy,actions);const main=document.querySelector('main');if(main)main.before(panel);else document.body.prepend(panel);
   const status=node('p',null,{className:'amp-consent-note'});status.setAttribute('role','status');document.body.append(status);
   function eraseGoogleCookies(){
     const names=document.cookie.split(';').map(p=>p.split('=')[0].trim()).filter(n=>/^_ga(?:_|$)|^_gid$|^_gat/.test(n));
@@ -68,9 +68,9 @@
     status.textContent=analytics?'Zapisano zgodę na statystyki. Możesz ją zmienić w ustawieniach cookies.':'Statystyki wyłączone. Strona działa z niezbędnymi ustawieniami.';
     if(returnFocus?.isConnected)returnFocus.focus();
   }
-  function show(){returnFocus=document.activeElement;panel.hidden=false;reject.focus();}
+  function show(trigger=document.activeElement){returnFocus=trigger;panel.hidden=false;reject.focus();}
   reject.addEventListener('click',()=>choose(false));accept.addEventListener('click',()=>choose(true));
-  for(const button of document.querySelectorAll('[data-cookie-settings]')){button.hidden=false;button.addEventListener('click',show);}
+  for(const button of document.querySelectorAll('[data-cookie-settings]')){button.hidden=false;button.addEventListener('click',()=>show(button));}
   panel.addEventListener('keydown',event=>{if(event.key==='Escape'){panel.hidden=true;returnFocus?.focus();}});
   window.addEventListener('storage',event=>{if(event.key===key||event.key===null){choice=read();panel.hidden=Boolean(choice);apply();}});
   window.addEventListener('pageshow',()=>{if(!valid(choice)){choice=null;panel.hidden=false;disable();}});

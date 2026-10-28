@@ -1,0 +1,38 @@
+name: Application regression (no publication)
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: regression-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  regression:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.22.0'
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build
+      - run: npm run pv:build
+      - run: npm run release:check
+      - name: Isolated, pinned browser QA tools
+        run: |
+          npm install --prefix "$RUNNER_TEMP/ampower-qa" --no-package-lock --ignore-scripts playwright@1.62.1
+          node "$RUNNER_TEMP/ampower-qa/node_modules/playwright/cli.js" install --with-deps chromium webkit
+          echo "AMPOWER_PLAYWRIGHT_MODULE=$RUNNER_TEMP/ampower-qa/node_modules/playwright/index.mjs" >> "$GITHUB_ENV"
+      - name: Browser regressions with external requests blocked
+        run: node scripts/qa_regression.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: regression-${{ github.sha }}
+          path: output/qa-regression/
+          retention-days: 14

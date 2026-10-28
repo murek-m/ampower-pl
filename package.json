@@ -33,6 +33,7 @@
     "backup:verify": "node backend/backup-verify.js",
     "retention:plan": "node backend/retention.js",
     "test:e2e:fixes": "node scripts/qa_post_audit.mjs",
+    "test:e2e:audit": "node scripts/qa_audit_20261027.mjs",
     "test:release": "node scripts/qa_release.mjs",
     "test:e2e:consent": "node scripts/qa_consent.mjs",
     "test:e2e:publication": "node scripts/qa_publication.mjs",

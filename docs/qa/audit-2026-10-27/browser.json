@@ -1,0 +1,105 @@
+{
+  "date": "2026-10-27T13:54:33.713Z",
+  "results": [
+    {
+      "name": "Kalkulator: błędne dane blokują kwotę, szkic i kopiowanie; poprawienie danych przywraca wynik",
+      "status": "passed"
+    },
+    {
+      "name": "Strona / 390px light: dostępność i układ",
+      "status": "passed"
+    },
+    {
+      "name": "Strona /smart-home-energy/ 390px light: dostępność i układ",
+      "status": "passed"
+    },
+    {
+      "name": "Strona /prywatnosc/ 390px light: dostępność i układ",
+      "status": "passed"
+    },
+    {
+      "name": "Strona / 1440px light: dostępność i układ",
+      "status": "passed"
+    },
+    {
+      "name": "Strona /smart-home-energy/ 1440px light: dostępność i układ",
+      "status": "passed"
+    },
+    {
+      "name": "Strona /prywatnosc/ 1440px light: dostępność i układ",
+      "status": "passed"
+    },
+    {
+      "name": "Strona / 390px dark: dostępność i układ",
+      "status": "passed"
+    },
+    {
+      "name": "Strona /smart-home-energy/ 390px dark: dostępność i układ",
+      "status": "passed"
+    },
+    {
+      "name": "Strona /prywatnosc/ 390px dark: dostępność i układ",
+      "status": "passed"
+    },
+    {
+      "name": "Strona / 1440px dark: dostępność i układ",
+      "status": "passed"
+    },
+    {
+      "name": "Strona /smart-home-energy/ 1440px dark: dostępność i układ",
+      "status": "passed"
+    },
+    {
+      "name": "Strona /prywatnosc/ 1440px dark: dostępność i układ",
+      "status": "passed"
+    },
+    {
+      "name": "PV / 320px: dostępność, rozwinięte obliczenia i układ",
+      "status": "passed"
+    },
+    {
+      "name": "PV /simple.html 320px: dostępność, rozwinięte obliczenia i układ",
+      "status": "passed"
+    },
+    {
+      "name": "PV /advanced.html 320px: dostępność, rozwinięte obliczenia i układ",
+      "status": "passed"
+    },
+    {
+      "name": "PV / 390px: dostępność, rozwinięte obliczenia i układ",
+      "status": "passed"
+    },
+    {
+      "name": "PV /simple.html 390px: dostępność, rozwinięte obliczenia i układ",
+      "status": "passed"
+    },
+    {
+      "name": "PV /advanced.html 390px: dostępność, rozwinięte obliczenia i układ",
+      "status": "passed"
+    },
+    {
+      "name": "PV / 768px: dostępność, rozwinięte obliczenia i układ",
+      "status": "passed"
+    },
+    {
+      "name": "PV /simple.html 768px: dostępność, rozwinięte obliczenia i układ",
+      "status": "passed"
+    },
+    {
+      "name": "PV /advanced.html 768px: dostępność, rozwinięte obliczenia i układ",
+      "status": "passed"
+    },
+    {
+      "name": "PV / 1440px: dostępność, rozwinięte obliczenia i układ",
+      "status": "passed"
+    },
+    {
+      "name": "PV /simple.html 1440px: dostępność, rozwinięte obliczenia i układ",
+      "status": "passed"
+    },
+    {
+      "name": "PV /advanced.html 1440px: dostępność, rozwinięte obliczenia i układ",
+      "status": "passed"
+    }
+  ]
+}

@@ -1,9 +1,22 @@
 // Shared calculation engine for both local prototypes. No DOM or network access.
 export const SATOSHIS = 100_000_000;
-export const ENGINE_VERSION = '2026-10-25.2';
+export const ENGINE_VERSION = '2026-10-28.1';
 
+// Missing keys retain API defaults; explicit empty input is a user decision, never a default.
+const requiredNumbers = ['importPrice','eligiblePrice','depositUse','depositFactor','btcPrice','difficulty','feesBtc','difficultyGrowth','btcGrowth','poolFee','firmwareFee','availability','quantity','extraWatts','startMinutes','startMargin','minRunMinutes','minOffMinutes','gridLimit','maintenance','emsWatts','lifetime','horizon','discount'];
+export function requiredSettings(raw, imported=false) {
+  return [...requiredNumbers,...(!imported?['pvKwp','profileWeather']:[]),
+    ...(['existing','new'].includes(raw.battery)?['capacity','usableFraction','reserve','chargeKw','dischargeKw','roundtrip','wear']:[]),
+    ...(raw.exportMode!=='historical'?['exportPrice']:[])];
+}
 export function assumptionIssues(raw, imported=false) {
   const issues=[];
+  for(const key of requiredSettings(raw,imported)) {
+    if(!Object.hasOwn(raw,key))continue;
+    const value=raw[key];
+    if(value==null || !['string','number'].includes(typeof value) || String(value).trim()==='' || !Number.isFinite(Number(value)))
+      issues.push({key,message:'Uzupełnij wymagane założenie poprawną liczbą.'});
+  }
   if(raw.battery==='existing'||raw.battery==='new') {
     if(Number(raw.reserve)>Number(raw.usableFraction)) issues.push({key:'reserve',message:'Rezerwa SOC nie może przekraczać górnego limitu SOC.'});
   }
@@ -119,7 +132,7 @@ export function makeProfile(data,s,imported=null) {
       rows=rows.map((r,i)=>({...r,load:(1-alpha)*r.load+alpha*target[i]}));
     }
   }
-  return {rows,source:'simulation',hours:8760,note:'PVGIS 2023, Wrocław, południe 35°, straty 14%. Zużycie domu jest symulowane.'};
+  return {rows,source:'simulation',hours:rows.reduce((sum,r)=>sum+r.dt,0),note:`PVGIS ${new Date(rows[0].stamp).getUTCFullYear()}, Wrocław, południe 35°, straty 14%. Zużycie domu jest symulowane. Kolejne okresy powtarzają długość profilu referencyjnego.`};
 }
 
 const RCEM=[480.01,442.02,178.84,163.19,216.97,136.30,284.83,214.68,279.71,330.27,382.88,466.08];
@@ -151,6 +164,9 @@ function prepareYears(profile,s,market) {
     const deficits=[...rows,...next.slice(0,steps)].map(r=>Math.max(0,r.load-r.pv)*r.dt);
     const prefix=[0];for(const v of deficits)prefix.push(prefix.at(-1)+v);
     rows.forEach((r,i)=>r.houseNeed=prefix[i+steps+1]-prefix[i+1]);
+    const investmentRows=[...rows.map(r=>({...r,ems:y<s.lifetime?s.emsWatts/1000:0})),...next.slice(0,steps).map(r=>({...r,ems:y+1<s.lifetime?s.emsWatts/1000:0}))];
+    const investmentPrefix=[0];for(const r of investmentRows)investmentPrefix.push(investmentPrefix.at(-1)+Math.max(0,r.load+r.ems-r.pv)*r.dt);
+    rows.forEach((r,i)=>r.investmentNeed=investmentPrefix[i+steps+1]-investmentPrefix[i+1]);
   }
   return years;
 }
@@ -179,19 +195,24 @@ export function settle(months,s) {
   return {annual,bill,refund,used,pending:credits.reduce((v,c)=>v+c.remaining,0)};
 }
 
-function dispatch(years,s,model=null,opportunities=null,inactiveShadow=null) {
+function dispatch(years,s,model=null,opportunities=null,inactiveShadow=null,investment=false) {
   const cap=s.capacity,lo=cap*s.reserve,hi=cap*s.usableFraction,eta=Math.sqrt(s.roundtrip);
   let soc=lo,running=false,runTime=0,offTime=1e9,startupRemaining=0;
   const yearsOut=[],months=[];
   for(let y=0;y<years.length;y++) {
-    const yr={startSoc:soc,houseLoad:0,chargeKwh:0,maxChargeKw:0,maxDischargeKw:0,minSoc:soc,maxSoc:soc,simultaneous:0,btc:0,hours:0,hashHours:0,energy:0,asicGrid:0,asicPv:0,pv:0,direct:0,batteryHouse:0,batteryMining:0,losses:0,cycles:0,starts:0,grid:0,export:0,wear:0,monthly:Array.from({length:12},()=>({pv:0,house:0,asic:0,asicPv:0,asicBattery:0,asicGrid:0,export:0,btc:0,grid:0,exportRaw:0}))};
+    const yr={startSoc:soc,houseLoad:0,emsEnergy:0,emsPv:0,emsBattery:0,emsGrid:0,chargeKwh:0,maxChargeKw:0,maxDischargeKw:0,minSoc:soc,maxSoc:soc,simultaneous:0,btc:0,hours:0,hashHours:0,energy:0,asicGrid:0,asicPv:0,pv:0,direct:0,batteryHouse:0,batteryMining:0,losses:0,cycles:0,starts:0,grid:0,export:0,wear:0,monthly:Array.from({length:12},()=>({pv:0,house:0,ems:0,emsPv:0,emsBattery:0,emsGrid:0,asic:0,asicPv:0,asicBattery:0,asicGrid:0,export:0,btc:0,grid:0,exportRaw:0}))};
     const price=s.btcPrice*(1+s.btcGrowth)**y;
     for(let i=0;i<years[y].length;i++) {
       const r=years[y][i],dt=r.dt,active=Boolean(model && y<s.lifetime && s.availability>0);
-      const direct=Math.min(r.pv,r.load),surplus0=Math.max(0,r.pv-r.load),deficit0=Math.max(0,r.load-r.pv);
+      // Additional EMS belongs to the investment, including its zero-mining plan.
+      // It runs continuously through the assumed ASIC life; existing-house load is unchanged.
+      const ems=investment&&y<s.lifetime?s.emsWatts/1000:0;
+      const direct=Math.min(r.pv,r.load),emsPv=Math.min(Math.max(0,r.pv-r.load),ems);
+      const surplus0=Math.max(0,r.pv-r.load-ems),deficit0=Math.max(0,r.load+ems-r.pv);
       let surplus=surplus0,grid=deficit0,batteryDis=0,charge=0,mineDis=0,mineGrid=0,hashHours=0,energy=0,btc=0;
       const homeDis=Math.min(grid,s.dischargeKw,Math.max(0,soc-lo)*eta/dt);
       soc-=homeDis*dt/eta;grid-=homeDis;batteryDis+=homeDis;
+      const houseBattery=Math.min(Math.max(0,r.load-r.pv),homeDis),emsBattery=homeDis-houseBattery,emsGrid=Math.max(0,ems-emsPv-emsBattery);
       const target=active?(model.watts*s.quantity+s.extraWatts)/1000:0;
       // Amortize starting cost over startup plus one productive interval.
       // Actual zero-hash startup time is carried across intervals below.
@@ -200,7 +221,7 @@ function dispatch(years,s,model=null,opportunities=null,inactiveShadow=null) {
       const signal=!active&&inactiveShadow?inactiveShadow:opportunities;
       const exportValue=signal?signal[y*12+r.month]:r.exportPrice*s.depositFactor;
       // Forecast house reserve for the next 24 hours, clamped by physical capacity.
-      const houseNeed=r.houseNeed||0;
+      const houseNeed=(investment?r.investmentNeed:r.houseNeed)||0;
       const reserveTarget=s.policy==='home'?Math.min(hi,lo+houseNeed/eta):lo;
       const homeStorageValue=houseNeed>0?s.importPrice*eta*eta-s.wear:0;
       const storageWorthwhile=s.policy==='home' || homeStorageValue>Math.max(0,exportValue);
@@ -234,14 +255,15 @@ function dispatch(years,s,model=null,opportunities=null,inactiveShadow=null) {
       yr.minSoc=Math.min(yr.minSoc,soc);yr.maxSoc=Math.max(yr.maxSoc,soc);
       if(charge>1e-9 && batteryDis>1e-9)yr.simultaneous++;
       yr.btc+=btc;yr.energy+=energy;yr.asicGrid+=mineGrid*dt;yr.asicPv+=energy-(mineGrid+mineDis)*dt;yr.pv+=r.pv*dt;yr.direct+=direct*dt;
-      yr.batteryHouse+=homeDis*dt;yr.batteryMining+=mineDis*dt;
+      yr.emsEnergy+=ems*dt;yr.emsPv+=emsPv*dt;yr.emsBattery+=emsBattery*dt;yr.emsGrid+=emsGrid*dt;
+      yr.batteryHouse+=houseBattery*dt;yr.batteryMining+=mineDis*dt;
       yr.losses+=(charge*(1-eta)+batteryDis*(1/eta-1))*dt;
       yr.grid+=grid*dt;yr.export+=surplus*dt;yr.wear+=batteryDis*dt*s.wear;
-      const m=yr.monthly[r.month];m.pv+=r.pv*dt;m.house+=(direct+homeDis)*dt;m.asic+=energy;m.asicPv+=energy-(mineGrid+mineDis)*dt;m.asicBattery+=mineDis*dt;m.asicGrid+=mineGrid*dt;m.export+=surplus*dt;m.btc+=btc;m.grid+=grid*dt;m.exportRaw+=surplus*dt*r.exportPrice;
+      const m=yr.monthly[r.month];m.pv+=r.pv*dt;m.house+=(direct+houseBattery)*dt;m.ems+=ems*dt;m.emsPv+=emsPv*dt;m.emsBattery+=emsBattery*dt;m.emsGrid+=emsGrid*dt;m.asic+=energy;m.asicPv+=energy-(mineGrid+mineDis)*dt;m.asicBattery+=mineDis*dt;m.asicGrid+=mineGrid*dt;m.export+=surplus*dt;m.btc+=btc;m.grid+=grid*dt;m.exportRaw+=surplus*dt*r.exportPrice;
       // Balance at AC boundary, including battery flows. Physical constraints outrank runtime timers.
-      if(Math.abs(r.pv+grid+batteryDis-r.load-surplus-charge-(energy/dt))>1e-6 || soc<lo-1e-7 || soc>hi+1e-7) throw new Error('Naruszenie bilansu energii lub SOC.');
+      if(Math.abs(r.pv+grid+batteryDis-r.load-ems-surplus-charge-(energy/dt))>1e-6 || soc<lo-1e-7 || soc>hi+1e-7) throw new Error('Naruszenie bilansu energii lub SOC.');
     }
-    yr.cycles=cap?((yr.batteryHouse+yr.batteryMining)/cap):0;yr.endSoc=soc;
+    yr.cycles=cap?((yr.batteryHouse+yr.emsBattery+yr.batteryMining)/cap):0;yr.endSoc=soc;
     months.push(...yr.monthly);yearsOut.push(yr);
   }
   return {years:yearsOut,ledger:settle(months,s)};
@@ -256,10 +278,10 @@ function planFamily(years,s) {
   const nominal=years.flatMap(rows=>Array.from({length:12},(_,m)=>(rows.find(r=>r.month===m)?.exportPrice||0)*s.depositFactor));
   return [0,.25,.5,.75,1].map(f=>nominal.map(p=>p*f));
 }
-function bestBaseline(years,s,family) {
+function bestBaseline(years,s,family,investment=false) {
   let best=null;
   for(const shadow of (s.policy==='home'||s.capacity===0?family.slice(0,1):family)) {
-    const run=dispatch(years,s,null,shadow),score=planScore(run,s);
+    const run=dispatch(years,s,null,shadow,null,investment),score=planScore(run,s);
     if(!best||score>best.score+1e-8)best={run,score,shadow};
   }
   return best;
@@ -291,9 +313,10 @@ export function calculate(raw,dataset,market,models,imported=null) {
     const detailed=Object.values(s.costs),complete=detailed.every(v=>v!==null);
     const infra=s.costMode==='budget'?s.infraBudget:detailed.reduce((v,x)=>v+(x||0),0);
     const capex=devicePrice*s.quantity+infra+(s.battery==='new'?(s.batteryBudget||0):0);
-    let run=baseline,score=bestBase.score,chosen='off';
+    const investmentOff=bestBaseline(years,s,family,true);
+    let run=investmentOff.run,score=investmentOff.score,chosen='off';
     if(s.availability>0)family.forEach((shadow,index)=>{
-      const candidate=dispatch(years,s,model,shadow,bestBase.shadow),candidateScore=planScore(candidate,s);
+      const candidate=dispatch(years,s,model,shadow,investmentOff.shadow,true),candidateScore=planScore(candidate,s);
       if(candidate.years.some(r=>r.energy>0)&&candidateScore>score+1e-8){run=candidate;score=candidateScore;chosen=index;}
     });
     const planner={candidateCount:family.length+1,chosen,operatingGain:score-bestBase.score,method:'full-ledger-candidate-search'};
@@ -303,7 +326,7 @@ export function calculate(raw,dataset,market,models,imported=null) {
       const nbLedger=noBattery.ledger.annual[y];
       const exportLost=(ledgerBase.used+ledgerBase.refund)-(ledger.used+ledger.refund);
       const billDifference=ledgerBase.bill-ledger.bill;
-      const opex=y<s.lifetime?s.maintenance+s.emsWatts/1000*profile.hours*s.importPrice:0;
+      const opex=y<s.lifetime?s.maintenance:0;
       const extraWear=r.wear-base.wear;
       const price=s.btcPrice*(1+s.btcGrowth)**y;
       const value=r.btc*price;

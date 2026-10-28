@@ -9,7 +9,7 @@ const { chromium } = await import(process.env.AMPOWER_PLAYWRIGHT_MODULE || 'play
 });
 const origin = new URL(process.env.AMPOWER_QA_URL || 'http://127.0.0.1:4173');
 if (!['127.0.0.1', 'localhost', '[::1]'].includes(origin.hostname)) throw new Error('QA dopuszcza tylko lokalny serwer.');
-const output = 'docs/ampower-sales/qa/regression';
+const output = process.env.AMPOWER_QA_OUTPUT || 'docs/ampower-sales/qa/regression';
 await mkdir(output, { recursive: true });
 const browser = await chromium.launch({ headless: true, ...(process.env.AMPOWER_CHROME_PATH ? { executablePath: process.env.AMPOWER_CHROME_PATH } : {}) });
 const results = [];
@@ -113,7 +113,7 @@ try {
       assert.equal(await page.locator('#blinds-count').inputValue(), value);
     }
     await page.locator('#details-blinds summary').click();
-    await page.locator('#error-list a[href="#blinds-count"]').click();
+    await page.locator('#error-list button[aria-controls="blinds-count"]').click();
     assert.equal(await page.evaluate(() => document.activeElement.id), 'blinds-count');
     assert.equal(await page.locator('#details-blinds').getAttribute('open'), '');
     await page.getByRole('button', { name: 'Nie wiem: Ile niezależnych rolet chcesz połączyć?', exact: true }).click();
@@ -156,7 +156,7 @@ try {
     await page.locator('#access').selectOption('away');
     await page.locator('#locality').fill('Łódź');
     await page.locator('#delivery-remote').check();
-    for (const answer of ['yes', 'no', 'unknown']) { await page.locator('#remoteReady').selectOption(answer); assert.doesNotMatch(await prepare(), /Miejscowość: Łódź/); }
+    for (const answer of ['yes', 'no', 'unknown']) { await page.locator('#remoteReady').selectOption(answer); assert.match(await prepare(), /Miejscowość: Łódź/); }
     await page.locator('#delivery-local').check();
     let text = await prepare(); assert.match(text, /Miejscowość: Łódź/); assert.doesNotMatch(text, /Ethernet i osoba/);
     await page.locator('#host').selectOption('needed'); text = await prepare(); assert.doesNotMatch(text, /HOST-A/);
@@ -219,7 +219,8 @@ try {
   await run('Bez JS oraz awaria importu: oferta, FAQ i bezpośredni kontakt', async () => {
     for (const withoutJs of [true, false]) {
       const fallback = await context({ javaScriptEnabled: !withoutJs });
-      if (!withoutJs) await fallback.route('**/smart-home-energy/model.js', route => route.abort());
+      let intercepted = 0;
+      if (!withoutJs) await fallback.route(url => url.pathname === '/smart-home-energy/model.js', route => { intercepted++; return route.abort(); });
       const p = await fallback.newPage(); await p.goto(`${origin.origin}/smart-home-energy/`);
       assert.equal(await p.locator('#config-fallback').isVisible(), true);
       assert.equal(await p.locator('#smart-form').isVisible(), false);
@@ -228,6 +229,7 @@ try {
       await p.goto(`${origin.origin}/smart-home-energy/#smart-faq`);
       assert.equal(await p.locator('#smart-faq summary').count(), 14);
       assert.equal(await p.locator('#smart-korzysci h2').count(), 1);
+      if (!withoutJs) assert.ok(intercepted > 0, 'Awaria musi przechwycić versioned model.js');
       await fallback.close();
     }
   });

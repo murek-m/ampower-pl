@@ -1,8 +1,13 @@
-# AmPower - wersja do ponownej recenzji
+# AmPower — strona publiczna i lokalny prototyp PV Mining
 
-Gałąź `review/murek-feedback-2026-10-24` zawiera poprawki do czterech uwag
-z 21.10.2026. Stan odbioru: [checklista](docs/ODBIOR_UWAG_MICHAELA.md).
-Gałąź jest przeznaczona do sprawdzenia; nie została wdrożona na `main` ani domenę.
+Aktualny katalog źródeł: `ampower-pv-mining`, gałąź `feat/pv-mining`.
+Zawiera poprawki strony publicznej oraz osobny lokalny prototyp PV Mining.
+Stan napraw z 27.10.2026: [raport odbioru](docs/NAPRAWY_AUDYTU_2026-10-27.md).
+W audycie z tego dnia domena pokazywała starsze wydanie z 22.10.2026.
+Lokalny build nie aktualizuje domeny.
+
+Wcześniejsze uwagi do wersji z 21.10.2026:
+[checklista](docs/ODBIOR_UWAG_MICHAELA.md).
 
 - Na głównej sześć kart usług, w tym jedna „06 / SMART HOME” z linkiem do podstrony.
 - Rozbudowane treści i konfigurator pozostają pod `/smart-home-energy/`.
@@ -22,16 +27,15 @@ npm test
 npm run lint
 npm run build
 npm run release:check
-npm run reviews:local
+npm run preview
 ```
 
-Strona: http://127.0.0.1:8791/ ; Smart Home: `/smart-home-energy/`.
-Panel opinii: `/admin/opinie/`. Losowe hasło na to uruchomienie pojawi się w terminalu.
-Dane są w prywatnym katalogu poza repozytorium; lokalnie nie wysyła się poczty.
-Sam statyczny `npm run preview` pokazuje stronę, ale nie uruchamia API opinii.
+Strona: http://127.0.0.1:4173/ ; Smart Home: `/smart-home-energy/`.
+`npm run preview` serwuje wyłącznie publiczny katalog `dist/`.
 
-[Opinie, hosting i kopie zapasowe](docs/OPINIE.md). Opinie online oraz rzeczywista
-poczta nadal wymagają konfiguracji usługi Node, trwałego dysku i dostawcy wiadomości.
+Opinie są odłożone i nie wchodzą do publicznej strony. Zachowany prototyp ma
+[osobną instrukcję](docs/OPINIE.md); polecenie `npm run reviews:local` dotyczy tego
+archiwalnego prototypu, a nie podstawowego podglądu strony.
 Konfigurator Smart Home przygotowuje szkic do samodzielnego wysłania; odbiornik
 produkcyjny i aktualny cennik są wyłączone do osobnego odbioru.
 
@@ -47,6 +51,7 @@ npm run test:e2e
 npm run test:e2e:additional
 npm run test:e2e:reviews
 npm run test:e2e:consent
+npm run test:e2e:audit
 npm run test:release
 ```
 
@@ -54,6 +59,11 @@ Testy opinii i zgody uruchamiają własne tymczasowe serwery. Test zgody symuluj
 ampower.pl i zastępuje Google atrapą; nie wysyła prawdziwych zdarzeń do Google.
 Dane testowe są syntetyczne. Potwierdzenie tagu w koncie GA jest osobnym odbiorem
 przed publikacją; wyniki testów nie są potwierdzeniem odbioru danych w usłudze.
+
+`test:e2e:audit` sprawdza gotowe `dist/` i `output/pv-mining-preview/`,
+uruchamiając własne serwery lokalne. Oprócz Playwright wymaga axe-core:
+`AMPOWER_AXE_SOURCE` wskazuje plik `axe-core/axe.min.js` w środowisku QA.
+Obejmuje walidację kalkulatora, dostępność, rozwinięte panele i większy tekst.
 
 ## Granica publikacji
 
@@ -74,3 +84,27 @@ Rynek ma jawny snapshot, ceny infrastruktury pozostają do wyceny.
 Prywatny panel ofert Energy: `npm run panel:local`;
 [instrukcja](docs/ampower-sales/08B_INSTRUKCJA_UZYTKOWNIKA.md).
 Panel i dokumenty nie wchodzą do publicznego artefaktu.
+
+## Regresje audytu Smart Home & Energy
+
+[Naprawy AUD-001–017 i ograniczenia odbioru](NAPRAWY_SMART_HOME_ENERGY.md).
+Workflow `.github/workflows/regression.yml` sprawdza push/PR: lint (w tym PV),
+jednostki, oba buildy, whitelistę/CSP i przeglądarki. Nie publikuje ani nie aktualizuje danych.
+QA jest oddzielone od zależności strony: Playwright **1.62.1** z przypisanymi
+Chromium i WebKit, Ubuntu 24.04 i Node 22.22.0. Wersje silników i raporty trafiają do artefaktu CI.
+
+Po zbudowaniu obu artefaktów można użyć istniejącego środowiska QA:
+
+```sh
+AMPOWER_PLAYWRIGHT_MODULE=/absolutna/sciezka/playwright/index.mjs node scripts/qa_regression.mjs
+```
+
+Runner uruchamia własne serwery na localhost, blokuje obce originy i metody zapisu,
+używa wyłącznie syntetycznych danych. `AMPOWER_CHROME_PATH` opcjonalnie wskazuje
+lokalny Chrome; bez tej zmiennej używa Chromium z Playwright. Raporty domyślnie
+w `output/qa-regression/` (`AMPOWER_QA_OUTPUT` zmienia katalog).
+Można wskazać pojedynczy zestaw, np. `node scripts/qa_regression.mjs qa_pv_forms`.
+Macierz odbiorcza obejmuje 375, 390, 430, 1366, 1440 i 1920 px w obu silnikach.
+Automatyczny WebKit nie zastępuje odbioru natywnego Safari/VoiceOver.
+Buildy i testy twórz w osobnej kopii roboczej, jeżeli istniejące `dist/` i `output/`
+zawierają potrzebne wcześniejsze artefakty.

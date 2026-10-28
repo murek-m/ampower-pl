@@ -9,7 +9,7 @@ const origin = new URL(process.env.AMPOWER_QA_URL || 'http://127.0.0.1:4173');
 if (!['127.0.0.1', 'localhost', '[::1]'].includes(origin.hostname)) throw new Error('Dopuszczalny jest wyłącznie lokalny serwer QA.');
 const browser = await chromium.launch({ headless: true, ...(process.env.AMPOWER_CHROME_PATH ? { executablePath: process.env.AMPOWER_CHROME_PATH } : {}) });
 const ids = ['blinds', 'lights', 'ac', 'heatPump', 'boiler', 'floor', 'pv', 'storage', 'ev', 'gate', 'security', 'other'];
-const output = 'docs/ampower-sales/qa/regression';
+const output = process.env.AMPOWER_QA_OUTPUT || 'docs/ampower-sales/qa/regression';
 const results = [], performanceRuns = [], rejectedRequests = [], errors = [], layoutResults = [];
 let pairs = 0;
 await mkdir(output, { recursive: true });
@@ -144,7 +144,7 @@ try {
       await page.setViewportSize({ width, height });
       const measurement = await page.evaluate(() => ({ width: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth, fields: [...document.querySelectorAll('input:not([type=checkbox]):not([type=radio]),select,textarea')].filter(n => n.getClientRects().length && !n.disabled && !n.closest('[aria-hidden=true]')).map(n => ({ id: n.id, height: n.getBoundingClientRect().height, font: parseFloat(getComputedStyle(n).fontSize) })) }));
       assert.ok(measurement.scroll <= measurement.width + 1, `${width}×${height}: przepełnienie`);
-      assert.ok(measurement.fields.every(f => f.height >= 44 && f.font >= 16));
+      assert.ok(measurement.fields.every(f => f.height >= 44 && f.font >= 16), `${width}×${height}: ${JSON.stringify(measurement.fields.filter(f => f.height < 44 || f.font < 16))}`);
       layoutResults.push({ viewport: { width, height }, client: measurement.width, scroll: measurement.scroll, fields: measurement.fields.length });
     }
     await page.setViewportSize({width:390,height:844});
@@ -165,7 +165,7 @@ try {
     await page.locator('#email').fill('bledny-adres');
     await page.locator('#preview-config').click();
     assert.equal(await page.evaluate(() => document.activeElement.id), 'error-summary');
-    await page.locator('#error-list a[href="#email"]').click();
+    await page.locator('#error-list button[aria-controls="email"]').click();
     const focusPosition = await page.evaluate(() => ({ top:document.activeElement.getBoundingClientRect().top, headerBottom:document.querySelector('header').getBoundingClientRect().bottom }));
     assert.ok(focusPosition.top >= focusPosition.headerBottom, 'Nagłówek zasłania focus przy większym tekście');
     await page.locator('#category-other').scrollIntoViewIfNeeded();

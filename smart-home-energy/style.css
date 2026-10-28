@@ -91,6 +91,11 @@ summary { cursor:pointer; font-weight:600; padding:16px; min-height:56px; }
 .field label { display:block; font-weight:600; margin-bottom:8px; }
 .field input,.field select,.field textarea { display:block; width:100%; min-height:48px; padding:10px 12px; border:1px solid var(--line); border-radius:6px; background:var(--bg); color:var(--ink); font-size:16px; }
 .field textarea { min-height:120px; resize:vertical; }
+/* WebKit native select text can paint outside a constrained box at text zoom. */
+/* Native WebKit menulists ignore min-height; retain keyboard/native popup behavior. */
+.field select { appearance:none; min-width:0; max-width:100%; overflow:hidden; text-overflow:ellipsis; padding-right:36px;
+ background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);
+ background-position:calc(100% - 18px) center,calc(100% - 13px) center; background-size:5px 5px; background-repeat:no-repeat; }
 .unknown-button { min-height:44px; border:0; background:transparent; padding:8px 0; color:var(--accent); font-size:1rem; cursor:pointer; text-decoration:underline; text-underline-offset:4px; }
 .summary-card { border-top:4px solid var(--volt); }
 .summary-card h3 { margin-bottom:20px; }
@@ -138,11 +143,11 @@ footer .wrap { display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
   .summary-card { position:sticky; top:92px; max-height:calc(100dvh - 116px); overflow-y:auto; }
 }
 @media (min-width:1201px) {
-  .nav { flex-wrap:nowrap; padding:0 24px; }
-  .nav-links,.menu-ready .nav-links { display:flex; width:auto; flex-direction:row; order:0; gap:20px; padding:0; }
-  .nav-links a { white-space:nowrap; }
+  .nav { flex-wrap:wrap; padding:0 24px; }
+  .nav-links,.menu-ready .nav-links { display:flex; width:auto; min-width:0; flex:1 1 600px; flex-wrap:wrap; flex-direction:row; order:1; gap:0 20px; padding:0; }
+  .nav-links a { white-space:normal; }
   .menu-ready .nav-toggle { display:none; }
-  .nav-phone { width:auto; padding:10px 16px; gap:8px; }
+  .nav-phone { order:2; width:auto; padding:10px 16px; gap:8px; }
   .nav-phone-text { display:inline; }
 }
 @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } }

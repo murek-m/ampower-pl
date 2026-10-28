@@ -21,11 +21,23 @@ export function validateDataset([market,models,profile],now=Date.now()) {
   if(!Array.isArray(profile)||![8760,8784].includes(profile.length)||profile.length!==(end-begin)/3600000||first<begin||first>=begin+3600000||stamp(profile.at(-1)?.[0])>=end||!profile.every((r,i)=>Array.isArray(r)&&r.length===2&&Number.isFinite(stamp(r[0]))&&range(r[1],0,2)&&(!i||stamp(r[0])-stamp(profile[i-1][0])===3600000)))throw new Error('Nieprawidłowy godzinowy profil PV. Wyniki są zablokowane.');
   return [market,models,profile];
 }
+// The build removes repeated timestamps only; source snapshots keep their original format.
+export function decodeProfile(data) {
+  if(Array.isArray(data))return data;
+  if(data?.format!=='ampower-pv-hourly-v1'||typeof data.start!=='string'||
+    !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(data.start)||!Number.isFinite(stamp(data.start))||
+    !Array.isArray(data.values)||![8760,8784].includes(data.values.length)||
+    !Array.from(data.values).every(v=>range(v,0,2)))throw new Error('Nieprawidłowy skompaktowany profil PV. Wyniki są zablokowane.');
+  const start=stamp(data.start);
+  if(new Date(start).toISOString().replace('.000Z','Z')!==data.start)throw new Error('Nieprawidłowa data profilu PV.');
+  return data.values.map((value,i)=>[new Date(start+i*3600000).toISOString().replace('.000Z','Z'),value]);
+}
 export async function loadDataset(fetcher=fetch) {
   return validateDataset(await Promise.all(['market','models','profile'].map(async name=>{
     const response=await fetcher(`./data/${name}.json`,{cache:'no-store'});
     if(!response.ok)throw new Error(`Nie można odczytać ${name}.json (HTTP ${response.status})`);
-    return response.json();
+    const data=await response.json();
+    return name==='profile'?decodeProfile(data):data;
   })));
 }
 export function freshness(market,models,now=Date.now()) {

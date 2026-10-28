@@ -1,0 +1,22 @@
+[
+  {
+    "engine": "chromium",
+    "scenario": "specification",
+    "status": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "scenario": "mailto",
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "scenario": "specification",
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "scenario": "mailto",
+    "status": "PASS"
+  }
+]

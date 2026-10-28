@@ -1,13 +1,13 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { Script } from 'node:vm';
-const js = ['scripts', 'tests', 'smart-home-energy', 'backend'].flatMap(dir => readdirSync(dir).filter(f => /\.(?:js|mjs)$/.test(f)).map(f => `${dir}/${f}`));
+const js = ['scripts', 'tests', 'smart-home-energy', 'pv-mining', 'backend'].flatMap(dir => readdirSync(dir).filter(f => /\.(?:js|mjs)$/.test(f)).map(f => `${dir}/${f}`));
 js.push('backend/panel/panel.js','assets/consent.js','assets/reviews.js','assets/reviews-config.js','backend/reviews-admin/admin.js');
 for (const path of js) {
   const result = spawnSync(process.execPath, ['--check', path], { encoding: 'utf8' });
   if (result.status !== 0) throw new Error(`${path}: ${result.stderr}`);
 }
-for (const path of ['index.html', 'smart-home-energy/index.html', 'prywatnosc/index.html', 'backend/reviews-admin/index.html']) {
+for (const path of ['index.html', 'smart-home-energy/index.html', 'prywatnosc/index.html', 'backend/reviews-admin/index.html', 'pv-mining/index.html', 'pv-mining/simple.html', 'pv-mining/advanced.html']) {
   const html = readFileSync(path, 'utf8');
   for (const match of html.matchAll(/<script([^>]*)>([\s\S]*?)<\/script>/g)) {
     if (match[1].includes('application/ld+json')) JSON.parse(match[2]);

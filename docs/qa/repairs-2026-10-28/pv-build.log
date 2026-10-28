@@ -1,0 +1,5 @@
+
+> pv:build
+> node scripts/build-pv-mining.mjs
+
+Lokalny prototyp: output/pv-mining-preview/ (zasoby 31904826dbac52d8). Bez publikacji; bez źródeł backendu i dokumentacji.

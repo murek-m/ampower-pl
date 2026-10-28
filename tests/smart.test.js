@@ -128,3 +128,10 @@ test('niepełna para UTF-16 nie przerywa przygotowania pełnego szkicu', () => {
   assert.match(text, /A\ud800B/);
   assert.deepEqual(emailDraft(text), { uri: null, tooLong: false });
 });
+
+for(const delivery of ['local','remote','unknown']) test(`AUD-001: complete project survives ${delivery} in text and mailto`,()=>{
+ const raw={...base(),delivery,locality:'Wrocław',radioChoice:'p03',infrastructure:'ready',complexity:'complex',simpleScenes:'3',advancedScenes:'2',support:'extended'};
+ assert.deepEqual(validate(raw),[]);const text=inquiryText(buildInquiry(raw));const body=new URL(emailDraft(text).uri).searchParams.get('body');assert.equal(body,text);
+ for(const phrase of ['Miejscowość: Wrocław','Mam SONOFF ZBDongle-E','Sprawna sieć i gotowe punkty instalacji','Dodatkowa diagnostyka / złożone integracje','proste automatyzacje — liczba: 3','zaawansowane automatyzacje — liczba: 2','Dodatkowe wsparcie rozszerzone'])assert.ok(body.includes(phrase),phrase);
+});
+for(const value of ['', '0','1','999'])test(`AUD-002: permitted scenes ${JSON.stringify(value)}`,()=>assert.deepEqual(validate({...base(),simpleScenes:value,advancedScenes:value}),[]));

@@ -1,0 +1,32 @@
+[
+  {
+    "engine": "chromium",
+    "scenario": "blur actions",
+    "status": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "scenario": "CSV presets and views",
+    "status": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "scenario": "CSV interrupted by preset",
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "scenario": "blur actions",
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "scenario": "CSV presets and views",
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "scenario": "CSV interrupted by preset",
+    "status": "PASS"
+  }
+]
