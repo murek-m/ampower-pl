@@ -1,7 +1,12 @@
-# AmPower — strona publiczna i lokalny prototyp PV Mining
+# AmPower — strona publiczna i kalkulator PV Mining
 
 Aktualny katalog źródeł: `ampower-pv-mining`, gałąź `feat/pv-mining`.
-Zawiera poprawki strony publicznej oraz osobny lokalny prototyp PV Mining.
+Zawiera poprawki strony publicznej oraz osobny kalkulator PV Mining.
+
+**28.10.2026: PV Mining beta opublikowany na https://ampower.pl/pv-mining/.**
+[Raport publikacji i instrukcja przygotowania kolejnego wydania](docs/pv-mining/15_PUBLIKACJA_2026-10-28.md).
+Podstawowy build strony nie zawiera PV: przed zastąpieniem całego wydania dołącz
+moduł poleceniem `node scripts/build-pv-public.mjs /ścieżka/do/publicznej-kopii`.
 Stan napraw z 27.10.2026: [raport odbioru](docs/NAPRAWY_AUDYTU_2026-10-27.md).
 W audycie z tego dnia domena pokazywała starsze wydanie z 22.10.2026.
 Lokalny build nie aktualizuje domeny.
@@ -74,9 +79,9 @@ wycen Energy; nie jest publicznym API. Operacyjne dane, cenniki zakupu i sekrety
 muszą pozostać poza repozytorium i artefaktem. Historyczne dokumenty w `docs/`
 nie zastępują aktualnej checklisty odbioru.
 
-## PV Mining — lokalny moduł
+## PV Mining — publiczna wersja beta i lokalny podgląd
 
-Prototypy A/B zachowano na `feat/pv-mining`. `npm run pv:dev` uruchamia osobny
+Kalkulatory A/B są opublikowane pod `/pv-mining/`; źródła zachowano na `feat/pv-mining`. `npm run pv:dev` uruchamia osobny
 podgląd `http://127.0.0.1:4186/`; moduł nie jest dołączany do publicznego `dist/`.
 [Raport ostatnich napraw i odbioru](docs/pv-mining/14_NAPRAWY_I_ODBIOR_AUDYTU.md).
 Rynek ma jawny snapshot, ceny infrastruktury pozostają do wyceny.
