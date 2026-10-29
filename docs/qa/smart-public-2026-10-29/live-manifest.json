@@ -1,0 +1,182 @@
+[
+  {
+    "file": "assets/consent.js",
+    "http": 200,
+    "sha256": "2b5cf6d5d1f34b3dc412eafb6dd2d581d8d15bca3361250a6ce1275ab033134b",
+    "matches": true
+  },
+  {
+    "file": "smart-home-energy/app.js",
+    "http": 200,
+    "sha256": "c2484f684f756c5f8e26662630c9792f981fcb78faf2da90b827cefb76ee9876",
+    "matches": true
+  },
+  {
+    "file": "smart-home-energy/data.js",
+    "http": 200,
+    "sha256": "442aa70fd6bfd6604f4ad3687c5133f6ce9dfd5bfcda3053cb3f11fb38c68c7e",
+    "matches": true
+  },
+  {
+    "file": "smart-home-energy/index.html",
+    "http": 200,
+    "sha256": "b891ef9c366a671c5b4246c2a82fee769b2ef3cc029d6c3e47828407cd9c06a5",
+    "matches": true
+  },
+  {
+    "file": "smart-home-energy/inquiry-client.js",
+    "http": 200,
+    "sha256": "26b88dfa977773d9a81edfb5700eb101c3c02fa672a645561002c47f9d35374a",
+    "matches": true
+  },
+  {
+    "file": "smart-home-energy/menu.js",
+    "http": 200,
+    "sha256": "88bfe78342f2a8054117f8179ff67e3b30785f712a4002ab45ade176a65f9fbe",
+    "matches": true
+  },
+  {
+    "file": "smart-home-energy/model.js",
+    "http": 200,
+    "sha256": "baf513beb81fbf1b1d963fe54aefb8805d283f12cbfebc98e86f151d337762b9",
+    "matches": true
+  },
+  {
+    "file": "smart-home-energy/style.css",
+    "http": 200,
+    "sha256": "4d3c20be0f8fe4fd4b07ace90072a9ae72719367d5dc8ef0c0732f405bb72fc1",
+    "matches": true
+  },
+  {
+    "file": "index.html",
+    "http": 200,
+    "sha256": "cb05900112362ee48330e34054ae8c7b402f419f856580b463251a2d66ad35ba",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/advanced.html",
+    "http": 200,
+    "sha256": "879aa719807eeb74cfc677af20034d196b368431fc10393e60581264bcca1f2b",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/app.js",
+    "http": 200,
+    "sha256": "1457ffffe3751900bb33a3b95f8abb519e20903e5ee809fb0eb46f523793a683",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/charts.js",
+    "http": 200,
+    "sha256": "8e6cf80b30c9bc66f79d8ea5b8f3358aba0905464d80ab7c42e6f26cf33ae15b",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/data/market.json",
+    "http": 200,
+    "sha256": "fd71f01c6bd246dc3d3fd7cc3b37941b8556403111df226a8afd3452c4db42f0",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/data/models.json",
+    "http": 200,
+    "sha256": "d7f7259fe22ed4b9b4c097c4c50cc5da056a78616bfcff865fbca38e80ebfaf8",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/data/profile.json",
+    "http": 200,
+    "sha256": "3df44f2af90f5b28d0f66f1561e327b7b019da93dc4e2deb4df71d93c482b627",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/data-loader.js",
+    "http": 200,
+    "sha256": "4beeae9bd681a3bfa55eb32122891fcd679fb8796802eaaf5a726c0102572596",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/engine.js",
+    "http": 200,
+    "sha256": "464b161662494693212916ee20e5743e2f175a70385cac1299b4029103e1c4e3",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/favicon.svg",
+    "http": 200,
+    "sha256": "7819b405923b921b0a86ad7eadcd5db9264ae46730d767124acf4fcefa9be7c2",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/fonts/archivo-1.woff2",
+    "http": 200,
+    "sha256": "2995622a3e4021e730bfea260fee758858342921930caab513363e8d316b64bc",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/fonts/archivo-2.woff2",
+    "http": 200,
+    "sha256": "1051971168a34fbc875caf9b7ccc7953c3896367b48451877ed7fa5bf1e6b1de",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/fonts/fonts.css",
+    "http": 200,
+    "sha256": "10bb3fcc3cc866f452dc72b3acb55e7537de380f665111a74b3ad7c83e7c6eb0",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/fonts/ibm-plex-mono-5.woff2",
+    "http": 200,
+    "sha256": "a76f53ca6612e7b3828eec2311098675b7f9849ae4169a8bcef6302aec02a6c0",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/fonts/ibm-plex-mono-6.woff2",
+    "http": 200,
+    "sha256": "77f03e26f981c582bdba3a7abed4baa2d3149211c01366bb3ab3ba7622ec4ae5",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/fonts/ibm-plex-sans-3.woff2",
+    "http": 200,
+    "sha256": "056e4e2459f57a0033c8c9c844ff19d6e42ac8602027803d4345823bcc939818",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/fonts/ibm-plex-sans-4.woff2",
+    "http": 200,
+    "sha256": "ae1d854fefa1167a79071f1afe01d4d51b60c5840c1be36dd74bd5fe7375b405",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/index.html",
+    "http": 200,
+    "sha256": "f7770fe42e3fec4b14f4f4cd95d6d3ffa2855ff079277bba82afd3d35afc9a46",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/session.js",
+    "http": 200,
+    "sha256": "61269fca5fdb7aad9a345c3d0fe763bdc903cdae3ac78ac9a732bc32e3b61189",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/simple.html",
+    "http": 200,
+    "sha256": "485e4f78daf26b8ec38888c33d278cef48a1f262910895b7a15afd76f0c81113",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/style.css",
+    "http": 200,
+    "sha256": "92a52019f5b13d44669fd4c5781bf62fef352946f4edcddd49ded2c3161c23ac",
+    "matches": true
+  },
+  {
+    "file": "pv-mining/worker.js",
+    "http": 200,
+    "sha256": "ee96d62de4cc9b183b6c1ecd26268039e30b98c1dbdd5aaf01485c5e7d669ba9",
+    "matches": true
+  }
+]

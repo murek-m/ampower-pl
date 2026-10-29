@@ -1,0 +1,196 @@
+[
+  {
+    "engine": "chromium",
+    "path": "/",
+    "status": "PASS",
+    "scopes": {
+      "provider": "cloudflare",
+      "enabled": true,
+      "srcs": [
+        "",
+        "https://ampower.pl/assets/consent.js",
+        "https://static.cloudflareinsights.com/beacon.min.js",
+        ""
+      ]
+    },
+    "third": [
+      "https://static.cloudflareinsights.com/beacon.min.js"
+    ]
+  },
+  {
+    "engine": "chromium",
+    "path": "/smart-home-energy/",
+    "status": "PASS",
+    "scopes": {
+      "provider": "cloudflare",
+      "enabled": false,
+      "srcs": [
+        "https://ampower.pl/smart-home-energy/menu.js?v=02a1af088937a42d",
+        "https://ampower.pl/smart-home-energy/app.js?v=02a1af088937a42d",
+        "",
+        "https://ampower.pl/assets/consent.js?v=02a1af088937a42d"
+      ]
+    },
+    "third": []
+  },
+  {
+    "engine": "chromium",
+    "path": "/prywatnosc/",
+    "status": "PASS",
+    "scopes": {
+      "provider": "cloudflare",
+      "enabled": false,
+      "srcs": [
+        "https://ampower.pl/assets/consent.js"
+      ]
+    },
+    "third": []
+  },
+  {
+    "engine": "chromium",
+    "path": "/pv-mining/",
+    "status": "PASS",
+    "scopes": {
+      "srcs": []
+    },
+    "third": []
+  },
+  {
+    "engine": "chromium",
+    "name": "mobile-menu",
+    "status": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "name": "text200-controls",
+    "width": 375,
+    "status": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "name": "text200-controls",
+    "width": 390,
+    "status": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "name": "text200-controls",
+    "width": 430,
+    "status": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "name": "text200-controls",
+    "width": 1366,
+    "status": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "name": "text200-controls",
+    "width": 1440,
+    "status": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "name": "text200-controls",
+    "width": 1920,
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "path": "/",
+    "status": "PASS",
+    "scopes": {
+      "provider": "cloudflare",
+      "enabled": true,
+      "srcs": [
+        "",
+        "https://ampower.pl/assets/consent.js",
+        "https://static.cloudflareinsights.com/beacon.min.js",
+        ""
+      ]
+    },
+    "third": [
+      "https://static.cloudflareinsights.com/beacon.min.js"
+    ]
+  },
+  {
+    "engine": "webkit",
+    "path": "/smart-home-energy/",
+    "status": "PASS",
+    "scopes": {
+      "provider": "cloudflare",
+      "enabled": false,
+      "srcs": [
+        "https://ampower.pl/smart-home-energy/menu.js?v=02a1af088937a42d",
+        "https://ampower.pl/smart-home-energy/app.js?v=02a1af088937a42d",
+        "",
+        "https://ampower.pl/assets/consent.js?v=02a1af088937a42d"
+      ]
+    },
+    "third": []
+  },
+  {
+    "engine": "webkit",
+    "path": "/prywatnosc/",
+    "status": "PASS",
+    "scopes": {
+      "provider": "cloudflare",
+      "enabled": false,
+      "srcs": [
+        "https://ampower.pl/assets/consent.js"
+      ]
+    },
+    "third": []
+  },
+  {
+    "engine": "webkit",
+    "path": "/pv-mining/",
+    "status": "PASS",
+    "scopes": {
+      "srcs": []
+    },
+    "third": []
+  },
+  {
+    "engine": "webkit",
+    "name": "mobile-menu",
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "name": "text200-controls",
+    "width": 375,
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "name": "text200-controls",
+    "width": 390,
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "name": "text200-controls",
+    "width": 430,
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "name": "text200-controls",
+    "width": 1366,
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "name": "text200-controls",
+    "width": 1440,
+    "status": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "name": "text200-controls",
+    "width": 1920,
+    "status": "PASS"
+  }
+]

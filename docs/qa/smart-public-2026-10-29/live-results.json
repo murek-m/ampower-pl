@@ -1,0 +1,145 @@
+{
+  "date": "2026-10-29T13:36:58.645Z",
+  "results": [
+    {
+      "engine": "chromium",
+      "name": "prices-12-categories-66-pairs",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "layout-375",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "layout-390",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "layout-430",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "layout-1366",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "layout-1440",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "layout-1920",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "draft-complete-local",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "draft-complete-remote",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "draft-complete-unknown",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "scene-validation-simpleScenes",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "scene-validation-advancedScenes",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "no-production-submit",
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "no-runtime-http-errors",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "prices-12-categories-66-pairs",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "layout-375",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "layout-390",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "layout-430",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "layout-1366",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "layout-1440",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "layout-1920",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "draft-complete-local",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "draft-complete-remote",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "draft-complete-unknown",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "scene-validation-simpleScenes",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "scene-validation-advancedScenes",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "no-production-submit",
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "no-runtime-http-errors",
+      "status": "PASS"
+    }
+  ]
+}

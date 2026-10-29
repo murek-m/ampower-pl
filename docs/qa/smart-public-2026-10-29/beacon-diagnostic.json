@@ -1,0 +1,81 @@
+[
+  {
+    "engine": "chromium",
+    "server": "GitHub.com",
+    "cfRay": false,
+    "responseContainsBeacon": false,
+    "scripts": [
+      {
+        "src": "https://ampower.pl/smart-home-energy/menu.js",
+        "async": false,
+        "defer": false
+      },
+      {
+        "src": "https://ampower.pl/smart-home-energy/app.js",
+        "async": false,
+        "defer": false
+      },
+      {
+        "src": "https://ampower.pl/assets/consent.js",
+        "async": false,
+        "defer": true
+      }
+    ],
+    "external": [
+      {
+        "url": "https://static.cloudflareinsights.com/beacon.min.js",
+        "frame": "https://ampower.pl/smart-home-energy/"
+      }
+    ],
+    "initiator": {
+      "type": "script",
+      "stack": {
+        "callFrames": [
+          {
+            "functionName": "",
+            "scriptId": "6",
+            "url": "https://ampower.pl/assets/consent.js",
+            "lineNumber": 23,
+            "columnNumber": 16
+          },
+          {
+            "functionName": "",
+            "scriptId": "6",
+            "url": "https://ampower.pl/assets/consent.js",
+            "lineNumber": 24,
+            "columnNumber": 2
+          }
+        ]
+      }
+    }
+  },
+  {
+    "engine": "webkit",
+    "server": "GitHub.com",
+    "cfRay": false,
+    "responseContainsBeacon": false,
+    "scripts": [
+      {
+        "src": "https://ampower.pl/smart-home-energy/menu.js",
+        "async": false,
+        "defer": false
+      },
+      {
+        "src": "https://ampower.pl/smart-home-energy/app.js",
+        "async": false,
+        "defer": false
+      },
+      {
+        "src": "https://ampower.pl/assets/consent.js",
+        "async": false,
+        "defer": true
+      }
+    ],
+    "external": [
+      {
+        "url": "https://static.cloudflareinsights.com/beacon.min.js",
+        "frame": "https://ampower.pl/smart-home-energy/"
+      }
+    ]
+  }
+]

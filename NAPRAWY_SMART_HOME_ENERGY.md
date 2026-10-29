@@ -279,3 +279,8 @@ AUD012: laboratoryjny cel osiągnięty, mediana LCP2,324s,3/3 pomiary≤2,5s, CL
 Oryginalny audyt SHA256 de74e137408d80f061d3b0c272061edad629d2973199b091aaf4df6d944c5c2f i profil02b9b5d3c87728560e0957b79c81180cae3d3f06a50d69a4b2dedb96a2d44e20 bez zmian. Zachowano wszystkie wcześniejsze prace. Zakończono wyłącznie własny serwer preview49372 po potwierdzeniu PID94269, czasu startu i katalogu roboczego izolowanej kopii. Automatyzacja ampower-wznowienie-napraw-aud-001-017 została PAUSED — sukces potwierdziło narzędzie. Dalsze automatyczne wznowienie nie jest potrzebne.
 
 Limit po wznowieniu100%300min, przy zamknięciu odczyt97%, reset1793277932; tygodniowy23%, reset1793774116. Nie użyto kredytów, ręcznych resetów ani zmiany modelu.
+
+
+## Nowe polecenie naprawy publicznego Smart Home — 29.10.2026
+
+Po raporcie nieprawidłowości użytkownik polecił „W takim razie teraz to napraw”. Przygotowano i opublikowano wyłącznie8 publicznych plików na bazie aktualnego main, bez scalania źródłowej gałęzi. Produkcyjny commit f9e31b79e59aca4b2aefa2965e25917c34c48c77, Pages40883248831 built. AUD001/AUD002 oraz analityka konfiguratora naprawione i odebrane na domenie;50/50 produkcyjnych przypadków PASS. 30/30 pobranych plików zgodnychSHA256, zachowane21PV. Pełny opis i ważna różnica między produkcyjną politykąCloudflare a źródłowąGoogle w docs/SMART_HOME_PUBLIKACJA_2026-10-29.md. Cena automatyczna nadal nieaktywna: brak aktualnego zatwierdzonego cennika, potrzebne dane właściciela; nie wprowadzono cen testowych ani danych z prywatnych dokumentów. Starsze zakazy publikacji w tej chronologii odnoszą się do poprzednich etapów; nowe polecenie dotyczyło napraw publicznej strony. Pozostały odbiórVoiceOver nadal jawnie ograniczony. Nie uruchamiano dodatkowego heartbeat.
