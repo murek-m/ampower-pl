@@ -8,6 +8,7 @@ import { randomUUID } from 'node:crypto';
 import { deflateSync } from 'node:zlib';
 import http from 'node:http';
 import { spawnSync } from 'node:child_process';
+import { publicBuildFixture } from './public-build-fixture.mjs';
 import { resolve } from 'node:path';
 import { ReviewsStore } from '../backend/reviews-store.js';
 import { sanitizeReviewPhoto, crc32 } from '../backend/reviews-photo.js';
@@ -97,7 +98,9 @@ test('retencja usuwa nieopublikowane po 90 dniach, zachowuje opublikowane',async
   const s=await setup(t);await s.login();await s.submit();const {id}=await(await s.submit()).json();await s.admin(id,{action:'publish',version:1});assert.equal(s.store.purgeUnpublished(new Date('2027-02-01')),1);assert.equal(s.store.list({admin:true}).total,1);assert.equal(s.store.list().total,1);
 });
 test('panel i serwer nie udostępniają źródeł, bazy, prywatnego panelu Energy ani plików spoza dist',async t=>{
-  const s=await setup(t);assert.equal((await s.request('/admin/opinie/')).status,200);
+  const cwd=await publicBuildFixture(t);
+  const build=spawnSync(process.execPath,['scripts/build.js'],{encoding:'utf8',cwd});assert.equal(build.status,0,build.stderr);
+  const s=await setup(t,{staticRoot:join(cwd,'dist')});assert.equal((await s.request('/admin/opinie/')).status,200);
   for(const path of ['/backend/store.js','/backend/reviews-server.js','/reviews.sqlite','/.git/config','/api/panel/catalog'])assert.ok([401,404].includes((await s.request(path)).status),path);
   const status=await new Promise((resolve,reject)=>{const request=http.request(s.origin+'/api/reviews',{headers:{Host:'evil.example'}},response=>{response.resume();resolve(response.statusCode);});request.on('error',reject);request.end();});assert.equal(status,403);
 });
