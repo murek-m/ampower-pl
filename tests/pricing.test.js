@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, readdirSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
+import { join } from 'node:path';
+import { publicBuildFixture } from './public-build-fixture.mjs';
 import { approvedBook, selection, NOW } from './sales-fixtures.mjs';
 import { projectPublicCatalog, loadCatalog } from '../backend/catalog.js';
 import { estimate } from '../smart-home-energy/pricing.js';
@@ -105,10 +107,11 @@ test('duplikaty i nietypowe ilości odrzucane', () => {
   for(const n of [0,-1,.5,1000,Infinity,'2']) {const s=selection();s.items[0].quantity=n;assert.equal(run(s).price,null);}
   const s=selection();s.delivery='local';s.items.push({...s.items[0]});assert.equal(run(s).price,null);
 });
-test('publiczny build zawiera wyłącznie zasoby witryny i nie zawiera pól poufnych', () => {
-  const result=spawnSync(process.execPath,['scripts/build.js'],{encoding:'utf8'});assert.equal(result.status,0,result.stderr);
+test('publiczny build zawiera wyłącznie zasoby witryny i nie zawiera pól poufnych', async t => {
+  const cwd=await publicBuildFixture(t);
+  const result=spawnSync(process.execPath,['scripts/build.js'],{encoding:'utf8',cwd});assert.equal(result.status,0,result.stderr);
   const walk=dir=>readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?walk(`${dir}/${e.name}`):[`${dir}/${e.name}`]);
-  const files=walk('dist');assert.ok(!files.some(p=>/backend|tests|docs|catalog\.seed|\.json$/.test(p)));
+  const files=walk(join(cwd,'dist'));assert.ok(!files.some(p=>/backend|tests|docs|catalog\.seed|\.json$/.test(p)));
   for(const p of files.filter(p=>/\.(js|html|css)$/.test(p)))assert.doesNotMatch(readFileSync(p,'utf8'),/purchaseNet|unitCostNet|internalPolicy|marginPercent|markupPercent|profitAfterIncludedCostsNet|SECRET_SENTINEL|catalog\.seed/);
 });
 test('mieszany VAT minimum wymaga kwalifikacji, nie tworzy odwróconych widełek',()=>{
