@@ -8,7 +8,8 @@
   for(let i=0;i<parts.length-1;i++)domains.push('.'+parts.slice(i).join('.'));
   for(const name of names)for(const domain of new Set(domains))document.cookie=name+'=; Max-Age=0; Path=/; SameSite=Lax'+(domain?'; Domain='+domain:'')+(location.protocol==='https:'?'; Secure':'');
   // The public filename stays stable so cached pages also stop loading Google.
-  const paths=['/','/index.html','/smart-home-energy/','/smart-home-energy/index.html','/prywatnosc/','/prywatnosc/index.html'];
+  // Analytics stays on the home page; configurator inputs and privacy pages are excluded.
+  const paths=['/','/index.html'];
   const cleanUrl=value=>{try{const u=new URL(value);return !u.search&&(!u.hash||Boolean(document.getElementById(u.hash.slice(1))));}catch{return false;}};
   const privateReferrer=()=>{if(!document.referrer)return false;try{const u=new URL(document.referrer);return Boolean(u.search||u.hash)||(u.origin===location.origin&&!paths.includes(u.pathname));}catch{return true;}};
   const enabled=location.hostname==='ampower.pl'&&paths.includes(location.pathname)&&cleanUrl(location.href)&&!privateReferrer()&&navigator.doNotTrack!=='1'&&window.doNotTrack!=='1'&&navigator.globalPrivacyControl!==true;

@@ -1,4 +1,4 @@
-import { submissionData } from './model.js';
+import { submissionData } from './model.js?v=02a1af088937a42d';
 let previousPayload = '';
 let requestId = null;
 let widgetId;

@@ -2,6 +2,12 @@
 <html lang="pl">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-U3G3KgGrIfmwuXoytmz6STIN+ojI0Cf91TM0fY+dXGU=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob: https://www.google-analytics.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com https://www.googletagmanager.com; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="preload" href="/smart-home-energy/fonts/archivo-1.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/smart-home-energy/fonts/archivo-2.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/smart-home-energy/fonts/ibm-plex-sans-3.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/smart-home-energy/fonts/ibm-plex-sans-4.woff2" as="font" type="font/woff2" crossorigin>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AMPOWER Smart Home — inteligentny dom i energia</title>
 <meta name="description" content="AMPOWER Smart Home na Dolnym Śląsku: rolety, światła, ogrzewanie i energia w jednej aplikacji. Dobierz integracje w konfiguratorze i zapytaj o wycenę.">
@@ -17,12 +23,12 @@
 <meta property="og:title" content="AMPOWER Smart Home — inteligentny dom i energia">
 <meta property="og:description" content="AMPOWER Smart Home na Dolnym Śląsku: rolety, światła, ogrzewanie i energia w jednej aplikacji. Dobierz integracje w konfiguratorze i zapytaj o wycenę.">
 <meta name="theme-color" content="#181613">
-<link rel="stylesheet" href="./style.css">
-<script src="./menu.js"></script>
-<script type="module" src="./app.js"></script>
+<link rel="stylesheet" href="./style.css?v=02a1af088937a42d">
+<script src="./menu.js?v=02a1af088937a42d"></script>
+<script type="module" src="./app.js?v=02a1af088937a42d"></script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Service", "name": "AMPOWER Smart Home & Energy", "url": "https://ampower.pl/smart-home-energy/", "serviceType": "Integracja zgodnych urządzeń i automatyka domu", "provider": {"@type": "LocalBusiness", "name": "AmPower Jakub Babiej", "url": "https://ampower.pl/", "telephone": "+48785668797", "email": "kuba@ampower.pl", "@id": "https://ampower.pl/#firma"}, "@id": "https://ampower.pl/smart-home-energy/#usluga", "areaServed": "Dolny Śląsk", "description": "Integracja zgodnych urządzeń Smart Home: rolety, oświetlenie, ogrzewanie i pomiary energii. Montaż na Dolnym Śląsku lub konfiguracja zdalna po sprawdzeniu urządzeń."}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Strona główna", "item": "https://ampower.pl/"}, {"@type": "ListItem", "position": 2, "name": "Smart Home & Energy", "item": "https://ampower.pl/smart-home-energy/"}], "@id": "https://ampower.pl/smart-home-energy/#breadcrumb"}, {"@type": "WebPage", "@id": "https://ampower.pl/smart-home-energy/#webpage", "url": "https://ampower.pl/smart-home-energy/", "name": "AMPOWER Smart Home — inteligentny dom i energia", "inLanguage": "pl-PL", "isPartOf": {"@id": "https://ampower.pl/#website"}, "about": {"@id": "https://ampower.pl/smart-home-energy/#usluga"}, "breadcrumb": {"@id": "https://ampower.pl/smart-home-energy/#breadcrumb"}}]}</script>
-<link rel="stylesheet" href="/assets/consent.css">
-<script defer src="/assets/consent.js"></script>
+<link rel="stylesheet" href="/assets/consent.css?v=02a1af088937a42d">
+<script defer src="/assets/consent.js?v=02a1af088937a42d"></script>
 </head>
 <body>
 <a class="skip" href="#top">Przejdź do treści</a>
@@ -34,6 +40,13 @@
       </span>
       <span class="brand-name">AM<span>POWER</span></span>
     </a>
+    <a class="btn btn-volt mono nav-phone" href="tel:+48785668797" aria-label="Zadzwoń: 785 668 797">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      <span class="nav-phone-text">785 668 797</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Otwórz menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+    </button>
     <div class="nav-links" id="nav-links">
       <a href="/#uslugi">Usługi</a>
       <a href="/smart-home-energy/" aria-current="page">Smart Home &amp; Energy</a>
@@ -44,16 +57,9 @@
       <a href="/#o-firmie">O firmie</a>
       <a href="/#kontakt">Kontakt</a>
     </div>
-    <a class="btn btn-volt mono nav-phone" href="tel:+48785668797" aria-label="Zadzwoń: 785 668 797">
-      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-      <span class="nav-phone-text">785 668 797</span>
-    </a>
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Otwórz menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
-    </button>
   </nav>
 </header>
-<main id="top">
+<main id="top" tabindex="-1">
 <section class="hero"><div class="wrap">
  <nav class="breadcrumbs" aria-label="Okruszki"><a href="/">Strona główna</a> / Smart Home &amp; Energy</nav>
  <p class="eyebrow">Twój dom, Twój zakres</p>
@@ -97,8 +103,9 @@
      <div class="field"><label for="radioChoice">Czy masz radio Zigbee do centrali Home Assistant?</label><select id="radioChoice" name="radioChoice"><option value="unknown">Nie wiem</option><option value="none">Nie mam — dobór i dostawa według potrzeb</option><option value="p03">Mam SONOFF ZBDongle-E</option><option value="p02">Mam Home Assistant Connect ZBT-2 (Zigbee)</option></select><p class="help">Posiadane zgodne radio wykorzystamy ponownie; nie naliczamy drugiego adaptera.</p></div>
      <div class="field"><label for="infrastructure">Warunki instalacji</label><select id="infrastructure" name="infrastructure"><option value="unknown">Nie wiem / wymaga sprawdzenia</option><option value="ready">Sprawna sieć i gotowe punkty instalacji</option></select></div>
      <div class="field"><label for="complexity">Stopień złożoności</label><select id="complexity" name="complexity"><option value="unknown">Do oceny przez AMPOWER</option><option value="simple">Standardowe integracje, bez przebudowy</option><option value="complex">Dodatkowa diagnostyka / złożone integracje</option></select></div>
-     <div class="field"><label for="simpleScenes">Dodatkowe proste automatyzacje — liczba</label><input id="simpleScenes" name="simpleScenes" inputmode="numeric" maxlength="3" aria-describedby="simpleScenes-error"><p class="field-error" id="simpleScenes-error" hidden></p></div>
-     <div class="field"><label for="advancedScenes">Dodatkowe zaawansowane automatyzacje — liczba</label><input id="advancedScenes" name="advancedScenes" inputmode="numeric" maxlength="3" aria-describedby="advancedScenes-error"><p class="field-error" id="advancedScenes-error" hidden></p></div>
+     <p class="help" id="scenes-help">Liczba dodatkowych automatyzacji: od 0 do 999. Puste pole oznacza „Do ustalenia”. Zakres i koszt potwierdzimy w ofercie.</p>
+     <div class="field"><label for="simpleScenes">Dodatkowe proste automatyzacje — liczba</label><input id="simpleScenes" name="simpleScenes" inputmode="numeric" maxlength="3" aria-describedby="scenes-help simpleScenes-error"><p class="field-error" id="simpleScenes-error" hidden></p></div>
+     <div class="field"><label for="advancedScenes">Dodatkowe zaawansowane automatyzacje — liczba</label><input id="advancedScenes" name="advancedScenes" inputmode="numeric" maxlength="3" aria-describedby="scenes-help advancedScenes-error"><p class="field-error" id="advancedScenes-error" hidden></p></div>
      <div class="field"><label for="support">Jednorazowe wsparcie po uruchomieniu</label><select id="support" name="support"><option value="none">Standardowe przekazanie</option><option value="basic">Dodatkowe wsparcie podstawowe</option><option value="extended">Dodatkowe wsparcie rozszerzone</option></select><p class="help">Zakres ustalimy w ofercie. Opcjonalną opiekę omawiamy osobno.</p></div>
     </div></details>
     <fieldset id="delivery"><legend>Jak chcesz zrealizować usługę?</legend><div class="choice-list">
@@ -116,6 +123,7 @@
     <strong>Wybrane integracje</strong><ul id="summary-categories"></ul>
     <strong>Cele</strong><p id="summary-goals"></p>
     <p class="help">Sposób realizacji: <span id="summary-delivery"></span></p>
+    <strong>Ustawienia dodatkowe</strong><ul id="summary-project"></ul>
     <p class="help">Szczegóły do ustalenia: kompatybilność, sprzęt i zakres prac.</p>
     <p id="shared-system" class="note" hidden>PV i magazyn: wspólny system do weryfikacji. Nie liczymy automatycznie dwóch integracji.</p>
     <dl id="cost-components"></dl>
@@ -127,7 +135,7 @@
   <div class="contact-form">
    <h3>Jak możemy się z Tobą skontaktować?</h3><p>Przygotuj wiadomość z wybranym zakresem. Wyślesz ją ze swojej poczty albo skopiujesz i przekażesz do AMPOWER.</p>
    <div class="field"><label for="name">Imię — opcjonalnie</label><input id="name" name="name" maxlength="80" autocomplete="given-name" aria-describedby="name-error"><p class="field-error" id="name-error" hidden></p></div>
-   <fieldset id="channel" aria-describedby="channel-error"><legend>Jak mamy się skontaktować?</legend><div class="choice-list">
+   <fieldset id="channel" aria-describedby="channel-error"><legend>Jak mamy się skontaktować?</legend><p class="help">Do szkicu wpiszemy wybrany kanał kontaktu. Jego zmiana pokaże odpowiednie pole.</p><div class="choice-list">
     <label class="choice" for="channel-email"><input type="radio" id="channel-email" name="channel" value="email" checked><span>E-mail</span></label>
     <label class="choice" for="channel-phone"><input type="radio" id="channel-phone" name="channel" value="phone"><span>Telefon</span></label>
    </div><p class="field-error" id="channel-error" hidden></p></fieldset>
@@ -247,6 +255,6 @@
  <div class="actions"><a class="btn btn-volt" href="#konfigurator">Dobierz integracje</a><a class="btn btn-ghost" href="tel:+48785668797">Zadzwoń: 785 668 797</a><a class="btn btn-ghost" href="mailto:kuba@ampower.pl">Napisz na kuba@ampower.pl</a></div>
 </div></section>
 </main>
-<footer><div class="wrap"><a class="brand" href="/" aria-label="AmPower — strona główna"><span class="brand-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="#181613"><polygon points="13.5,2 5,13.5 10.6,13.5 9.2,22 19,10 13,10"></polygon></svg></span><span class="brand-name">AM<span>POWER</span></span></a><span>© 2026 AmPower Jakub Babiej · NIP 5020121689</span><a href="/prywatnosc/">Prywatność</a></div></footer>
+<footer><div class="wrap"><a class="brand" href="/" aria-label="AmPower — strona główna"><span class="brand-mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="#181613"><polygon points="13.5,2 5,13.5 10.6,13.5 9.2,22 19,10 13,10"></polygon></svg></span><span class="brand-name">AM<span>POWER</span></span></a><span>© 2026 AmPower Jakub Babiej · NIP 5020121689</span><a href="/prywatnosc/">Prywatność</a><button class="amp-cookie-link" type="button" data-cookie-settings hidden>Ustawienia cookies</button></div></footer>
 </body>
 </html>
