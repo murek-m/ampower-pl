@@ -1,0 +1,19 @@
+{
+  "initial": false,
+  "waits": [
+    {
+      "polling": "rAF",
+      "status": "rejected",
+      "error": "page.waitForFunction: Timeout 3000ms exceeded."
+    },
+    {
+      "polling": "100ms",
+      "status": "fulfilled"
+    }
+  ],
+  "final": {
+    "busy": "false",
+    "stale": false,
+    "exportDisabled": false
+  }
+}

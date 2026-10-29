@@ -24,7 +24,7 @@ await rm(output,{recursive:true,force:true});await mkdir(output,{recursive:true}
 for(const [file,bytes] of sources){
   const target=new URL(file,output);await mkdir(new URL('./',target),{recursive:true});
   // A new document must not mix a cached module/worker with the new release.
-  const content=/\.(js|html)$/.test(file)?bytes.toString().replace(/(from\s*['"]|new URL\(['"]|(?:src|href)=["'])(\.\/[^'"]+\.(?:js|css))(["'])/g,`$1$2?v=${version}$3`):bytes;
+  const content=/\.(js|html)$/.test(file)?bytes.toString().replace(/(from\s*['"]|import\(\s*['"]|new URL\(['"]|(?:src|href)=["'])(\.\/[^'"]+\.(?:js|css))(["'])/g,`$1$2?v=${version}$3`):bytes;
   await writeFile(target,content);
 }
 for(const file of ['fonts.css','archivo-1.woff2','archivo-2.woff2','ibm-plex-sans-3.woff2','ibm-plex-sans-4.woff2','ibm-plex-mono-5.woff2','ibm-plex-mono-6.woff2']){

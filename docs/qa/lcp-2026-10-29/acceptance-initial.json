@@ -1,0 +1,288 @@
+{
+  "versions": {
+    "chromium": "156.0.8078.48",
+    "webkit": "26.5"
+  },
+  "results": [
+    {
+      "engine": "chromium",
+      "name": "smart",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "simple",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "advanced",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "smart",
+      "width": 390,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "simple",
+      "width": 390,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "advanced",
+      "width": 390,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "smart",
+      "width": 430,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "simple",
+      "width": 430,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "advanced",
+      "width": 430,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "smart",
+      "width": 1366,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "simple",
+      "width": 1366,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "advanced",
+      "width": 1366,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "smart",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "simple",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "advanced",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "smart",
+      "width": 1920,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "simple",
+      "width": 1920,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "advanced",
+      "width": 1920,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "smart project and scenes",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "CSV recovery clear reset",
+      "width": 390,
+      "status": "PASS"
+    },
+    {
+      "engine": "chromium",
+      "name": "simple hidden startup",
+      "width": 390,
+      "status": "FAIL",
+      "error": "page.waitForFunction: Timeout 20000ms exceeded."
+    },
+    {
+      "engine": "chromium",
+      "name": "advanced hidden startup",
+      "width": 390,
+      "status": "FAIL",
+      "error": "page.waitForFunction: Timeout 20000ms exceeded."
+    },
+    {
+      "engine": "chromium",
+      "name": "slow and malformed data",
+      "width": 390,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "smart",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "simple",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "advanced",
+      "width": 375,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "smart",
+      "width": 390,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "simple",
+      "width": 390,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "advanced",
+      "width": 390,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "smart",
+      "width": 430,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "simple",
+      "width": 430,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "advanced",
+      "width": 430,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "smart",
+      "width": 1366,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "simple",
+      "width": 1366,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "advanced",
+      "width": 1366,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "smart",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "simple",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "advanced",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "smart",
+      "width": 1920,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "simple",
+      "width": 1920,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "advanced",
+      "width": 1920,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "smart project and scenes",
+      "width": 1440,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "CSV recovery clear reset",
+      "width": 390,
+      "status": "PASS"
+    },
+    {
+      "engine": "webkit",
+      "name": "simple hidden startup",
+      "width": 390,
+      "status": "FAIL",
+      "error": "page.waitForFunction: Timeout 20000ms exceeded."
+    },
+    {
+      "engine": "webkit",
+      "name": "advanced hidden startup",
+      "width": 390,
+      "status": "FAIL",
+      "error": "page.waitForFunction: Timeout 20000ms exceeded."
+    },
+    {
+      "engine": "webkit",
+      "name": "slow and malformed data",
+      "width": 390,
+      "status": "PASS"
+    }
+  ]
+}

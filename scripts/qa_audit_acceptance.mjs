@@ -9,15 +9,15 @@ const out=process.env.AMPOWER_QA_OUTPUT||'output/qa-audit-acceptance';await mkdi
 const results=[],versions={},profile=JSON.parse(await readFile(new URL('../pv-mining/data/profile.json',import.meta.url)));
 const good=join(out,'valid.csv'),bad=join(out,'invalid.csv');
 await writeFile(good,'timestamp,pv_kw,load_kw\n'+profile.map(([t,p])=>`${t},${p*10},0.5`).join('\n'));await writeFile(bad,'timestamp,pv_kw,load_kw\ninvalid,-1,no');
-const ready=p=>p.waitForFunction(()=>document.querySelector('#results')?.getAttribute('aria-busy')==='false'&&!document.querySelector('#results')?.classList.contains('stale'));
+const ready=(p,polling='raf')=>p.waitForFunction(()=>document.querySelector('#results')?.getAttribute('aria-busy')==='false'&&!document.querySelector('#results')?.classList.contains('stale'),null,{polling});
 const exported=async p=>{const [download]=await Promise.all([p.waitForEvent('download'),p.locator('#export').click()]);return JSON.parse(await readFile(await download.path(),'utf8'));};
 for(const engine of ['chromium','webkit']){
  const browser=await pw[engine].launch({headless:true,...(engine==='chromium'&&process.env.AMPOWER_CHROME_PATH?{executablePath:process.env.AMPOWER_CHROME_PATH}:{})});versions[engine]=browser.version();
  async function run(name,width,fn){
   const c=await browser.newContext({viewport:{width,height:900},reducedMotion:'reduce'}),blocked=[],errors=[],httpErrors=[];
   await c.route('**/*',r=>{if([smart.origin,pv.origin].includes(new URL(r.request().url()).origin)&&['GET','HEAD'].includes(r.request().method()))return r.continue();blocked.push(r.request().url());return r.abort();});
-  const p=await c.newPage();p.setDefaultTimeout(20000);p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.status()>=400)httpErrors.push(r.url());});p.on('console',m=>{if(m.type()==='error'&&/Content Security Policy|violates.*directive/i.test(m.text()))errors.push(m.text());});
-  try{await fn(p,c);assert.deepEqual(errors,[]);assert.deepEqual(blocked,[]);assert.deepEqual(httpErrors,[]);results.push({engine,name,width,status:'PASS'});}
+  const p=await c.newPage();const entryRequests=[];p.on('request',r=>{const u=new URL(r.url());if(u.origin===pv.origin&&u.pathname.endsWith('/app.js'))entryRequests.push(u);});p.setDefaultTimeout(20000);p.on('pageerror',e=>errors.push(e.message));p.on('response',r=>{if(r.status()>=400)httpErrors.push(r.url());});p.on('console',m=>{if(m.type()==='error'&&/Content Security Policy|violates.*directive/i.test(m.text()))errors.push(m.text());});
+  try{await fn(p,c);for(const u of entryRequests)assert.match(u.searchParams.get('v')||'',/^[a-f0-9]{16}$/, 'Calculator entry must be versioned, including dynamic imports');assert.deepEqual(errors,[]);assert.deepEqual(blocked,[]);assert.deepEqual(httpErrors,[]);results.push({engine,name,width,status:'PASS'});}
   catch(e){results.push({engine,name,width,status:'FAIL',error:e.message});await p.screenshot({path:join(out,`${engine}-${width}-${name.replaceAll(/[^a-z0-9]/gi,'-')}-FAIL.png`)}).catch(()=>{});}
   await c.close();console.log(results.at(-1));
  }
@@ -54,6 +54,12 @@ for(const engine of ['chromium','webkit']){
   await choose(good);await p.locator('#csv-clear').waitFor({state:'visible'});await ready(p);await p.locator('#clear-profiles').click();await ready(p);
   await p.waitForFunction(()=>JSON.parse(sessionStorage.getItem('ampower-pv-mining-v1'))?.csvId==null);await p.reload();await ready(p);assert.equal((await exported(p)).results.source,'simulation');
   await choose(good);await p.locator('#csv-clear').waitFor({state:'visible'});await ready(p);await Promise.all([p.waitForNavigation(),p.locator('#reset').click()]);await ready(p);assert.equal(await p.locator('#csv-clear').isVisible(),false);assert.equal((await exported(p)).results.source,'simulation');
+ });
+ for(const view of ['simple','advanced'])await run(view+' hidden startup',390,async(p,c)=>{
+  // Background tabs may never deliver animation frames. Startup must not wait for one.
+  await c.addInitScript(()=>{Object.defineProperty(document,'hidden',{get:()=>true});window.requestAnimationFrame=()=>0;});
+  // Poll independently of the animation frames intentionally disabled by this test.
+  await p.goto(new URL(view+'.html',pv).href);await ready(p,100);assert.equal(await p.locator('#export').isEnabled(),true);
  });
  await run('slow and malformed data',390,async(p,c)=>{
   let release;const gate=new Promise(r=>release=r);let intercepted=0;
