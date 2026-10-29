@@ -7,3 +7,5 @@ acceptance-initial.json: 36 widoków (Smart/simple/advanced ×375/390/430/1366/1
 Wcześniej na tym kodzie:347/347 jednostek, lint, build i release74 PASS. Pełne logi oraz screenshoty poza repo: /Users/jb/outputs/ampower-lcp-2026-10-28/. Oryginalne dane profilu i audyt niezmienione.
 
 Natywny Safari: punktowe obliczenia8760h/3modele oraz błędnyCSV→prawidłowyCSV8760 PASS, dowody AX w historii narzędzia. 29.10 ponownie potwierdzono start simple i oglądnięto widok. Próba Command+F5 nie uruchomiła potwierdzonej sesji VoiceOver (brak procesu/okna i zmian AX); brak dostępu do odczytu mowy. VoiceOver, pełny odbiór natywnego fokusu/zoom i fizyczny iPhone nadal nieweryfikowane. Zamknięto wyłącznie prywatne okna testowe.
+
+Końcowe CI40809462420 dla ff52fdd: success, wszystkie kroki PASS (347 jednostek, lint87, buildy/release i pełne browser QA); metadane ci.json. Wcześniejsze błędy CI dotyczyły wspólnego dist i zależności testów od jego istnienia. tests/public-build-fixture.mjs oraz3 zestawy korzystają teraz z niezależnych katalogów. clean-unit.log potwierdza347/347 na lokalnej kopii bez gotowego dist; żadnej asercji nie usunięto.
