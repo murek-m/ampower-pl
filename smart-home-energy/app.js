@@ -1,7 +1,7 @@
-import { INQUIRY_CONFIG } from './inquiry-config.js?v=bf385106e3511744';
-import { sendInquiry, configureChallenge } from './inquiry-client.js?v=bf385106e3511744';
-import { CATEGORIES, DELIVERY, GOALS, PRICE_POLICY, PROJECT_FIELDS } from './data.js?v=bf385106e3511744';
-import { buildInquiry, emailDraft, evaluate, fieldsFor, inquiryText, projectLines, validate, validateSubmission } from './model.js?v=bf385106e3511744';
+import { INQUIRY_CONFIG } from './inquiry-config.js?v=b375c368ae19e9a3';
+import { sendInquiry, configureChallenge } from './inquiry-client.js?v=b375c368ae19e9a3';
+import { CATEGORIES, DELIVERY, GOALS, PRICE_POLICY, PROJECT_FIELDS } from './data.js?v=b375c368ae19e9a3';
+import { buildInquiry, emailDraft, evaluate, fieldsFor, inquiryText, projectLines, validate, validateSubmission } from './model.js?v=b375c368ae19e9a3';
 
 const $ = id => document.getElementById(id);
 const form = $('smart-form');

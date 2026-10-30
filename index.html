@@ -882,11 +882,17 @@ footer {
   .card-wide .card-photo img { aspect-ratio: 16 / 10; height: auto; min-height: 0; }
 }
 
-/* Smart Home: menu zwija się przed kolizją ósmego linku. */
+/* Pełne menu usług: zwijanie na mniejszych ekranach i zawijanie na desktopie. */
 .nav { max-width: 1320px; }
 .nav-links { gap: 1.25rem; }
 .nav-links a { white-space: nowrap; }
 .nav-toggle { min-width: 44px; min-height: 44px; }
+@media (min-width: 1201px) {
+  .nav { height: auto; min-height: 68px; }
+  .nav-links { min-width: 0; flex: 1 1 600px; flex-wrap: wrap; gap: 0 20px; }
+  .nav-links a { display: inline-flex; align-items: center; min-height: 44px; padding: 10px 0; }
+}
+#elektryka, #alarmy, #monitoring { scroll-margin-top: 100px; }
 @media (min-width: 881px) and (max-width: 1200px) {
   .nav { gap: 0.65rem; }
   .nav-toggle { display: inline-flex; order: 3; }
@@ -927,8 +933,8 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
 .calc-draft{margin:18px 0}.calc-draft summary{cursor:pointer;min-height:44px;padding:10px 0;font-weight:600}.calc-draft label{display:block;margin:10px 0}.calc-draft textarea{display:block;width:100%;min-height:160px;font:inherit;font-size:16px;line-height:1.5;color:var(--ink);background:var(--bg);padding:12px;border:1px solid var(--line);border-radius:6px;resize:vertical}.calc-draft .btn{margin-top:12px}.calc-draft p{font-size:14px;margin-top:10px}
 .skip-link{position:fixed;top:8px;left:8px;z-index:1000;transform:translateY(-200%);background:var(--volt);color:#181613;padding:12px;border-radius:6px;font-weight:600}.skip-link:focus{transform:none}
 </style>
-<link rel="stylesheet" href="/assets/consent.css?v=bf385106e3511744">
-<script defer src="/assets/consent.js?v=bf385106e3511744"></script>
+<link rel="stylesheet" href="/assets/consent.css?v=b375c368ae19e9a3">
+<script defer src="/assets/consent.js?v=b375c368ae19e9a3"></script>
 <noscript><style>@media(max-width:1200px){.nav{height:auto;min-height:68px;flex-wrap:wrap;padding-block:16px}.nav-links{display:flex;position:static;order:4;width:100%;padding:0;background:transparent;border:0}.nav-toggle{display:none!important}}</style></noscript>
 </head>
 <body>
@@ -943,6 +949,9 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
     </a>
     <div class="nav-links" id="nav-links">
       <a href="#uslugi">Usługi</a>
+      <a href="#elektryka">Elektryka</a>
+      <a href="#alarmy">Alarmy</a>
+      <a href="#monitoring">Monitoring / kamery</a>
       <a href="/smart-home-energy/">Smart Home &amp; Energy</a>
       <a href="#klimatyzacja">Klimatyzacja</a>
       <a href="#nawadnianie">Nawadnianie</a>
@@ -1019,7 +1028,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
         <p>Od nowej instalacji elektrycznej po klimatyzację, alarm, kamery i nawadnianie ogrodu — wszystko wykonane i zintegrowane przez jedną firmę, bez przerzucania odpowiedzialności.</p>
       </div>
       <div class="services">
-        <div class="card">
+        <div class="card" id="elektryka" tabindex="-1">
           <div class="card-photo"><img src="/assets/images/bb03b9d0254d17bf.webp" alt="Rozdzielnica elektryczna z aparaturą modułową i uporządkowanym okablowaniem" width="850" height="636" decoding="async" fetchpriority="high" srcset="/assets/images/c51bc6c2393145cb.webp 480w, /assets/images/727f33a157993677.webp 640w, /assets/images/bb03b9d0254d17bf.webp 850w" sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 68px) / 2), 516px"></div>
           <div class="card-top">
             <span class="card-icon" aria-hidden="true">
@@ -1053,7 +1062,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
             <li>Serwis i czyszczenie</li>
           </ul>
         </div>
-        <div class="card">
+        <div class="card" id="alarmy" tabindex="-1">
           <div class="card-photo"><img src="/assets/images/08e354bcbb2cb80f.webp" alt="Montaż i okablowanie centrali alarmowej" style="object-position: 50% 30%;" width="467" height="828" decoding="async" loading="lazy" srcset="/assets/images/08e354bcbb2cb80f.webp 467w" sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 68px) / 2), 516px"></div>
           <div class="card-top">
             <span class="card-icon" aria-hidden="true">
@@ -1069,7 +1078,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
             <li>Integracja z monitoringiem</li>
           </ul>
         </div>
-        <div class="card">
+        <div class="card" id="monitoring" tabindex="-1">
           <div class="card-photo"><img src="/assets/images/8bf451dc4c72bd5a.webp" alt="Kamera monitoringu podczas przygotowania do montażu" width="850" height="636" decoding="async" loading="lazy" srcset="/assets/images/36854d39bf49c696.webp 480w, /assets/images/91db57c9f10e391f.webp 640w, /assets/images/8bf451dc4c72bd5a.webp 850w" sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 68px) / 2), 516px"></div>
           <div class="card-top">
             <span class="card-icon" aria-hidden="true">
