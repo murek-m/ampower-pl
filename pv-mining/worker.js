@@ -1,4 +1,4 @@
-import {calculate,parseCsv} from './engine.js?v=0d1e68c839299388';
+import {calculate,parseCsv} from './engine.js?v=601aa0b9428eb9ae';
 let dataset,imported=null;
 self.onmessage=async({data})=>{
   try {

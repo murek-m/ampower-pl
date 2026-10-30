@@ -1,6 +1,6 @@
 // Shared calculation engine for both local prototypes. No DOM or network access.
 export const SATOSHIS = 100_000_000;
-export const ENGINE_VERSION = '2026-10-28.1';
+export const ENGINE_VERSION = '2026-10-29.1';
 
 // Missing keys retain API defaults; explicit empty input is a user decision, never a default.
 const requiredNumbers = ['importPrice','eligiblePrice','depositUse','depositFactor','btcPrice','difficulty','feesBtc','difficultyGrowth','btcGrowth','poolFee','firmwareFee','availability','quantity','extraWatts','startMinutes','startMargin','minRunMinutes','minOffMinutes','gridLimit','maintenance','emsWatts','lifetime','horizon','discount'];
@@ -84,8 +84,16 @@ export function parseCsv(text) {
   if (lines.length < 24 || lines.length > 35136) throw new Error('Import wymaga od 24 do 35 136 wierszy.');
   const rows = lines.map((line,i)=>{
     const cells = line.split(delimiter).map(x=>x.trim());
-    if (cells.length!==3 || !/^\d{4}-\d\d-\d\dT\d\d:\d\d(?::\d\d)?(?:Z|[+-]\d\d:\d\d)$/.test(cells[0]))
+    const iso=/^(\d{4})-(\d\d)-(\d\d)T\d\d:\d\d(?::\d\d)?(?:Z|[+-]\d\d:\d\d)$/.exec(cells[0]);
+    if (cells.length!==3 || !iso)
       throw new Error(`Wiersz ${i+2}: wymagany pełny czas ISO i trzy kolumny.`);
+    // Date.parse normalizes impossible dates such as 2023-02-29 to March 1.
+    // Validate the written calendar date before applying its explicit UTC offset.
+    const [,yearText,monthText,dayText]=iso,year=Number(yearText),month=Number(monthText),day=Number(dayText);
+    const leap=year%4===0&&(year%100!==0||year%400===0);
+    const monthDays=[31,leap?29:28,31,30,31,30,31,31,30,31,30,31];
+    if(month<1||month>12||day<1||day>monthDays[month-1])
+      throw new Error(`Wiersz ${i+2}: nieistniejąca data kalendarzowa.`);
     const stamp = Date.parse(cells[0]);
     const nums = cells.slice(1).map(v=>/^(?:\d+\.?\d*|\d*\.\d+)$/.test(v) ? Number(v) : NaN);
     if (!Number.isFinite(stamp) || nums.some(v=>!Number.isFinite(v)||v<0||v>100000)) throw new Error(`Wiersz ${i+2}: nieprawidłowy czas lub nieujemna wartość energii/mocy.`);
@@ -362,7 +370,8 @@ export function calculate(raw,dataset,market,models,imported=null) {
     const validEconomics=hydroReady&&priceKnown&&(s.costMode==='budget'?s.infraBudget!==null:complete)&&(s.battery!=='new'||s.batteryBudget!==null);
     const lossAfterPayback=validEconomics&&payback!==null?(annual.findIndex((r,i)=>i+1>payback&&r.result<0)+1||null):null;
     if(!validEconomics) annual.forEach(r=>{r.cash=null;r.result=null;r.npv=null;});
-    return {validEconomics,planner,lossAfterPayback,paybackReversed:lossAfterPayback!==null,paybackAfterLife:payback!==null&&payback>s.lifetime,model,devicePrice,priceKnown,capex,complete:s.costMode==='detailed'&&complete,priceMode:s.costMode,knownSubtotal:devicePrice*s.quantity+detailed.reduce((v,x)=>v+(x||0),0),annual,payback:validEconomics?payback:null,cashPayback:validEconomics?cashPayback:null,roi:validEconomics&&capex>0?(s.battery==='new'?annual[0].combinedBenefit:annual[0].benefit)/capex:null,npv:validEconomics?annual.at(-1).npv:null};
+    const paybackFunding=validEconomics&&payback!==null?(annual[payback-1].cash>=0?'cash':'portfolio'):null;
+    return {validEconomics,planner,lossAfterPayback,paybackReversed:lossAfterPayback!==null,paybackAfterLife:validEconomics&&payback!==null&&payback>s.lifetime,paybackFunding,model,devicePrice,priceKnown,capex,complete:s.costMode==='detailed'&&complete,priceMode:s.costMode,knownSubtotal:devicePrice*s.quantity+detailed.reduce((v,x)=>v+(x||0),0),annual,payback:validEconomics?payback:null,cashPayback:validEconomics?cashPayback:null,roi:validEconomics&&capex>0?(s.battery==='new'?annual[0].combinedBenefit:annual[0].benefit)/capex:null,npv:validEconomics?annual.at(-1).npv:null};
   });
   return {engineVersion:ENGINE_VERSION,assumptionNotes:!imported&&raw.annualLoad===''?['Nie podano zużycia domu: zastosowano przykładowe 5000 kWh/rok.']:[],settings:s,source:profile.source,note:profile.note,hours:profile.hours,results,baseline:baseline.years[0],baselineLedger:baseline.ledger.annual[0],noBattery:noBattery.years[0],market};
 }

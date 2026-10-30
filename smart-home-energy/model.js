@@ -1,6 +1,6 @@
-import { PRICE_BOOK } from './price-book.js?v=02a1af088937a42d';
-import { estimate, selectionFromRaw } from './pricing.js?v=02a1af088937a42d';
-import { ACCESS, CATEGORIES, CONNECTION, CONTACT, DELIVERY, GOALS, HOST, PRICE_POLICY, PROJECT_FIELDS, SECURITY, STATUS, UNKNOWN, YES_NO } from './data.js?v=02a1af088937a42d';
+import { PRICE_BOOK } from './price-book.js?v=bf385106e3511744';
+import { estimate, selectionFromRaw } from './pricing.js?v=bf385106e3511744';
+import { ACCESS, CATEGORIES, CONNECTION, CONTACT, DELIVERY, GOALS, HOST, PRICE_POLICY, PROJECT_FIELDS, SECURITY, STATUS, UNKNOWN, YES_NO } from './data.js?v=bf385106e3511744';
 
 const clean = value => String(value ?? '').trim();
 const option = (value, choices) => Object.hasOwn(choices, value) ? value : UNKNOWN;
@@ -115,6 +115,7 @@ export function evaluate(raw, book = PRICE_BOOK, now = new Date()) {
 }
 
 export function buildInquiry(raw) {
+  const contactChannel = raw.preferredContactChannel ?? raw.channel;
   const selected = CATEGORIES.filter(c => raw.categories?.includes(c.id));
   const categories = selected.map(c => {
     const source = raw.details?.[c.id] ?? {};
@@ -129,7 +130,7 @@ export function buildInquiry(raw) {
     locality: clean(raw.locality) || null,
     remoteReady: raw.delivery === 'remote' ? option(raw.remoteReady, YES_NO) : null,
     name: clean(raw.name) || null, notes: clean(raw.notes) || null,
-    contact: { channel: raw.channel, value: clean(raw.channel === 'phone' ? raw.phone : raw.email) },
+    contact: { channel: contactChannel, value: clean(contactChannel === 'phone' ? raw.phone : raw.email) },
     project: projectAnswers(raw), pricing: evaluate(raw), dataNoticeVersion: 'draft-local-1'
   };
 }
@@ -178,10 +179,12 @@ export function emailDraft(text, maxUriLength = 8000) {
 // Kontrakt nowego odbiornika. Stary generator szkicu zachowuje minimalny kontakt.
 export function validateSubmission(raw) {
   const errors = validate({ ...raw, channel: 'email' });
+  const preferredContactChannel = raw.preferredContactChannel ?? raw.channel;
+  if (!['email', 'phone'].includes(preferredContactChannel)) errors.push({ field: 'channel', message: 'Wybierz formę kontaktu.' });
   if (!clean(raw.name)) errors.push({ field: 'name', message: 'Podaj imię.' });
   if (!clean(raw.locality)) errors.push({ field: 'locality', message: 'Podaj miejscowość realizacji.' });
   if (!['local', 'remote', 'unknown'].includes(raw.delivery)) errors.push({ field: 'delivery', message: 'Wybierz sposób realizacji.' });
-  if (clean(raw.phone)) errors.push(...validate({ ...raw, channel: 'phone' }).filter(e => e.field === 'phone'));
+  if (preferredContactChannel === 'phone' || clean(raw.phone)) errors.push(...validate({ ...raw, channel: 'phone' }).filter(e => e.field === 'phone'));
   if (raw.dataNoticeAccepted !== true) errors.push({ field: 'dataNoticeAccepted', message: 'Potwierdź zapoznanie się z informacją o danych.' });
   return errors;
 }
@@ -192,5 +195,6 @@ export function submissionData(raw) {
     delivery: inquiry.delivery, access: inquiry.access, host: inquiry.host, hostModel: inquiry.hostModel, locality: clean(raw.locality), remoteReady: inquiry.remoteReady,
     name: clean(raw.name), email: clean(raw.email), phone: clean(raw.phone) || null, notes: inquiry.notes,
     radioChoice: raw.radioChoice, infrastructure: raw.infrastructure, complexity: raw.complexity, simpleScenes: raw.simpleScenes, advancedScenes: raw.advancedScenes, support: raw.support,
-    channel: 'email', dataNoticeAccepted: raw.dataNoticeAccepted === true };
+    // Adres e-mail jest wymagany przez odbiornik; preferencja odpowiedzi jest osobna.
+    channel: 'email', preferredContactChannel: raw.preferredContactChannel ?? raw.channel, dataNoticeAccepted: raw.dataNoticeAccepted === true };
 }

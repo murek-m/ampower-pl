@@ -2,6 +2,27 @@
 <html lang="pl">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-d6YtHWruTivQreMGLFfKf3F4WF3qRKq92GD7rJBHQZw='; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; worker-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<style id="ampower-frame-style">html.ampower-framed body>:not(#ampower-frame-notice){display:none!important}html.ampower-framed #ampower-frame-notice{display:block!important;box-sizing:border-box;max-width:42rem;margin:10vh auto;padding:24px;font:18px/1.5 system-ui,sans-serif;color:#181613;background:#fff}html.ampower-framed #ampower-frame-notice a{display:inline-block;padding:12px;color:#181613;background:#ffc400}html.ampower-framed #ampower-frame-notice a:focus-visible{outline:3px solid #005ea8;outline-offset:3px}</style>
+<script id="ampower-frame-guard">(() => {
+  if (window.top === window.self) return;
+  document.documentElement.classList.add('ampower-framed');
+  document.addEventListener('DOMContentLoaded', () => {
+    const notice = document.createElement('main');
+    notice.id = 'ampower-frame-notice';
+    const heading = document.createElement('h1');
+    heading.textContent = 'Otwórz stronę AMPOWER bezpośrednio';
+    const copy = document.createElement('p');
+    copy.textContent = 'Aby korzystać z kalkulatora i formularzy, przejdź do pełnej strony.';
+    const link = document.createElement('a');
+    link.href = location.href;
+    link.target = '_top';
+    link.textContent = 'Otwórz AMPOWER';
+    notice.append(heading, copy, link);
+    document.body.prepend(notice);
+  }, { once: true });
+})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Prywatność i cookies — AMPOWER</title>
 <meta name="description" content="Jak AMPOWER obsługuje dane w zapytaniach, konfiguratorze i statystykach Cloudflare. Informacje o prywatności.">
@@ -9,9 +30,9 @@
 <meta property="og:site_name" content="AMPOWER">
 <link rel="canonical" href="https://ampower.pl/prywatnosc/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/smart-home-energy/style.css">
-<link rel="stylesheet" href="/assets/consent.css">
-<script defer src="/assets/consent.js"></script>
+<link rel="stylesheet" href="/smart-home-energy/style.css?v=bf385106e3511744">
+<link rel="stylesheet" href="/assets/consent.css?v=bf385106e3511744">
+<script defer src="/assets/consent.js?v=bf385106e3511744"></script>
 </head>
 <body class="privacy-page">
 <header><nav class="nav" aria-label="Nawigacja"><a class="brand" href="/">AMPOWER</a><a href="/">Wróć na stronę główną</a></nav></header>
@@ -24,11 +45,16 @@
 <p>Jeśli kontaktujesz się z nami telefonicznie, SMS-em lub e-mailem, wykorzystujemy przekazane dane do odpowiedzi, ustalenia potrzeb i przygotowania oferty. Podanie danych jest dobrowolne; potrzebny jest sposób skontaktowania się z Tobą. Nie przesyłaj haseł, tokenów ani kodów alarmowych.</p>
 <p>Działania przed zawarciem umowy podejmowane na Twoje żądanie opieramy na art. 6 ust. 1 lit. b RODO. Obsługa korespondencji i ewentualnych roszczeń może wynikać z prawnie uzasadnionego interesu administratora (art. 6 ust. 1 lit. f), a dokumentacja związana z realizacją zamówienia także z obowiązków prawnych (lit. c).</p>
 <p>Dane zapytania są potrzebne przez czas obsługi sprawy. Dalsze przechowywanie zależy od jej wyniku: dokumenty związane z umową i rozliczeniem podlegają właściwym obowiązkom przechowywania, a materiały potrzebne do ustalenia lub obrony roszczeń — terminom dotyczącym tych roszczeń. Niezbędny zakres oceniamy dla konkretnej sprawy.</p>
-<h2>Co robi konfigurator?</h2>
+<h2>Konfigurator Smart Home &amp; Energy</h2>
 <p>Wybrane urządzenia, uwagi i dane kontaktowe pozostają w pamięci aktualnie otwartej strony. Nie zapisujemy ich w adresie URL ani pamięci trwałej przeglądarki. Po odświeżeniu szkic znika. Przycisk przygotowania wiadomości tworzy tekst; wysłanie wykonujesz dopiero w swojej aplikacji pocztowej. Kopiowanie korzysta ze schowka urządzenia, więc na współdzielonym sprzęcie warto usunąć skopiowaną treść po użyciu.</p>
 <p>Nie przekazujemy do statystyk wpisanych danych ani treści wiadomości. Nie podejmujemy automatycznych decyzji o zawarciu umowy lub ostatecznej cenie.</p>
+<h2>Kalkulator PV Mining — lokalne parametry i szkic</h2>
+<p>PV Mining oblicza wyniki w Twojej przeglądarce. Parametry, wybór urządzeń oraz szkic wiadomości z Twoimi dopiskami i ewentualnymi danymi kontaktowymi zapisuje lokalnie w pamięci sesji danej karty (sessionStorage), aby zachować je po odświeżeniu i przejściu między wariantami kalkulatora. Zamknięcie karty zwykle kończy sesję, ale przeglądarka może ją później przywrócić. Aby świadomie usunąć szkic i parametry, wybierz „Wyczyść dane i przywróć założenia”. Nie wpisuj haseł, tokenów ani kodów alarmowych.</p>
+<p>Treść szkicu nie jest wysyłana przez kalkulator ani przekazywana do statystyk. Przycisk „Otwórz pocztę” przekazuje przygotowany tekst do Twojej aplikacji pocztowej; wiadomość wysyłasz samodzielnie. Skopiowany tekst pozostaje w schowku urządzenia, dopóki go nie zastąpisz lub nie usuniesz.</p>
+<h2>Profile CSV w PV Mining</h2>
+<p>Importowany profil produkcji i zużycia energii jest odczytywany lokalnie, bez wysyłania pliku na serwer. Jego kopia w IndexedDB ma ważność do 24 godzin od ostatniego zapisu. Wygasłe kopie są usuwane przy następnym otwarciu modułu; zamknięta strona nie uruchamia automatycznego kasowania. „Usuń import” oraz reset danych usuwają kopię przypisaną do bieżącej karty. „Usuń zapisane profile CSV ze wszystkich kart” usuwa także kopie wcześniejszych sesji, ale nie szkice wiadomości innych kart. Inna otwarta karta może nadal mieć profil w pamięci i zapisać go ponownie — na współdzielonym urządzeniu zamknij pozostałe karty i użyj czyszczenia profili.</p>
 <h2>Statystyki bez cookies</h2>
-<p>Korzystamy z bezpłatnego Cloudflare Web Analytics do zbiorczych statystyk odwiedzin i szybkości działania strony. Pomiar działa w tle, bez okna zgody, analitycznych cookies i identyfikatorów zapisywanych w pamięci przeglądarki. Google Analytics zostało wyłączone.</p>
+<p>Korzystamy z bezpłatnego Cloudflare Web Analytics do zbiorczych statystyk odwiedzin i szybkości działania wyłącznie strony głównej ampower.pl. Smart Home &amp; Energy, PV Mining, polityka prywatności i lokalny podgląd nie ładują pomiaru. Pomiar działa w tle, bez okna zgody, analitycznych cookies i identyfikatorów zapisywanych w pamięci przeglądarki. Google Analytics zostało wyłączone.</p>
 <p>Cloudflare otrzymuje informacje o wyświetlanej stronie, stronie odsyłającej, przeglądarce i wydajności. Nie wysyłamy treści formularza, danych kontaktowych ani przygotowanej wiadomości. Pomiar pomijamy przy parametrach adresu, nieznanym fragmencie adresu oraz parametrach strony odsyłającej. Nie śledzimy kliknięć w telefon lub e-mail.</p>
 <p>Według dokumentacji Cloudflare adres IP nie jest przechowywany w bazach ani logach tej usługi: jest odrzucany w centrum przetwarzania. Usługa nie służy rozpoznawaniu osoby między witrynami. Przetwarzanie może odbywać się poza EOG. Szczegóły opisuje <a href="https://developers.cloudflare.com/speed/observatory/rum-beacon/" rel="noopener noreferrer">dokumentacja danych Cloudflare</a>.</p>
 <p>Respektujemy sygnały przeglądarki Do Not Track i Global Privacy Control — przy ich włączeniu nie ładujemy pomiaru. Blokada skryptu nie ogranicza korzystania ze strony. Pozostałości dawnych cookies Google są usuwane przez stronę; stare ustawienie zgody w pamięci przeglądarki nie uruchamia Google.</p>
@@ -37,9 +63,9 @@
 <p>Informacje o przetwarzaniu i transferach poza EOG opisują <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" rel="noopener noreferrer">polityka GitHub</a> oraz <a href="https://www.cloudflare.com/privacypolicy/" rel="noopener noreferrer">polityka Cloudflare</a>. Nie osadzamy map, filmów ani fontów pobieranych od zewnętrznych serwisów.</p>
 <h2>Twoje prawa</h2>
 <p>Na warunkach RODO przysługuje Ci dostęp do danych, sprostowanie, usunięcie, ograniczenie przetwarzania i przenoszenie danych. Możesz zgłosić sprzeciw wobec przetwarzania opartego na uzasadnionym interesie, wnieść skargę do Prezesa Urzędu Ochrony Danych Osobowych. W sprawach dotyczących Twojej korespondencji skontaktuj się z AMPOWER.</p>
-<p class="help">Informacja zaktualizowana 21 października 2026 r.</p>
+<p class="help">Informacja zaktualizowana 29 października 2026 r.</p>
 </div></section>
 </main>
-<footer><div class="wrap"><a href="/">AMPOWER — strona główna</a><a href="/smart-home-energy/">Smart Home &amp; Energy</a></div></footer>
+<footer><div class="wrap"><a href="/">AMPOWER — strona główna</a><a href="/pv-mining/">Kalkulator PV Mining</a></div></footer>
 </body>
 </html>

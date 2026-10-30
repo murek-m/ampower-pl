@@ -2,11 +2,36 @@
 <html lang="pl">
 <head>
 <meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-d6YtHWruTivQreMGLFfKf3F4WF3qRKq92GD7rJBHQZw=' 'sha256-5FTvYTB76V6Jut78BYzgOUzKpG8d0H3HKGwWEuawD1w=' 'sha256-4/EjBC8hsXUfqxaOYVPao6waH5EuGgurqAF1Dwzh3Vo=' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<style id="ampower-frame-style">html.ampower-framed body>:not(#ampower-frame-notice){display:none!important}html.ampower-framed #ampower-frame-notice{display:block!important;box-sizing:border-box;max-width:42rem;margin:10vh auto;padding:24px;font:18px/1.5 system-ui,sans-serif;color:#181613;background:#fff}html.ampower-framed #ampower-frame-notice a{display:inline-block;padding:12px;color:#181613;background:#ffc400}html.ampower-framed #ampower-frame-notice a:focus-visible{outline:3px solid #005ea8;outline-offset:3px}</style>
+<script id="ampower-frame-guard">(() => {
+  if (window.top === window.self) return;
+  document.documentElement.classList.add('ampower-framed');
+  document.addEventListener('DOMContentLoaded', () => {
+    const notice = document.createElement('main');
+    notice.id = 'ampower-frame-notice';
+    const heading = document.createElement('h1');
+    heading.textContent = 'Otwórz stronę AMPOWER bezpośrednio';
+    const copy = document.createElement('p');
+    copy.textContent = 'Aby korzystać z kalkulatora i formularzy, przejdź do pełnej strony.';
+    const link = document.createElement('a');
+    link.href = location.href;
+    link.target = '_top';
+    link.textContent = 'Otwórz AMPOWER';
+    notice.append(heading, copy, link);
+    document.body.prepend(notice);
+  }, { once: true });
+})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <title>AmPower — Instalacje elektryczne, klimatyzacja i nawadnianie ogrodów · Jakub Babiej</title>
 <meta name="description" content="AmPower Jakub Babiej — instalacje elektryczne, montaż klimatyzacji (autoryzowany instalator LG i Rotenso), systemy alarmowe, monitoring i automatyczne nawadnianie ogrodów (certyfikat Rain Bird). Czerńczyce, Dolny Śląsk. Darmowa wycena: 785 668 797.">
 <link rel="canonical" href="https://ampower.pl/">
+<link rel="preload" href="/assets/fonts/2995622a3e4021e7.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/1051971168a34fbc.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/056e4e2459f57a00.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/ae1d854fefa1167a.woff2" as="font" type="font/woff2" crossorigin>
 <meta property="og:image" content="https://ampower.pl/assets/images/07a15c8b45b58583.jpg">
 <meta property="og:image:alt" content="AMPOWER — instalacje dla domów i firm">
 <meta property="og:type" content="website">
@@ -16,7 +41,7 @@
 <meta property="og:title" content="AmPower — instalacje dla domów i firm">
 <meta property="og:description" content="Elektryka, klimatyzacja, alarmy, monitoring i automatyczne nawadnianie na Dolnym Śląsku. Darmowa wycena.">
 <meta name="theme-color" content="#181613">
-<!-- Statystyki Cloudflare Web Analytics: bez analitycznych cookies. -->
+<!-- Google Analytics uruchamia się wyłącznie po zgodzie na statystyki. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -121,7 +146,7 @@
 
 :root {
   --volt: #FFC400;
-  --volt-deep: #B78600;
+  --volt-deep: #866200;
   --panel: #181613;
   --panel-2: #211E19;
   --panel-line: #35312A;
@@ -135,6 +160,7 @@
   --line: #DFDBCF;
   --card-shadow: 0 1px 2px rgba(27, 25, 20, 0.06), 0 8px 24px rgba(27, 25, 20, 0.05);
 }
+[hidden] { display: none !important; }
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #131210;
@@ -152,7 +178,7 @@
   --ink: #1B1914;
   --muted: #6E6A5E;
   --line: #DFDBCF;
-  --volt-deep: #B78600;
+  --volt-deep: #866200;
   --card-shadow: 0 1px 2px rgba(27, 25, 20, 0.06), 0 8px 24px rgba(27, 25, 20, 0.05);
 }
 :root[data-theme="dark"] {
@@ -896,12 +922,17 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
  .nav-links { top:100%; }
  .services { grid-template-columns:minmax(0,1fr); }
 }
+
+.calc-validation{border:1px solid #c3513c;padding:12px;border-radius:8px;margin:12px 0}.calc-validation button{font:inherit;color:inherit;background:none;border:0;text-align:left;text-decoration:underline;cursor:pointer;padding:8px 0;min-height:44px}
+.calc-draft{margin:18px 0}.calc-draft summary{cursor:pointer;min-height:44px;padding:10px 0;font-weight:600}.calc-draft label{display:block;margin:10px 0}.calc-draft textarea{display:block;width:100%;min-height:160px;font:inherit;font-size:16px;line-height:1.5;color:var(--ink);background:var(--bg);padding:12px;border:1px solid var(--line);border-radius:6px;resize:vertical}.calc-draft .btn{margin-top:12px}.calc-draft p{font-size:14px;margin-top:10px}
+.skip-link{position:fixed;top:8px;left:8px;z-index:1000;transform:translateY(-200%);background:var(--volt);color:#181613;padding:12px;border-radius:6px;font-weight:600}.skip-link:focus{transform:none}
 </style>
-<link rel="stylesheet" href="/assets/consent.css">
-<script defer src="/assets/consent.js"></script>
+<link rel="stylesheet" href="/assets/consent.css?v=bf385106e3511744">
+<script defer src="/assets/consent.js?v=bf385106e3511744"></script>
 <noscript><style>@media(max-width:1200px){.nav{height:auto;min-height:68px;flex-wrap:wrap;padding-block:16px}.nav-links{display:flex;position:static;order:4;width:100%;padding:0;background:transparent;border:0}.nav-toggle{display:none!important}}</style></noscript>
 </head>
 <body>
+<a class="skip-link" href="#top">Przejdź do treści</a>
 <header>
   <nav class="nav" aria-label="Główna nawigacja">
     <a class="brand" href="#top" aria-label="AmPower — strona główna">
@@ -930,7 +961,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
   </nav>
 </header>
 
-<main id="top">
+<main id="top" tabindex="-1">
 
   <section class="hero">
     <svg class="circuit" viewBox="0 0 1200 640" preserveAspectRatio="xMaxYMid slice" aria-hidden="true">
@@ -989,7 +1020,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
       </div>
       <div class="services">
         <div class="card">
-          <div class="card-photo"><img src="/assets/images/07a15c8b45b58583.jpg" alt="Rozdzielnica elektryczna z aparaturą modułową i uporządkowanym okablowaniem" width="850" height="636" decoding="async" fetchpriority="high"></div>
+          <div class="card-photo"><img src="/assets/images/bb03b9d0254d17bf.webp" alt="Rozdzielnica elektryczna z aparaturą modułową i uporządkowanym okablowaniem" width="850" height="636" decoding="async" fetchpriority="high" srcset="/assets/images/c51bc6c2393145cb.webp 480w, /assets/images/727f33a157993677.webp 640w, /assets/images/bb03b9d0254d17bf.webp 850w" sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 68px) / 2), 516px"></div>
           <div class="card-top">
             <span class="card-icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10" fill="#181613" stroke="none"></polygon></svg>
@@ -1006,7 +1037,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
           </ul>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="/assets/images/a2d0d908077a228b.jpg" alt="Klimatyzator LG Artcool zamontowany na ścianie" width="850" height="636" decoding="async" loading="lazy"></div>
+          <div class="card-photo"><img src="/assets/images/1cf0942f4cca414d.webp" alt="Klimatyzator LG Artcool zamontowany na ścianie" width="850" height="636" decoding="async" loading="lazy" srcset="/assets/images/9044f26107b27e99.webp 480w, /assets/images/8374d98393f0a095.webp 640w, /assets/images/1cf0942f4cca414d.webp 850w" sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 68px) / 2), 516px"></div>
           <div class="card-top">
             <span class="card-icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M4 7 h16 M4 12 h16 M4 17 h16"></path><path d="M7 7 v-3 M12 7 v-3 M17 7 v-3" opacity="0.5"></path><path d="M7 21 l1.5 -4 M12 21 l0 -4 M17 21 l-1.5 -4" opacity="0.5"></path></svg>
@@ -1023,7 +1054,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
           </ul>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="/assets/images/73a7f260f6f667b0.jpg" alt="Montaż i okablowanie centrali alarmowej" style="object-position: 50% 30%;" width="467" height="828" decoding="async" loading="lazy"></div>
+          <div class="card-photo"><img src="/assets/images/08e354bcbb2cb80f.webp" alt="Montaż i okablowanie centrali alarmowej" style="object-position: 50% 30%;" width="467" height="828" decoding="async" loading="lazy" srcset="/assets/images/08e354bcbb2cb80f.webp 467w" sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 68px) / 2), 516px"></div>
           <div class="card-top">
             <span class="card-icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 l8 3.5 v5 c0 4.5 -3.4 8 -8 9.5 c-4.6 -1.5 -8 -5 -8 -9.5 v-5 z"></path><path d="M9 11.5 l2.2 2.2 L15.5 9.3"></path></svg>
@@ -1039,7 +1070,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
           </ul>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="/assets/images/8a4caa7cf2a77137.jpg" alt="Kamera monitoringu podczas przygotowania do montażu" width="850" height="636" decoding="async" loading="lazy"></div>
+          <div class="card-photo"><img src="/assets/images/8bf451dc4c72bd5a.webp" alt="Kamera monitoringu podczas przygotowania do montażu" width="850" height="636" decoding="async" loading="lazy" srcset="/assets/images/36854d39bf49c696.webp 480w, /assets/images/91db57c9f10e391f.webp 640w, /assets/images/8bf451dc4c72bd5a.webp 850w" sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 68px) / 2), 516px"></div>
           <div class="card-top">
             <span class="card-icon" aria-hidden="true">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="10" rx="2"></rect><path d="M16 10 l5 -3 v10 l-5 -3"></path></svg>
@@ -1055,7 +1086,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
           </ul>
         </div>
         <div class="card">
-          <div class="card-photo"><img src="/assets/images/2d2ce3446ef262fc.jpg" alt="Zraszacze wynurzalne podlewające trawnik przed domem jednorodzinnym" width="900" height="600" decoding="async" loading="lazy"></div>
+          <div class="card-photo"><img src="/assets/images/2d2ce3446ef262fc.jpg" alt="Zraszacze wynurzalne podlewające trawnik przed domem jednorodzinnym" width="900" height="600" decoding="async" loading="lazy" srcset="/assets/images/8b05c3d3f9f73d0b.webp 480w, /assets/images/8f9f734cfcbcc1c2.webp 640w, /assets/images/2d2ce3446ef262fc.jpg 900w" sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 68px) / 2), 516px"></div>
           <div class="card-body">
             <div class="card-top">
               <span class="card-icon" aria-hidden="true">
@@ -1108,7 +1139,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
           </div>
         </div>
         <div>
-          <img class="feature-photo" src="/assets/images/d7eb6bfae0e7d817.jpg" alt="Klimatyzator LG zamontowany w jadalni z drewnianym stropem" width="1100" height="824" decoding="async" loading="lazy">
+          <img class="feature-photo" src="/assets/images/cc0c091eeab6e5c9.webp" alt="Klimatyzator LG zamontowany w jadalni z drewnianym stropem" width="1100" height="824" decoding="async" loading="lazy" srcset="/assets/images/37ed155154aa61ec.webp 480w, /assets/images/89a9fc743139ddf8.webp 640w, /assets/images/cc0c091eeab6e5c9.webp 1100w" sizes="(max-width: 880px) calc(100vw - 48px), 516px">
           <div class="spec">
             <p class="spec-title">Karta usługi</p>
             <dl>
@@ -1146,7 +1177,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
           </div>
         </div>
         <div>
-          <img class="feature-photo" src="/assets/images/d9a6d05cea391a2e.jpg" alt="Ogród z działającymi zraszaczami wynurzalnymi — automatyczne nawadnianie trawnika przy domu" width="1000" height="750" decoding="async" loading="lazy">
+          <img class="feature-photo" src="/assets/images/d9a6d05cea391a2e.jpg" alt="Ogród z działającymi zraszaczami wynurzalnymi — automatyczne nawadnianie trawnika przy domu" width="1000" height="750" decoding="async" loading="lazy" srcset="/assets/images/9a276d786d4b5681.webp 480w, /assets/images/6176d81f2f69a418.webp 640w, /assets/images/d9a6d05cea391a2e.jpg 1000w" sizes="(max-width: 880px) calc(100vw - 48px), 516px">
           <div class="spec">
             <p class="spec-title">Karta usługi</p>
             <dl>
@@ -1174,35 +1205,34 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
       </div>
       <div class="gallery">
         <figure>
-          <img src="/assets/images/c12dbc8899570065.jpg" alt="Dwie jednostki zewnętrzne LG zamontowane na elewacji domu jednorodzinnego" width="850" height="465" decoding="async" loading="lazy">
+          <img src="/assets/images/f7b5523804544849.webp" alt="Dwie jednostki zewnętrzne LG zamontowane na elewacji domu jednorodzinnego" width="850" height="465" decoding="async" loading="lazy" srcset="/assets/images/851ad7153d934c22.webp 480w, /assets/images/16d1bde140401db8.webp 640w, /assets/images/f7b5523804544849.webp 850w" sizes="(max-width: 880px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 88px) / 3), 338px">
           <figcaption>Klimatyzacja LG · dom jednorodzinny</figcaption>
         </figure>
         <figure>
-          <img src="/assets/images/9c66586df3b99119.jpg" alt="Klimatyzator zamontowany na poddaszu z drewnianymi belkami" width="850" height="636" decoding="async" loading="lazy">
+          <img src="/assets/images/3178037b307ce6a9.webp" alt="Klimatyzator zamontowany na poddaszu z drewnianymi belkami" width="850" height="636" decoding="async" loading="lazy" srcset="/assets/images/04f531e208f4ec42.webp 480w, /assets/images/8ee926901145241b.webp 640w, /assets/images/3178037b307ce6a9.webp 850w" sizes="(max-width: 880px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 88px) / 3), 338px">
           <figcaption>Jednostka wewnętrzna · poddasze</figcaption>
         </figure>
         <figure>
-          <img src="/assets/images/fe361def1b65f862.jpg" alt="Jednostka zewnętrzna Rotenso na elewacji nowego domu" width="850" height="465" decoding="async" loading="lazy">
+          <img src="/assets/images/93d02483d93d5dd0.webp" alt="Jednostka zewnętrzna Rotenso na elewacji nowego domu" width="850" height="465" decoding="async" loading="lazy" srcset="/assets/images/509f84b211322dc9.webp 480w, /assets/images/ba937d8f808f86d8.webp 640w, /assets/images/93d02483d93d5dd0.webp 850w" sizes="(max-width: 880px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 88px) / 3), 338px">
           <figcaption>Klimatyzacja Rotenso · nowy dom</figcaption>
         </figure>
         <figure>
-          <img src="/assets/images/e959a2c01a8ccb71.jpg" alt="Montaż systemu nawadniania w ogrodzie przy tarasie" width="880" height="495" decoding="async" loading="lazy">
+          <img src="/assets/images/e959a2c01a8ccb71.jpg" alt="Montaż systemu nawadniania w ogrodzie przy tarasie" width="880" height="495" decoding="async" loading="lazy" srcset="/assets/images/60c8f06f7ff36654.webp 480w, /assets/images/dc38304701b1e043.webp 640w, /assets/images/e959a2c01a8ccb71.jpg 880w" sizes="(max-width: 880px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 88px) / 3), 338px">
           <figcaption>Nawadnianie ogrodu · prace montażowe</figcaption>
         </figure>
         <figure>
-          <img src="/assets/images/c4918a472589f84b.jpg" alt="Skrzynka z elektrozaworami systemu nawadniania w wykopie" width="880" height="495" decoding="async" loading="lazy">
+          <img src="/assets/images/c4918a472589f84b.jpg" alt="Skrzynka z elektrozaworami systemu nawadniania w wykopie" width="880" height="495" decoding="async" loading="lazy" srcset="/assets/images/0ad38122aca144b3.webp 480w, /assets/images/47851eeb873bcdef.webp 640w, /assets/images/c4918a472589f84b.jpg 880w" sizes="(max-width: 880px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 88px) / 3), 338px">
           <figcaption>Skrzynka elektrozaworów · sekcje nawadniania</figcaption>
         </figure>
         <figure>
-          <img src="/assets/images/28f6e385f82148b0.jpg" alt="Rura PE systemu nawadniania ułożona w wykopie wzdłuż ścieżki" width="880" height="495" decoding="async" loading="lazy">
+          <img src="/assets/images/28f6e385f82148b0.jpg" alt="Rura PE systemu nawadniania ułożona w wykopie wzdłuż ścieżki" width="880" height="495" decoding="async" loading="lazy" srcset="/assets/images/6fac2160f6e7b929.webp 480w, /assets/images/649a7530db08209a.webp 640w, /assets/images/28f6e385f82148b0.jpg 880w" sizes="(max-width: 880px) calc(100vw - 48px), (max-width: 1100px) calc((100vw - 88px) / 3), 338px">
           <figcaption>Rurociąg PE · trasa wzdłuż ścieżki</figcaption>
         </figure>
       </div>
     </div>
   </section>
 
-
-  <section class="section calc" id="kalkulator">
+<section class="section calc" id="kalkulator">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">Kalkulator wyceny</p>
@@ -1232,8 +1262,8 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
               </div>
               <div class="calc-field">
                 <label for="elek-punkty">Liczba punktów</label>
-                <input type="number" id="elek-punkty" value="12" min="1" max="999" step="1" data-calc>
-                <span class="calc-hint">Gniazdka, włączniki, punkty oświetleniowe</span>
+                <input type="number" id="elek-punkty" value="12" min="0" max="999" step="1" data-calc>
+                <span class="calc-hint">Gniazdka, włączniki, punkty oświetleniowe. Wpisz 0, jeśli wyceniasz samą rozdzielnicę.</span>
               </div>
               <div class="calc-field">
                 <label for="elek-rozdz">Rozdzielnica</label>
@@ -1277,7 +1307,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
               </div>
               <div class="calc-field">
                 <label for="klima-trasa">Długość trasy (m)</label>
-                <input type="number" id="klima-trasa" value="5" min="1" max="40" step="1" data-calc>
+                <input type="number" id="klima-trasa" value="5" min="1" max="40" step="any" data-calc>
                 <span class="calc-hint">Na jednostkę. Pierwsze 5 m w cenie montażu</span>
               </div>
             </div>
@@ -1324,12 +1354,12 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
             <div class="calc-body">
               <div class="calc-field">
                 <label for="naw-m2">Powierzchnia trawnika (m²)</label>
-                <input type="number" id="naw-m2" value="300" min="0" max="10000" step="10" data-calc>
+                <input type="number" id="naw-m2" value="300" min="0" max="10000" step="any" data-calc>
                 <span class="calc-hint">Zraszacze wynurzalne Rain Bird, rury PE, elektrozawory, sterownik, projekt i uruchomienie</span>
               </div>
               <div class="calc-field">
                 <label for="naw-kropla">Rabaty i żywopłoty — linia kroplująca (m)</label>
-                <input type="number" id="naw-kropla" value="0" min="0" max="500" step="5" data-calc>
+                <input type="number" id="naw-kropla" value="0" min="0" max="500" step="any" data-calc>
                 <span class="calc-hint">Wpisz 0, jeśli nawadniasz tylko trawnik</span>
               </div>
               <div class="calc-field">
@@ -1356,12 +1386,16 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
         <aside class="calc-result" aria-live="polite">
           <p class="calc-result-label">Szacunkowy koszt</p>
           <p class="calc-total" id="calc-total">—</p>
+          <div id="calc-validation" class="calc-validation" role="alert" hidden></div>
           <p class="calc-total-sub" id="calc-sub">Zaznacz usługi po lewej stronie.</p>
-          <dl class="calc-rows" id="calc-rows"></dl>
+          <p class="calc-hint">Przedziały zaokrąglamy do 50 zł. Kwota łączna jest sumą wyświetlonych pozycji.</p>
+          <p class="calc-empty" id="calc-empty">Nic jeszcze nie wybrano.</p>
+          <dl class="calc-rows" id="calc-rows" hidden></dl>
           <div class="calc-ctas">
             <a class="btn btn-volt" id="calc-sms" href="sms:+48785668797">Przygotuj zapytanie SMS-em</a>
             <a class="btn btn-ghost" id="calc-mail" href="mailto:kuba@ampower.pl">Przygotuj e-mail z wyceną</a>
           </div>
+          <details class="calc-draft"><summary>Podejrzyj i skopiuj zapytanie</summary><label for="calc-message">Treść zapytania do AMPOWER</label><textarea id="calc-message" rows="8" readonly></textarea><button type="button" class="btn btn-ghost" id="calc-copy" disabled>Kopiuj zapytanie</button><p id="calc-copy-status" role="status"></p></details>
           <p class="calc-note">Linki otwierają szkic w Twojej aplikacji. Wyślij wiadomość samodzielnie; strona nie potwierdza dostarczenia.</p>
           <p class="calc-note">To wycena orientacyjna, nie oferta handlowa — ostateczną cenę podaję po bezpłatnych oględzinach. Podane kwoty są cenami końcowymi dla klienta i obejmują materiał instalacyjny oraz robociznę. Osprzęt (gniazda, łączniki) i oprawy oświetleniowe klient dobiera samodzielnie. Nawadnianie: cena obejmuje projekt, zraszacze, rury, elektrozawory, sterownik, wykopy i uruchomienie przy podłączeniu do istniejącego kranu lub hydroforu — nowy zestaw pompowy doliczysz w polu „Źródło wody”.</p>
         </aside>
@@ -1373,7 +1407,7 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
     <div class="wrap">
       <div class="about-grid">
         <div class="about-photo">
-          <img src="/assets/images/46b8499de7e26344.jpg" alt="Jakub Babiej na drabinie podczas montażu jednostki zewnętrznej LG, w szelkach asekuracyjnych" width="840" height="1260" decoding="async" loading="lazy">
+          <img src="/assets/images/fac0de74b8043910.webp" alt="Jakub Babiej na drabinie podczas montażu jednostki zewnętrznej LG, w szelkach asekuracyjnych" width="840" height="1260" decoding="async" loading="lazy" srcset="/assets/images/bbf7eb2fdfbdea4d.webp 480w, /assets/images/a5fec96c472d1f9d.webp 640w, /assets/images/fac0de74b8043910.webp 840w" sizes="(max-width: 880px) calc(100vw - 48px), 516px">
         </div>
         <div>
           <div class="section-head" style="margin-bottom: 1.8rem;">
@@ -1457,8 +1491,8 @@ h1,h2,h3,p,li,dt,dd { overflow-wrap:anywhere; }
       </span>
       <span class="brand-name">AM<span>POWER</span></span>
     </a>
-    <a href="/prywatnosc/">Prywatność</a>
-    
+    <a href="/prywatnosc/">Prywatność</a><button class="amp-cookie-link" type="button" data-cookie-settings hidden>Ustawienia cookies</button>
+
     <span>© 2026 AmPower Jakub Babiej · NIP 5020121689 · ampower.pl</span>
   </div>
 </footer>
@@ -1581,7 +1615,8 @@ var CENNIK = {
   if (!root) return;
 
   var fmt = new Intl.NumberFormat('pl-PL', { maximumFractionDigits: 0, useGrouping: 'always' });
-  function kw(n) { return fmt.format(Math.round(n / 50) * 50); }
+  function rounded(n) { return Math.round(n / 50) * 50; }
+  function kw(n) { return fmt.format(rounded(n)); }
   function widelki(r) {
     if (r[0] === r[1]) { return kw(r[0]) + ' zł'; }
     return kw(r[0]) + ' – ' + kw(r[1]) + ' zł';
@@ -1610,22 +1645,26 @@ var CENNIK = {
     studnia:  'studnia z własną pompą',
     pompa:    'studnia + nowy zestaw hydroforowy'
   };
-  function num(id, fallback) {
-    var pole = $(id);
-    var v = parseInt(pole.value, 10);
-    if (isNaN(v)) return fallback;
-    var minimum = parseInt(pole.min, 10);
-    if (!isNaN(minimum) && v < minimum) {
-      v = minimum;
-      pole.value = minimum;
-    }
-    var maksimum = parseInt(pole.max, 10);
-    if (!isNaN(maksimum) && v > maksimum) {
-      v = maksimum;
-      pole.value = maksimum;
-    }
-    return v;
+  var preparedMessage = '';
+  var numericGroups = [
+    ['c-elek', ['elek-punkty']], ['c-klima', ['klima-ile','klima-trasa']],
+    ['c-mon', ['mon-kamery']], ['c-naw', ['naw-m2','naw-kropla']]
+  ];
+  var numericLabels = {'elek-punkty':'Liczba punktów','klima-ile':'Liczba pomieszczeń','klima-trasa':'Długość trasy','mon-kamery':'Liczba kamer','naw-m2':'Powierzchnia trawnika','naw-kropla':'Długość linii kroplującej'};
+  function numericIssues() {
+    var issues=[];
+    numericGroups.forEach(function(group){
+      group[1].forEach(function(id){
+        var field=$(id);field.removeAttribute('aria-invalid');
+        if(!$(group[0]).checked)return;
+        var value=Number(field.value),whole=['elek-punkty','klima-ile','mon-kamery'].indexOf(id)>=0;
+        var valid=String(field.value).trim()!=='' && Number.isFinite(value) && value>=Number(field.min) && value<=Number(field.max) && (!whole||Number.isInteger(value));
+        if(!valid){field.setAttribute('aria-invalid','true');issues.push({id:id,message:numericLabels[id]+': podaj '+(whole?'pełną liczbę':'wartość')+' od '+field.min+' do '+field.max+'.'});}
+      });
+    });
+    return issues;
   }
+  function num(id, fallback) {var value=Number($(id).value);return Number.isFinite(value)?value:fallback;}
 
   function policz() {
     var suma = [0, 0];
@@ -1779,17 +1818,29 @@ var CENNIK = {
   }
 
   function odswiez() {
+    var errors=numericIssues(),errorBox=$('calc-validation');
+    errorBox.replaceChildren();errorBox.hidden=!errors.length;
+    if(errors.length){
+      errors.forEach(function(issue){var row=document.createElement('p'),link=document.createElement('button');link.type='button';link.textContent=issue.message;link.setAttribute('aria-controls',issue.id);link.addEventListener('click',function(){requestAnimationFrame(function(){$(issue.id).focus();});});row.appendChild(link);errorBox.appendChild(row);});
+      $('calc-total').textContent='—';$('calc-sub').textContent='Popraw dane, aby otrzymać szacunek.';$('calc-rows').replaceChildren();$('calc-rows').hidden=true;$('calc-empty').hidden=true;
+      preparedMessage='';$('calc-message').value='';$('calc-copy').disabled=true;$('calc-copy-status').textContent='';
+      ['calc-sms','calc-mail'].forEach(function(id){$(id).removeAttribute('href');$(id).setAttribute('aria-disabled','true');$(id).tabIndex=-1;$(id).classList.toggle('is-disabled',true);});return;
+    }
     var w = policz();
+    // Sumujemy te same kwoty, które klient widzi przy usługach i w szkicu.
+    w.suma = w.pozycje.reduce(function(sum, item) {
+      return dodaj(sum, item.zakres.map(rounded));
+    }, [0, 0]);
     var rows = $('calc-rows');
     rows.replaceChildren();
+    rows.hidden = !w.pozycje.length;
+    $('calc-empty').hidden = Boolean(w.pozycje.length);
 
     if (!w.pozycje.length) {
+      var selected = ['c-elek', 'c-klima', 'c-mon', 'c-naw'].some(function(id) { return $(id).checked; });
       $('calc-total').textContent = '—';
-      $('calc-sub').textContent = 'Zaznacz usługi po lewej stronie.';
-      var p = document.createElement('p');
-      p.className = 'calc-empty';
-      p.textContent = 'Nic jeszcze nie wybrano.';
-      rows.appendChild(p);
+      $('calc-sub').textContent = selected ? 'Uzupełnij ilość lub wybierz zakres prac.' : 'Zaznacz usługi po lewej stronie.';
+      $('calc-empty').textContent = selected ? 'Wybrano usługę bez zakresu prac do wyceny.' : 'Nic jeszcze nie wybrano.';
     } else {
       $('calc-total').textContent = widelki(w.suma);
       $('calc-sub').textContent = w.pozycje.length === 1
@@ -1826,11 +1877,24 @@ var CENNIK = {
       $(id).tabIndex = aktywnaWycena ? 0 : -1;
     });
 
-    $('calc-sms').href = 'sms:+48785668797?body=' + encodeURIComponent(tresc);
-    $('calc-mail').href = 'mailto:kuba@ampower.pl?subject=' +
-      encodeURIComponent('Zapytanie o wycenę — ampower.pl') +
-      '&body=' + encodeURIComponent(tresc);
+    preparedMessage=aktywnaWycena?tresc:'';
+    $('calc-message').value=preparedMessage;$('calc-copy').disabled=!aktywnaWycena;$('calc-copy-status').textContent='';
+    var sms='sms:+48785668797?body='+encodeURIComponent(tresc);
+    var mail='mailto:kuba@ampower.pl?subject='+encodeURIComponent('Zapytanie o wycenę — ampower.pl')+'&body='+encodeURIComponent(tresc);
+    [['calc-sms',sms],['calc-mail',mail]].forEach(function(pair){
+      var available=aktywnaWycena&&pair[1].length<=8000;
+      if(available)$(pair[0]).href=pair[1];else $(pair[0]).removeAttribute('href');
+      $(pair[0]).setAttribute('aria-disabled',String(!available));$(pair[0]).tabIndex=available?0:-1;$(pair[0]).classList.toggle('is-disabled',!available);
+    });
+    if(aktywnaWycena&&(sms.length>8000||mail.length>8000))$('calc-copy-status').textContent='Zapytanie jest zbyt długie dla linku. Skopiuj pełną treść poniżej do swojej wiadomości.';
+
   }
+
+  $('calc-copy').addEventListener('click',async function(){
+    if(!preparedMessage)return;var text=preparedMessage;
+    try {await navigator.clipboard.writeText(text);$('calc-copy-status').textContent=text===preparedMessage?'Skopiowano zapytanie. Wklej je do swojej wiadomości.':'Skopiowano wcześniejszy zakres. Skopiuj ponownie aktualne zapytanie.';}
+    catch {if(text!==preparedMessage)return;$('calc-message').focus();$('calc-message').select();$('calc-copy-status').textContent='Zaznaczono treść do ręcznego skopiowania.';}
+  });
 
   root.querySelectorAll('input.calc-toggle').forEach(function (cb) {
     var sync = function () { cb.closest('.calc-card').classList.toggle('on', cb.checked); };
@@ -1840,7 +1904,7 @@ var CENNIK = {
 
   root.querySelectorAll('[data-calc]').forEach(function (el) {
     el.addEventListener('input', odswiez);
-    el.addEventListener('change', odswiez);
+    el.addEventListener('change', function () { if (el.type !== 'number') odswiez(); });
   });
   odswiez();
 })();

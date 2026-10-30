@@ -29,12 +29,13 @@ export function estimate(selection, book, now = new Date()) {
   const hardware = new Map();
   const systems = new Map();
   const unique = new Set();
+  const qualified = product => product?.compatibilityStatus === 'qualified' && product.allowedDeliveries?.includes(selection.delivery);
   let points = 0;
   for (const item of selection.items) {
     const p = book.products.find(p => p.id === item.deviceId);
-    if (!p || !count(item.quantity) || item.quantity < 1 || !p.allowedDeliveries.includes(selection.delivery) || !['new', 'existing'].includes(item.ownership)) { fail('Dobór modelu i liczby urządzeń wymaga sprawdzenia.'); continue; }
+    if (!p || !count(item.quantity) || item.quantity < 1 || !['new', 'existing'].includes(item.ownership)) { fail('Dobór modelu i liczby urządzeń wymaga sprawdzenia.'); continue; }
     if (item.category !== p.category && !(item.category === 'other' && p.category === 'other')) { fail('Model nie odpowiada wybranej kategorii.'); continue; }
-    if (p.compatibilityStatus !== 'qualified' || (p.allowedFunctions.length && !p.allowedFunctions.includes(item.function)) || (p.allowedControls.length && !p.allowedControls.includes(item.control))) fail('Ta funkcja lub droga integracji wymaga indywidualnej kwalifikacji.');
+    if (!qualified(p) || (p.allowedFunctions.length && !p.allowedFunctions.includes(item.function)) || (p.allowedControls.length && !p.allowedControls.includes(item.control))) fail('Ta funkcja lub droga integracji wymaga indywidualnej kwalifikacji.');
     if (['storage', 'ev'].includes(item.category) && ['control', 'power'].includes(item.function)) fail('Sterowanie energią wymaga audytu i pilotażu.');
     if (item.category === 'pv' && item.function !== 'read') fail('Szersza integracja PV wymaga indywidualnej wyceny.');
     if (item.control === 'mixed') fail('Rozdzielimy zakres instalacji mieszanej po sprawdzeniu urządzeń.');
@@ -47,18 +48,19 @@ export function estimate(selection, book, now = new Date()) {
       else if (systems.has(item.systemId) && systems.get(item.systemId) !== p.systemType) fail('Wspólna bramka wymaga potwierdzenia jednej drogi integracji.');
       else systems.set(item.systemId, p.systemType);
     }
+    // Posiadane urządzenie też może wymagać nowego radia przy integracji z HA.
+    for (const id of p.dependencyIds) {
+      if (!['none', ...(book.products.filter(p => p.category === 'radio').map(p => p.id))].includes(selection.radioChoice)) { fail('Sprawdzimy, czy trzeba dostarczyć radio Zigbee.'); continue; }
+      const possible = [id, ...(rules.radioAlternatives?.[id] || [])];
+      const owned = selection.ownedInfrastructure?.find(id => possible.includes(id));
+      if (owned) {
+        const radio = book.products.find(p => p.id === owned);
+        if (!current(radio, now) || !radio.existingApproved || !qualified(radio)) fail('Posiadane radio wymaga sprawdzenia kompatybilności.');
+      } else hardware.set(id, Math.max(1, hardware.get(id) || 0));
+    }
     if (item.ownership === 'new') {
       if (p.existingOnly || p.availability !== 'available') fail('Cena lub dostępność nowego sprzętu wymaga aktualizacji.');
       hardware.set(p.id, (hardware.get(p.id) || 0) + item.quantity);
-      for (const id of p.dependencyIds) {
-        if (!['none', ...(book.products.filter(p => p.category === 'radio').map(p => p.id))].includes(selection.radioChoice)) { fail('Sprawdzimy, czy trzeba dostarczyć radio Zigbee.'); continue; }
-        const possible = [id, ...(rules.radioAlternatives?.[id] || [])];
-        const owned = selection.ownedInfrastructure?.find(id => possible.includes(id));
-        if (owned) {
-          const radio = book.products.find(p => p.id === owned);
-          if (!current(radio, now) || !radio.existingApproved || radio.compatibilityStatus !== 'qualified') fail('Posiadane radio wymaga sprawdzenia kompatybilności.');
-        } else hardware.set(id, Math.max(1, hardware.get(id) || 0));
-      }
       if (p.installationService) {
         if (selection.delivery !== 'local' || item.installation !== 'ready') fail('Nowy moduł wymaga kwalifikacji i montażu na miejscu.');
         else service(p.installationService, item.quantity, 'installation', `install:${pointKey}`);
@@ -69,7 +71,8 @@ export function estimate(selection, book, now = new Date()) {
   // Zależności host/radio/mostek raz; cena materiału i robocizna osobno.
   for (const [id, quantity] of hardware) {
     const p = book.products.find(p => p.id === id);
-    if (!p || p.availability !== 'available') { fail('Wymagany sprzęt jest niedostępny lub wymaga aktualizacji ceny.'); continue; }
+    if (!p || p.existingOnly || p.availability !== 'available') { fail('Wymagany sprzęt jest niedostępny lub wymaga aktualizacji ceny.'); continue; }
+    if (!qualified(p)) { fail('Wymagany sprzęt wymaga indywidualnej kwalifikacji.'); continue; }
     const discounts = (rules.quantityDiscounts || []).filter(d => Number.isInteger(d.from) && d.from > 0 && Number.isFinite(d.percent) && d.percent >= 0 && d.percent < 100 && quantity >= d.from);
     const discount = discounts.sort((a, b) => b.from - a.from)[0]?.percent || 0;
     add(p, quantity, 'hardware', `hardware:${id}`, discount);

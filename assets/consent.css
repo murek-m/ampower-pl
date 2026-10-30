@@ -1,11 +1,3 @@
-.amp-cookie-link { color:inherit; font:inherit; background:none; border:0; padding:10px 0; min-height:44px; cursor:pointer; text-decoration:underline; text-underline-offset:4px; }
-.amp-consent { position:fixed; z-index:1000; left:16px; right:16px; bottom:16px; max-width:660px; margin:0 auto; padding:20px; border:1px solid #797266; border-radius:12px; background:#181613; color:#f2efe6; box-shadow:0 6px 32px #0005; font:400 16px/1.5 system-ui,sans-serif; max-height:70dvh; overflow-y:auto; }
-.amp-consent[hidden] { display:none !important; }
-.amp-consent h2 { font:700 19px/1.3 system-ui,sans-serif; color:#fff; margin:0 0 8px; }
-.amp-consent p { font:400 15px/1.5 system-ui,sans-serif; color:#dedad1; margin:0 0 14px; }
-.amp-consent a { color:#f2efe6; text-decoration:underline; text-underline-offset:3px; }
-.amp-consent .amp-consent-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
-.amp-consent .amp-choice { display:flex; align-items:center; justify-content:center; min-width:0; min-height:48px; padding:10px; border:1px solid #ffc400; border-radius:7px; background:#ffc400; color:#181613; font:600 16px/1.3 system-ui,sans-serif; cursor:pointer; white-space:normal; }
-.amp-consent :focus-visible,.amp-cookie-link:focus-visible { outline:3px solid #a6d9ff; outline-offset:3px; }
-.amp-consent-note { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
-@media (max-width:359px) { .amp-consent { left:8px; right:8px; bottom:8px; padding:16px; } .amp-consent .amp-consent-actions { grid-template-columns:1fr; } }
+/* Compatibility for cached HTML from the former opt-in Google integration.
+   Current analytics is cookieless; there is no analytics consent banner. */
+[data-cookie-settings], #cookie-banner, .amp-consent { display:none !important; }
